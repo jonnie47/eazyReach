@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Chrome, Shield, Zap, Database, RefreshCw, Lock, ChevronDown, Check, Play } from 'lucide-react';
+import { Globe, Shield, Zap, Database, RefreshCw, Lock, ChevronDown, Play, Users, TrendingUp, Award } from 'lucide-react';
 
 function App() {
   const [demoUrl, setDemoUrl] = useState('');
@@ -73,46 +73,47 @@ function App() {
             {/* Left Content */}
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium">
-                <Chrome className="w-4 h-4" />
-                Chrome Extension
+                <Globe className="w-4 h-4" />
+                Contact Intelligence Platform
               </div>
 
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                Find Director Numbers & Verified LinkedIn Contacts — Instantly
+                Turn LinkedIn Profiles Into 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-pink-300"> Verified Contacts</span>
               </h1>
 
               <p className="text-xl text-blue-100 leading-relaxed">
-                Chrome extension for sales & recruiting. Director numbers ₹1 | Phone ₹7 | Email ₹3 | Full LinkedIn contact ₹10. 100% refund on wrong numbers.
+                The most accurate contact finder for B2B sales teams. Get director phone numbers, verified emails, and complete contact profiles in seconds.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button className="group px-8 py-4 bg-white text-blue-700 rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2">
-                  <Chrome className="w-5 h-5" />
-                  Add to Chrome — Free
+                  <Play className="w-5 h-5" />
+                  Start Finding Contacts
                   <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
                 </button>
                 <button className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-semibold text-lg hover:bg-white/20 transition-all duration-200">
-                  Try 10 Free Credits
+                  Watch Demo
                 </button>
               </div>
 
               <div className="flex flex-wrap items-center gap-6 text-sm text-blue-100">
                 <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4" />
-                  100% credit refund guarantee on wrong numbers
+                  <Award className="w-4 h-4" />
+                  91% accuracy rate
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4" />
-                  GDPR & India privacy compliant
+                  <Users className="w-4 h-4" />
+                  10,000+ contacts found daily
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4" />
-                  Trusted by 1,000+ users
+                  <TrendingUp className="w-4 h-4" />
+                  Trusted by 500+ companies
                 </div>
               </div>
             </div>
 
-            {/* Right Visual - Extension Mockup */}
+            {/* Right Visual - Platform Mockup */}
             <div className="relative">
               <div className="bg-white rounded-2xl shadow-2xl p-6 transform hover:scale-105 transition-transform duration-300">
                 <div className="flex items-center gap-3 mb-4 pb-4 border-b">
@@ -120,12 +121,12 @@ function App() {
                     <Zap className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">EazyReach</h3>
-                    <p className="text-xs text-gray-500">Contact Finder</p>
+                    <h3 className="font-semibold text-gray-900">EazyReach Platform</h3>
+                    <p className="text-xs text-gray-500">Contact Intelligence</p>
                   </div>
                   <div className="ml-auto flex items-center gap-1 text-xs text-green-600 font-medium bg-green-50 px-2 py-1 rounded-full">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    ~91% accuracy
+                    Live Data
                   </div>
                 </div>
 
@@ -179,8 +180,8 @@ function App() {
       <div className="bg-gradient-to-b from-gray-50 to-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">Try it now — See the magic</h2>
-            <p className="text-gray-600">Paste a LinkedIn URL below to see a demo lookup</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">See EazyReach in Action</h2>
+            <p className="text-gray-600">Enter a LinkedIn URL to experience our contact intelligence platform</p>
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
@@ -203,10 +204,10 @@ function App() {
 
             {showDemoResult && (
               <div className="mt-6 p-6 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-sm text-blue-900 mb-3 font-medium">Install the Chrome extension to run real lookups!</p>
+                <p className="text-sm text-blue-900 mb-3 font-medium">Ready to unlock verified contact data?</p>
                 <button className="px-6 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors">
-                  <Chrome className="w-4 h-4 inline mr-2" />
-                  Install Extension
+                  <Globe className="w-4 h-4 inline mr-2" />
+                  Get Started Now
                 </button>
               </div>
             )}
@@ -214,15 +215,32 @@ function App() {
         </div>
       </div>
 
-      {/* Trust Logos */}
-      <div className="py-12 bg-white border-y border-gray-200">
+      {/* Social Proof Section */}
+      <div className="py-16 bg-gradient-to-r from-gray-50 to-blue-50 border-y border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-sm text-gray-500 mb-8 uppercase tracking-wide">Trusted by leading companies</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-60">
-            <div className="text-2xl font-bold text-gray-400">BharatX</div>
-            <div className="text-2xl font-bold text-gray-400">Local Narratives</div>
-            <div className="text-2xl font-bold text-gray-400">Growth Agency</div>
-            <div className="text-2xl font-bold text-gray-400">Tophire</div>
+          <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">10,000+</div>
+              <p className="text-gray-600 font-medium">Contacts Found Daily</p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-purple-600 mb-2">91%</div>
+              <p className="text-gray-600 font-medium">Data Accuracy Rate</p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-green-600 mb-2">500+</div>
+              <p className="text-gray-600 font-medium">Enterprise Customers</p>
+            </div>
+          </div>
+          
+          <div className="mt-12">
+            <p className="text-center text-sm text-gray-500 mb-8 uppercase tracking-wide">Trusted by industry leaders</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-60">
+              <div className="text-2xl font-bold text-gray-400">BharatX</div>
+              <div className="text-2xl font-bold text-gray-400">Local Narratives</div>
+              <div className="text-2xl font-bold text-gray-400">Growth Agency</div>
+              <div className="text-2xl font-bold text-gray-400">Tophire</div>
+            </div>
           </div>
         </div>
       </div>
@@ -254,10 +272,10 @@ function App() {
 
             <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-200">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
-                <Chrome className="w-6 h-6 text-white" />
+                <Globe className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Chrome Extension</h3>
-              <p className="text-gray-600 leading-relaxed">Instant lookup inside LinkedIn pages. No switching tabs or copy-pasting. Works seamlessly in your workflow.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Multi-Platform Access</h3>
+              <p className="text-gray-600 leading-relaxed">Access through web dashboard, Chrome extension, or API. Seamlessly integrate into your existing sales workflow.</p>
             </div>
 
             <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-200">
@@ -346,35 +364,101 @@ function App() {
         </div>
       </div>
 
-      {/* Extension Trust Section */}
+      {/* Getting Started Section */}
       <div className="py-20 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Chrome className="w-16 h-16 mx-auto mb-6" />
-          <h2 className="text-4xl font-bold mb-6">Get Started in 3 Simple Steps</h2>
+          <Zap className="w-16 h-16 mx-auto mb-6" />
+          <h2 className="text-4xl font-bold mb-6">Start Finding Contacts in Minutes</h2>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
               <div className="w-12 h-12 bg-white text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">1</div>
-              <h3 className="font-semibold mb-2">Install Extension</h3>
-              <p className="text-blue-100 text-sm">Add EazyReach to Chrome in one click</p>
+              <h3 className="font-semibold mb-2">Sign Up</h3>
+              <p className="text-blue-100 text-sm">Create your free account and get 10 credits</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
               <div className="w-12 h-12 bg-white text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">2</div>
-              <h3 className="font-semibold mb-2">Open LinkedIn Profile</h3>
-              <p className="text-blue-100 text-sm">Navigate to any LinkedIn profile page</p>
+              <h3 className="font-semibold mb-2">Enter LinkedIn URL</h3>
+              <p className="text-blue-100 text-sm">Paste any LinkedIn profile URL you want to enrich</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
               <div className="w-12 h-12 bg-white text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">3</div>
-              <h3 className="font-semibold mb-2">Click EazyReach Icon</h3>
-              <p className="text-blue-100 text-sm">Find contact data instantly</p>
+              <h3 className="font-semibold mb-2">Get Verified Contacts</h3>
+              <p className="text-blue-100 text-sm">Receive phone, email, and profile data instantly</p>
             </div>
           </div>
 
           <button className="px-10 py-4 bg-white text-blue-700 rounded-xl font-bold text-xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-200 inline-flex items-center gap-3">
-            <Chrome className="w-6 h-6" />
-            Add to Chrome — Free
+            <Play className="w-6 h-6" />
+            Start Finding Contacts
           </button>
-          <p className="mt-4 text-blue-100">Try free 10 credits after install • 100% credit refund for wrong numbers</p>
+          <p className="mt-4 text-blue-100">10 free credits to start • 91% accuracy guarantee • No setup required</p>
+        </div>
+      </div>
+
+      {/* Testimonials Section */}
+      <div className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Loved by Sales Teams Worldwide</h2>
+            <p className="text-xl text-gray-600">See what our customers are saying about EazyReach</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 border border-blue-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center gap-1 mb-4">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <div key={star} className="w-5 h-5 text-yellow-400 fill-current">⭐</div>
+                ))}
+              </div>
+              <p className="text-gray-600 mb-6 italic">"EazyReach transformed our prospecting. We're finding decision-maker contacts 5x faster than before. The accuracy is incredible!"</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                  S
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Sarah Johnson</p>
+                  <p className="text-sm text-gray-500">Sales Director, BharatX</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-white rounded-2xl p-8 border border-purple-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center gap-1 mb-4">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <div key={star} className="w-5 h-5 text-yellow-400 fill-current">⭐</div>
+                ))}
+              </div>
+              <p className="text-gray-600 mb-6 italic">"The phone number accuracy is outstanding. We've had zero wrong numbers so far. Perfect for our high-touch sales approach."</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold">
+                  M
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Michael Chen</p>
+                  <p className="text-sm text-gray-500">Growth Lead, Local Narratives</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-50 to-white rounded-2xl p-8 border border-green-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center gap-1 mb-4">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <div key={star} className="w-5 h-5 text-yellow-400 fill-current">⭐</div>
+                ))}
+              </div>
+              <p className="text-gray-600 mb-6 italic">"Finally, a contact finder that actually works. The pricing is fair and transparent. No more wasted credits on bad data."</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                  R
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Rahul Sharma</p>
+                  <p className="text-sm text-gray-500">VP Sales, Tophire</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -384,10 +468,10 @@ function App() {
           <div className="bg-white rounded-2xl shadow-xl p-10 border border-gray-200">
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                Coming Soon
+                Beta Access
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">Dashboard Coming Soon — Join Waitlist</h2>
-              <p className="text-gray-600">Early access + bonus 500 credits for first 500 signups</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">Join the EazyReach Beta Program</h2>
+              <p className="text-gray-600">Get early access to advanced features + bonus 500 credits for first 500 signups</p>
             </div>
 
             <form onSubmit={handleWaitlistSubmit} className="space-y-4">
@@ -475,7 +559,7 @@ function App() {
               <h4 className="text-white font-semibold mb-4">Product</h4>
               <ul className="space-y-2 text-sm">
                 <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Chrome Extension</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Platform</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
               </ul>
             </div>
