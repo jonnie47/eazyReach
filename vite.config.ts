@@ -7,4 +7,30 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  server: {
+    proxy: {
+      '/blogs': {
+        target: 'https://blogs.vocallabs.ai',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path,
+        configure: (proxy) => {
+          proxy.on('proxyReq', (proxyReq) => {
+            proxyReq.setHeader('Referer', 'https://blogs.vocallabs.ai/');
+          });
+        },
+      },
+      '/blog': {
+        target: 'https://blogs.vocallabs.ai',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path,
+        configure: (proxy) => {
+          proxy.on('proxyReq', (proxyReq) => {
+            proxyReq.setHeader('Referer', 'https://blogs.vocallabs.ai/');
+          });
+        },
+      },
+    },
+  },
 });
