@@ -4,7 +4,7 @@ import { Button } from '../ui/Button';
 
 export const PricingSection: React.FC = () => {
   return (
-    <div className="py-20 bg-white">
+    <div id="pricing" className="py-20 bg-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Simple per-contact pricing — pay only for what you use</h2>
@@ -34,11 +34,14 @@ export const PricingSection: React.FC = () => {
           })}
         </div>
 
-        <div className="text-center">
-          <Button variant="primary" size="lg">
+        <div className="text-center flex items-center justify-center">
+          <Button 
+            variant="primary" 
+            size="lg"
+            onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+          >
             Buy Credits
           </Button>
-          <p className="mt-4 text-sm text-gray-600">Example: 100 credits for bulk purchases available</p>
         </div>
       </div>
     </div>

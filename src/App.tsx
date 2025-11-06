@@ -7,8 +7,10 @@ import {
   FeaturesSection,
   PricingSection,
   TestimonialsSection,
-  FAQSection
+  FAQSection,
+  CTABanner
 } from './components/sections';
+import { FloatingCTA } from './components/ui';
 
 function App() {
   return (
@@ -19,9 +21,11 @@ function App() {
       <SocialProofSection />
       <FeaturesSection />
       <PricingSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
+      <CTABanner />
       <FAQSection />
       <Footer />
+      <FloatingCTA />
     </div>
   );
 }

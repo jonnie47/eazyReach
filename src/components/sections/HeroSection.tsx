@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Globe, Play, Award, Users, TrendingUp, Zap, Database } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 export const HeroSection: React.FC = () => {
+  const [showResults, setShowResults] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleFindContact = () => {
+    if (showResults) {
+      setShowResults(false);
+      return;
+    }
+    
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setShowResults(true);
+    }, 1500);
+  };
+
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 text-white pt-16">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
@@ -26,12 +42,21 @@ export const HeroSection: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="outline" size="lg" className="group">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="group"
+                onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+              >
                 <Play className="w-5 h-5" />
                 Start Finding Contacts
                 <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
               </Button>
-              <Button variant="secondary" size="lg">
+              <Button 
+                variant="secondary" 
+                size="lg"
+                onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 Watch Demo
               </Button>
             </div>
@@ -75,42 +100,65 @@ export const HeroSection: React.FC = () => {
                   <input
                     type="text"
                     placeholder="https://linkedin.com/in/johndoe"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent animate-pulse"
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     value="https://linkedin.com/in/sarah-director"
                     readOnly
                   />
                 </div>
 
                 <button 
-                  className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-default"
+                  onClick={handleFindContact}
+                  disabled={isLoading}
+                  className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed"
                 >
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Analyzing profile...
+                  {isLoading ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Finding contact...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Zap className="w-5 h-5" />
+                      <span>{showResults ? 'Hide Results' : 'Find Contact'}</span>
+                    </>
+                  )}
                 </button>
 
-                {/* Animated Mock Result */}
-                <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-lg p-4 space-y-3 border-2 border-green-200 animate-pulse">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700">Director Phone</span>
-                    <span className="text-sm font-mono text-gray-900 bg-white px-2 py-1 rounded">+91 98765 43210</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-700">Email</span>
-                    <span className="text-sm font-mono text-gray-900 bg-white px-2 py-1 rounded">sarah@techcorp.com</span>
-                  </div>
-                  <div className="pt-2 border-t border-green-200">
-                    <div className="flex items-center gap-2 text-xs text-gray-600">
-                      <Database className="w-3 h-3" />
-                      <span>Found in 0.5 seconds</span>
+                {/* Results - Show on click */}
+                {showResults && (
+                  <>
+                    <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-lg p-5 space-y-3 border-2 border-green-300 shadow-lg">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-gray-700">Director Phone</span>
+                        <span className="text-sm font-mono text-gray-900 bg-white px-3 py-1.5 rounded shadow-sm">
+                          +91 98765 43210
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-gray-700">Email</span>
+                        <span className="text-sm font-mono text-gray-900 bg-white px-3 py-1.5 rounded shadow-sm">
+                          sarah@techcorp.com
+                        </span>
+                      </div>
+                      <div className="pt-2 border-t border-green-200">
+                        <div className="flex items-center gap-2 text-xs text-gray-600">
+                          <Database className="w-4 h-4 text-green-600" />
+                          <span className="font-medium">Found in 0.5 seconds</span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
 
-                {/* Success Badge */}
-                <div className="bg-green-100 border border-green-300 rounded-lg p-3 flex items-center gap-2 animate-bounce">
-                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">✓</div>
-                  <span className="text-sm font-medium text-green-800">Contact verified & ready!</span>
-                </div>
+                    <div className="bg-gradient-to-r from-green-100 to-emerald-100 border-2 border-green-400 rounded-xl p-4 flex items-center gap-3 shadow-lg">
+                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold shadow-md">
+                        ✓
+                      </div>
+                      <div>
+                        <span className="text-sm font-bold text-green-900">Contact verified & ready!</span>
+                        <p className="text-xs text-green-700 mt-0.5">100% accuracy guaranteed</p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

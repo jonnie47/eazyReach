@@ -3,7 +3,7 @@ import { Play } from 'lucide-react';
 
 export const DemoSection: React.FC = () => {
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white py-20">
+    <div id="demo" className="bg-gradient-to-b from-gray-50 to-white py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
@@ -40,10 +40,16 @@ export const DemoSection: React.FC = () => {
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-6">Ready to start finding contacts?</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200">
+            <button 
+              onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
+            >
               Start Free Trial
             </button>
-            <button className="px-8 py-4 bg-white border-2 border-gray-300 text-gray-700 rounded-xl font-semibold text-lg hover:border-gray-400 hover:shadow-lg transition-all duration-200">
+            <button 
+              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-4 bg-white border-2 border-gray-300 text-gray-700 rounded-xl font-semibold text-lg hover:border-gray-400 hover:shadow-lg transition-all duration-200"
+            >
               View Pricing
             </button>
           </div>

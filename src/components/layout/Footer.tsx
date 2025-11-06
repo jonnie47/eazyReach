@@ -9,9 +9,9 @@ export const Footer: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <img 
-                src="/src/public/EazyReach-Dark.png" 
+                src="/src/public/EazyReach-w.png" 
                 alt="EazyReach Logo" 
-                className="size-36 w-auto"
+                className="size-28 w-auto"
               />
             </div>
             <p className="text-sm text-gray-400">Find verified LinkedIn contacts instantly.</p>
