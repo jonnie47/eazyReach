@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Globe, Play, Award, Users, TrendingUp, Zap, Database } from 'lucide-react';
+import { Globe, Play, Award, Users, TrendingUp, Shell, Database, UserSearch } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 export const HeroSection: React.FC = () => {
@@ -82,7 +82,7 @@ export const HeroSection: React.FC = () => {
             <div className="bg-white rounded-2xl shadow-2xl p-6 transform hover:scale-105 transition-transform duration-300">
               <div className="flex items-center gap-3 mb-4 pb-4 border-b">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-white" />
+                  <Shell className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">EazyReach Platform</h3>
@@ -118,7 +118,7 @@ export const HeroSection: React.FC = () => {
                     </>
                   ) : (
                     <>
-                      <Zap className="w-5 h-5" />
+                      <UserSearch className="w-5 h-5" />
                       <span>{showResults ? 'Hide Results' : 'Find Contact'}</span>
                     </>
                   )}
