@@ -10,7 +10,7 @@ export const Header: React.FC = () => {
                     <div className="flex items-center">
                         <a href="/" className="flex items-center gap-2">
                             <img
-                                src="/src/public/EazyReach.png"
+                                src="/EazyReach.png"
                                 alt="EazyReach"
                                 className="size-28 w-auto"
                             />

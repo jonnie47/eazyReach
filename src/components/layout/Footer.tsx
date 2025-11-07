@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <img 
-                src="/src/public/EazyReach-w.png" 
+                src="/EazyReach-w.png" 
                 alt="EazyReach Logo" 
                 className="size-28 w-auto"
               />

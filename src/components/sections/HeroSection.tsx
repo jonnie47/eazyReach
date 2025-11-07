@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Globe, Play, Award, Users, TrendingUp, Shell, Database, UserSearch } from 'lucide-react';
 import { Button } from '../ui/Button';
 
