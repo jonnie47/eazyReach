@@ -1,3 +1,12 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# Blog proxy - this WON'T work in Netlify for external proxying
+# Netlify doesn't support true proxying like Vite dev server
+# You need to use an iframe or fetch the content client-side
+
+# SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"

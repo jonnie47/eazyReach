@@ -9,6 +9,20 @@ export default defineConfig({
   },
   server: {
     proxy: {
+      // Proxy WordPress static assets
+      '/wp-content': {
+        target: 'https://blogs.vocallabs.ai',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path,
+      },
+      '/wp-includes': {
+        target: 'https://blogs.vocallabs.ai',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path,
+      },
+      // Proxy blog routes
       '/blogs': {
         target: 'https://blogs.vocallabs.ai',
         changeOrigin: true,
@@ -17,6 +31,7 @@ export default defineConfig({
         configure: (proxy) => {
           proxy.on('proxyReq', (proxyReq) => {
             proxyReq.setHeader('Referer', 'https://blogs.vocallabs.ai/');
+            proxyReq.setHeader('Origin', 'https://blogs.vocallabs.ai');
           });
         },
       },
@@ -28,6 +43,7 @@ export default defineConfig({
         configure: (proxy) => {
           proxy.on('proxyReq', (proxyReq) => {
             proxyReq.setHeader('Referer', 'https://blogs.vocallabs.ai/');
+            proxyReq.setHeader('Origin', 'https://blogs.vocallabs.ai');
           });
         },
       },

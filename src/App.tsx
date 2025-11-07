@@ -9,7 +9,8 @@ import {
   PartnersPage,
   DashboardPage,
   FeaturesPage,
-  PricingPage
+  PricingPage,
+  BlogPage
 } from './pages';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/unlimited-email" element={<UnlimitedEmailPage />} />
           <Route path="/partners" element={<PartnersPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/blogs" element={<BlogPage />} />
         </Routes>
         <Footer />
         <FloatingCTA />

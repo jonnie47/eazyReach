@@ -5,3 +5,4 @@ export { PartnersPage } from './PartnersPage';
 export { DashboardPage } from './DashboardPage';
 export { FeaturesPage } from './FeaturesPage';
 export { PricingPage } from './PricingPage';
+export { BlogPage } from './BlogPage';
