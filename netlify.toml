@@ -5,17 +5,13 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-[[redirects]]
-  from = "/blogs/*"
-  to = "https://blogs.vocallabs.ai/blogs/:splat"
-  status = 200
-  force = true
+[[edge_functions]]
+  function = "blog-proxy"
+  path = "/blogs/*"
 
-[[redirects]]
-  from = "/blog/*"
-  to = "https://blogs.vocallabs.ai/blog/:splat"
-  status = 200
-  force = true
+[[edge_functions]]
+  function = "blog-proxy"
+  path = "/blog/*"
 
 [[redirects]]
   from = "/wp-content/*"
@@ -28,8 +24,3 @@
   to = "https://blogs.vocallabs.ai/wp-includes/:splat"
   status = 200
   force = true
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
