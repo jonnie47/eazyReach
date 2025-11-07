@@ -22,47 +22,51 @@ export const Header: React.FC = () => {
 
                     {/* Navigation */}
                     <nav className="hidden lg:flex items-center gap-10">
-                        <Link 
-                            href="/features" 
+                        <Link
+                            href="/features"
                             className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
                         >
                             Features
                         </Link>
-                        <Link 
-                            href="/pricing" 
+                        <Link
+                            href="/pricing"
                             className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
                         >
                             Pricing
                         </Link>
-                        <Link 
-                            href="/director-phone" 
+                        <Link
+                            href="/director-phone"
                             className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
                         >
                             Director Phone
                         </Link>
-                        <Link 
-                            href="/unlimited-email" 
+                        <Link
+                            href="/unlimited-email"
                             className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
                         >
                             Unlimited Email
                         </Link>
-                        <Link 
-                            href="/partners" 
+                        <Link
+                            href="/partners"
                             className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
                         >
                             Partners
                         </Link>
-                        <Link 
-                            href="/dashboard" 
+                        <Link
+                            href="/dashboard"
                             className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
                         >
                             Dashboard
                         </Link>
-                        <Link 
-                            href="/blogs" 
+                        <Link
+                            href="/blogs"
+                            target="_blank"
+                            rel="noopener noreferrer"
+
+
                             className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
                         >
-                            Blog
+                            Blogs
                         </Link>
                     </nav>
 
