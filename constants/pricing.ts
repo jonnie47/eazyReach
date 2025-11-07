@@ -3,7 +3,7 @@ import { PricingTier } from '../types';
 export const PRICING_TIERS: PricingTier[] = [
   {
     price: 1,
-    title: 'Director Phone Number',
+    title: 'Director Number',
     description: 'Decision-maker direct numbers',
     credits: 1
   },
