@@ -30,7 +30,7 @@ export const TestimonialsSection: React.FC = () => {
                   <div key={star} className="w-5 h-5 text-yellow-400 fill-current">⭐</div>
                 ))}
               </div>
-              <p className="text-gray-600 mb-6 italic">"{testimonial.testimonial}"</p>
+              <p className="text-gray-600 mb-6 italic">&quot;{testimonial.testimonial}&quot;</p>
               <div className="flex items-center gap-3">
                 <div className={`w-10 h-10 bg-gradient-to-br ${avatarGradients[index]} rounded-full flex items-center justify-center text-white font-bold`}>
                   {testimonial.initial}

@@ -14,7 +14,7 @@ export const DashboardSection: React.FC = () => {
             Advanced Dashboard Feature
           </h2>
           <p className="text-xl text-blue-100 leading-relaxed max-w-2xl mx-auto">
-            We're building something amazing! Our new dashboard will give you powerful analytics, bulk operations, and team collaboration features.
+            We&apos;re building something amazing! Our new dashboard will give you powerful analytics, bulk operations, and team collaboration features.
           </p>
         </div>
 
