@@ -1,0 +1,40 @@
+[[redirects]][build]
+
+  from = "/blogs/*"  publish = "dist"
+
+  to = "https://blogs.vocallabs.ai/blogs/:splat"  command = "npm run build"
+
+  status = 200
+
+  force = true# Blog proxy - this WON'T work in Netlify for external proxying
+
+# Netlify doesn't support true proxying like Vite dev server
+
+[[redirects]]# You need to use an iframe or fetch the content client-side
+
+  from = "/blog/*"
+
+  to = "https://blogs.vocallabs.ai/blog/:splat"# SPA fallback
+
+  status = 200[[redirects]]
+
+  force = true  from = "/*"
+
+  to = "/index.html"
+
+[[redirects]]  status = 200
+  from = "/wp-content/*"
+  to = "https://blogs.vocallabs.ai/wp-content/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/wp-includes/*"
+  to = "https://blogs.vocallabs.ai/wp-includes/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
