@@ -17,7 +17,7 @@ export const PricingSection: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Simple Pricing
+            Simple and Transparent Pricing
           </h2>
           <p className="text-xl text-gray-600">
             Pay only for what you use. No subscriptions.
