@@ -12,15 +12,6 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     return [
-      // Proxy all blog routes
-      {
-        source: '/blogs/:path*',
-        destination: 'https://blogs.vocallabs.ai/blogs/:path*',
-      },
-      {
-        source: '/blog/:path*',
-        destination: 'https://blogs.vocallabs.ai/blog/:path*',
-      },
       // WordPress assets
       {
         source: '/wp-content/:path*',
@@ -29,10 +20,6 @@ const nextConfig: NextConfig = {
       {
         source: '/wp-includes/:path*',
         destination: 'https://blogs.vocallabs.ai/wp-includes/:path*',
-      },
-      {
-        source: '/index_files/:path*',
-        destination: 'https://blogs.vocallabs.ai/index_files/:path*',
       },
     ];
   },
