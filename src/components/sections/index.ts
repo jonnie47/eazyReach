@@ -6,3 +6,7 @@ export { PricingSection } from './PricingSection';
 export { TestimonialsSection } from './TestimonialsSection';
 export { FAQSection } from './FAQSection';
 export { CTABanner } from './CTABanner';
+export { DirectorPhoneSection } from './DirectorPhoneSection';
+export { UnlimitedEmailSection } from './UnlimitedEmailSection';
+export { PartnersSection } from './PartnersSection';
+export { DashboardSection } from './DashboardSection';

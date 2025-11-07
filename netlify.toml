@@ -1,15 +1,56 @@
+# Proxy blog routes with proper headers
 [[redirects]]
   from = "/blogs/*"
   to = "https://blogs.vocallabs.ai/blogs/:splat"
   status = 200
   force = true
-
+  
 [[redirects]]
   from = "/blog/*"
   to = "https://blogs.vocallabs.ai/blog/:splat"
   status = 200
   force = true
 
+# Proxy WordPress static assets (if the blog is WordPress)
+[[redirects]]
+  from = "/wp-content/*"
+  to = "https://blogs.vocallabs.ai/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/wp-includes/*"
+  to = "https://blogs.vocallabs.ai/:splat"
+  status = 200
+  force = true
+
+# Proxy general static assets
+[[redirects]]
+  from = "/static/*"
+  to = "https://blogs.vocallabs.ai/static/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/assets/*"
+  to = "https://blogs.vocallabs.ai/assets/:splat"
+  status = 200
+  force = true
+
+# Proxy CSS and JS files
+[[redirects]]
+  from = "/*.css"
+  to = "https://blogs.vocallabs.ai/:splat.css"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/*.js"
+  to = "https://blogs.vocallabs.ai/:splat.js"
+  status = 200
+  force = false
+
+# SPA fallback - must be last
 [[redirects]]
   from = "/*"
   to = "/index.html"

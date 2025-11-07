@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
 
 export const Header: React.FC = () => {
@@ -18,19 +19,49 @@ export const Header: React.FC = () => {
                     </div>
 
                     {/* Navigation */}
-                    <nav className="hidden md:flex items-center gap-8">
-                        {/* <a href="#features" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Features
-            </a>
-            <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Pricing
-            </a>
-            <a href="#demo" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Demo
-            </a>
-            <a href="#faq" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              FAQ
-            </a> */}
+                    <nav className="hidden lg:flex items-center gap-10">
+                        <Link 
+                            to="/features" 
+                            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                        >
+                            Features
+                        </Link>
+                        <Link 
+                            to="/pricing" 
+                            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                        >
+                            Pricing
+                        </Link>
+                        <Link 
+                            to="/director-phone" 
+                            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                        >
+                            Director Phone
+                        </Link>
+                        <Link 
+                            to="/unlimited-email" 
+                            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                        >
+                            Unlimited Email
+                        </Link>
+                        <Link 
+                            to="/partners" 
+                            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                        >
+                            Partners
+                        </Link>
+                        <Link 
+                            to="/dashboard" 
+                            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                        >
+                            Dashboard
+                        </Link>
+                        <a 
+                            href="/blogs" 
+                            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                        >
+                            Blog
+                        </a>
                     </nav>
 
                     {/* CTA Buttons */}
@@ -39,7 +70,7 @@ export const Header: React.FC = () => {
               Sign In
             </Button> */}
                         <Button
-                            variant="primary"
+                            variant="outline"
                             size="sm"
                             onClick={() => {
                                 window.open("https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj", "_blank");

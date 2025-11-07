@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/blogs/:path*",
+      "destination": "https://blogs.vocallabs.ai/blogs/:path*"
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "https://blogs.vocallabs.ai/blog/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
