@@ -21,10 +21,12 @@ export async function GET(
 
     let html = await response.text();
     
-    // Replace all blog URLs to use our domain
-    html = html.replace(/https?:\/\/blogs\.vocallabs\.ai\/blogs/g, '/blogs');
-    html = html.replace(/https?:\/\/blogs\.vocallabs\.ai\/blog/g, '/blog');
+    // Replace all blog URLs to use our domain - be more aggressive
     html = html.replace(/https?:\/\/blogs\.vocallabs\.ai/g, '');
+    html = html.replace(/href="\/blogs\//g, 'href="/blogs/');
+    html = html.replace(/href="\/blog\//g, 'href="/blog/');
+    html = html.replace(/src="\/blogs\//g, 'src="/');
+    html = html.replace(/src="\/blog\//g, 'src="/');
     
     return new NextResponse(html, {
       status: 200,

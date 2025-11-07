@@ -16,3 +16,15 @@
   to = "https://blogs.vocallabs.ai/wp-includes/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/wp-admin/*"
+  to = "https://blogs.vocallabs.ai/wp-admin/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/index_files/*"
+  to = "https://blogs.vocallabs.ai/index_files/:splat"
+  status = 200
+  force = true

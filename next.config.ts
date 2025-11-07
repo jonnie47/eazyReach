@@ -21,6 +21,23 @@ const nextConfig: NextConfig = {
         source: '/wp-includes/:path*',
         destination: 'https://blogs.vocallabs.ai/wp-includes/:path*',
       },
+      {
+        source: '/wp-admin/:path*',
+        destination: 'https://blogs.vocallabs.ai/wp-admin/:path*',
+      },
+      // Handle any other assets that might be needed
+      {
+        source: '/index_files/:path*',
+        destination: 'https://blogs.vocallabs.ai/index_files/:path*',
+      },
+      {
+        source: '/:file.css',
+        destination: 'https://blogs.vocallabs.ai/:file.css',
+      },
+      {
+        source: '/:file.js',
+        destination: 'https://blogs.vocallabs.ai/:file.js',
+      },
     ];
   },
 };
