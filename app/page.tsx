@@ -5,6 +5,7 @@ import {
   DemoSection,
   SocialProofSection,
   FeaturesSection,
+  BuiltForSection,
   PricingSection,
   CTABanner,
   FAQSection
@@ -17,6 +18,7 @@ export default function HomePage() {
       <DemoSection />
       <SocialProofSection />
       <FeaturesSection />
+      <BuiltForSection />
       <PricingSection />
       <CTABanner />
       <FAQSection />

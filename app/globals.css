@@ -1,6 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* ⚠️ IMPORTANT: To change accent color, update BOTH locations:
+       1. These CSS variables (for inline styles and CSS)
+       2. tailwind.config.js colors.accent (for Tailwind classes)
+       
+       Current accent color: #F4B400 (Gold) */
+    --accent-primary: #F4B400;
+    --accent-secondary: #F4B400;
+    --accent-hover: #D4A000;
+    
+    /* RGB values for opacity variations */
+    --accent-rgb: 244, 180, 0;
+  }
+  
+  * {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  body {
+    @apply bg-black text-gray-100;
+  }
+}
 
 @keyframes marquee {
   0% {
@@ -17,4 +43,36 @@
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #FFFF00, var(--accent-primary), #FF9800, #FF5252, #FFC107);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(135deg, #FFFF00, var(--accent-primary), #FF9800, #FF5252, #FFC107);
+  padding: 2px;
+  border-radius: 12px;
+}
+
+.gradient-border-content {
+  background: #000;
+  border-radius: 10px;
+}
+
+/* Utility classes for accent colors */
+.bg-accent {
+  background-color: var(--accent-primary);
+}
+
+.text-accent {
+  color: var(--accent-primary);
+}
+
+.border-accent {
+  border-color: var(--accent-primary);
 }

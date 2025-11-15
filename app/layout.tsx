@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
 import { FloatingCTA } from "@/components/ui";
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ 
+  subsets: ["latin"],
+  weight: ['300', '400', '500', '600', '700', '800', '900']
+});
 
 export const metadata: Metadata = {
   title: "EazyReach - LinkedIn Contact Finder",
@@ -18,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={montserrat.className}>
         <Header />
         {children}
         <Footer />

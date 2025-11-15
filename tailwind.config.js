@@ -6,7 +6,16 @@ module.exports = {
     './constants/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        accent: {
+          DEFAULT: '#F4B400',
+          primary: '#F4B400',
+          secondary: '#F4B400',
+          hover: '#D4A000',
+        }
+      }
+    },
   },
   plugins: [],
 };

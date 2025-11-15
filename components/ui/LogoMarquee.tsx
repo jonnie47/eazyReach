@@ -5,12 +5,12 @@ export const LogoMarquee: React.FC = () => {
   return (
     <div className="mt-12">
       <p className="text-center text-sm text-gray-500 mb-8 uppercase tracking-wide">
-        Trusted by industry leaders
+        Trusted by many
       </p>
-      <div className="relative overflow-hidden bg-gray-900 rounded-2xl py-8">
+      <div className="relative overflow-hidden bg-transparent rounded-2xl py-8">
         {/* Gradient overlays for fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-900 to-transparent z-10"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-900 to-transparent z-10"></div>
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-transparent from-gray-900 to-transparent z-10"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-transparent from-gray-900 to-transparent z-10"></div>
         
         {/* Marquee container */}
         <div className="flex animate-marquee whitespace-nowrap">

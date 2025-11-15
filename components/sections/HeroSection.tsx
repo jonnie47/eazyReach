@@ -3,144 +3,329 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Globe, Award, Users, TrendingUp, Chrome } from 'lucide-react';
+import { LogoMarquee } from '../ui/LogoMarquee';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring' as const,
+      stiffness: 80,
+      damping: 20,
+    }
+  }
+};
+
+const statVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: 'spring' as const,
+      stiffness: 100,
+      damping: 15,
+    }
+  }
+};
 
 export const HeroSection: React.FC = () => {
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-white via-slate-50 to-gray-50 text-gray-700 pt-16">
-      {/* Animated Background Orbs */}
+    <div className="relative overflow-hidden bg-slate-950 text-gray-100 pt-20 pb-32">
+      {/* Multi-layer Background Effects */}
+      
+      {/* Animated Grid Pattern */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-60" />
+
+      {/* Directional Spotlight */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-accent/10 via-transparent to-transparent blur-3xl opacity-60" />
+
+      {/* Floating Particles */}
+      {[...Array(8)].map((_, i) => {
+        // Use deterministic positions based on index instead of Math.random()
+        const positions = [
+          { top: 15, left: 25 },
+          { top: 45, left: 75 },
+          { top: 70, left: 40 },
+          { top: 25, left: 85 },
+          { top: 60, left: 15 },
+          { top: 35, left: 55 },
+          { top: 80, left: 70 },
+          { top: 10, left: 50 },
+        ];
+        const durations = [4, 5.5, 6, 4.5, 5, 6.5, 4.8, 5.3];
+        const delays = [0, 1, 2, 0.5, 1.5, 2.5, 0.8, 1.8];
+        
+        return (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-accent rounded-full"
+            style={{
+              top: `${positions[i].top}%`,
+              left: `${positions[i].left}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: durations[i],
+              repeat: Infinity,
+              delay: delays[i],
+              ease: "easeInOut"
+            }}
+          />
+        );
+      })}
+
+      {/* Data Streams */}
       <motion.div
-        className="absolute top-20 left-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl"
+        className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-accent/20 to-transparent"
+        animate={{ opacity: [0.2, 0.5, 0.2] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-accent/20 to-transparent"
+        animate={{ opacity: [0.2, 0.5, 0.2] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+      />
+
+      {/* Upgraded Animated Orbs with Gradients */}
+      <motion.div
+        className="absolute top-20 left-10 w-[400px] h-[400px] rounded-full blur-[100px]"
+        style={{
+          background: 'radial-gradient(circle, rgba(244, 180, 0, 0.25) 0%, rgba(244, 180, 0, 0.05) 50%, transparent 100%)'
+        }}
         animate={{
-          y: [0, -20, 0],
-          x: [0, 10, 0],
-          scale: [1, 1.1, 1],
+          y: [0, -30, 0],
+          x: [0, 20, 0],
+          scale: [1, 1.15, 1],
+          rotate: [0, 5, 0],
         }}
         transition={{
-          duration: 8,
+          duration: 10,
           repeat: Infinity,
           ease: "easeInOut"
         }}
       />
       <motion.div
-        className="absolute top-40 right-20 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"
+        className="absolute top-40 right-20 w-[500px] h-[500px] rounded-full blur-[120px]"
+        style={{
+          background: 'radial-gradient(circle, rgba(244, 180, 0, 0.2) 0%, rgba(244, 180, 0, 0.05) 50%, transparent 100%)'
+        }}
         animate={{
-          y: [0, -20, 0],
-          x: [0, 10, 0],
-          scale: [1, 1.1, 1],
+          y: [0, 30, 0],
+          x: [0, -20, 0],
+          scale: [1, 1.2, 1],
+          rotate: [0, -5, 0],
         }}
         transition={{
-          duration: 8,
+          duration: 12,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 1
         }}
       />
       <motion.div
-        className="absolute bottom-20 left-1/3 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl"
+        className="absolute bottom-20 left-1/3 w-[450px] h-[450px] rounded-full blur-[110px]"
+        style={{
+          background: 'radial-gradient(circle, rgba(244, 180, 0, 0.22) 0%, rgba(244, 180, 0, 0.05) 50%, transparent 100%)'
+        }}
         animate={{
-          y: [0, -20, 0],
-          x: [0, 10, 0],
-          scale: [1, 1.1, 1],
+          y: [0, -25, 0],
+          x: [0, 15, 0],
+          scale: [1, 1.18, 1],
+          rotate: [0, 3, 0],
         }}
         transition={{
-          duration: 8,
+          duration: 11,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 2
         }}
       />
-      
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative">
-        <div className="text-center space-y-8">
-          <motion.div 
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Globe className="w-4 h-4" />
-            Contact Intelligence Platform
+      {/* Horizontal Glow Beams */}
+      <motion.div
+        className="absolute top-1/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
+        animate={{ opacity: [0.3, 0.7, 0.3] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+        <motion.div
+          className="text-center space-y-12"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Badge with Breathing Animation */}
+        
+          {/* Headline with Glass Container */}
+          <motion.div variants={itemVariants} className="relative">
+            {/* Glass Background */}
+            
+            <div className="relative z-10 py-8">
+              <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-[1.15] text-white tracking-tight">
+                Supercharge Sales With <br />
+                <span className="relative inline-block">
+                  <span className="">Conversational AI</span>
+                  {/* Elegant Animated Underline */}
+                  <motion.div
+                    className="absolute -bottom-2 left-0 right-0 h-1 rounded-full overflow-hidden"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                  >
+                    <motion.div
+                      className="h-full bg-gradient-to-r from-accent/40 via-accent to-accent/40"
+                      animate={{ 
+                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                      }}
+                      transition={{ 
+                        duration: 3, 
+                        repeat: Infinity, 
+                        ease: "easeInOut" 
+                      }}
+                      style={{ backgroundSize: "200% 100%" }}
+                    />
+                  </motion.div>
+                  {/* Glow effect */}
+                  <motion.div
+                    className="absolute -bottom-3 left-0 right-0 h-2 bg-accent/20 blur-md rounded-full"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: [0.3, 0.6, 0.3], scale: [0.8, 1, 0.8] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  />
+                </span>
+              </h1>
+            </div>
           </motion.div>
 
-          <motion.h1 
-            className="text-5xl lg:text-7xl font-bold leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Turn LinkedIn Profiles Into 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-700 to-slate-900"> Verified Contacts</span>
-          </motion.h1>
+          {/* Subheading */}
+          <motion.div variants={itemVariants}>
+            <p className="text-l md:text-l lg:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto font-light">
+              Close more deals with the most accurate AI contact finder for B2B teams. Instantly uncover director-level phone numbers, verified emails, and complete buyer profiles.
+            </p>
+          </motion.div>
 
-          <motion.p 
-            className="text-xl lg:text-2xl text-blue400 leading-relaxed max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            The most accurate contact finder for B2B sales teams. Get director phone numbers, verified emails, and complete contact profiles in seconds.
-          </motion.p>
-
+          {/* CTAs with Enhanced Depth */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8"
           >
             <motion.button 
               onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
-              className="group px-10 py-5 bg-white text-blue-700 rounded-xl font-bold text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center justify-center gap-3"
-              whileHover={{ scale: 1.05 }}
+              className="group relative px-4 py-2 bg-black text-accent rounded-xl text-l shadow-2xl shadow-accent/40 transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden"
+              whileHover={{ 
+                scale: 1.05, 
+                rotateY: 2,
+                boxShadow: '0 25px 50px rgba(244, 180, 0, 0.6)'
+              }}
               whileTap={{ scale: 0.95 }}
             >
-              <Chrome className="w-7 h-7" />
-              Add to Chrome
-              <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
+              {/* Shine Effect */}
+          
+              
+              <Chrome className="size-5 relative z-10" />
+              <span className="relative z-10">Add to Chrome</span>
+              <span className="inline-block group-hover:translate-x-2 transition-transform relative z-10"></span>
             </motion.button>
-            <motion.button 
+
+            {/* <motion.button 
               onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-10 py-5 bg-blue/10 backdrop-blur-sm border-2 border-blue/30 text-gray-700 rounded-xl font-semibold text-xl hover:bg-white/20 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
+              className="group px-10 py-5 bg-white/5 backdrop-blur-xl border-2 border-accent text-white rounded-xl font-semibold text-xl hover:bg-accent/10 transition-all duration-300 shadow-xl shadow-black/20"
+              whileHover={{ 
+                scale: 1.05,
+                rotateY: -2,
+                borderColor: 'rgb(var(--accent-rgb))',
+                boxShadow: '0 20px 40px rgba(var(--accent-rgb), 0.3)'
+              }}
               whileTap={{ scale: 0.95 }}
             >
               Watch Demo
-            </motion.button>
+            </motion.button> */}
           </motion.div>
 
+          {/* Stats Row - Elevated Mini Panels */}
           <motion.div 
-            className="flex flex-wrap items-center justify-center gap-8 text-base text-blue-500 pt-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            variants={itemVariants}
+            className="flex flex-wrap items-center justify-center gap-6 pt-16"
           >
             <motion.div 
-              className="flex items-center gap-2"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              variants={statVariants}
+              className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-6 py-4 rounded-2xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
+              whileHover={{ y: -4, scale: 1.05 }}
             >
-              <Award className="w-5 h-5" />
-              91% accuracy rate
+              <div className="flex items-center gap-3">
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <Award className="w-6 h-6 text-accent" />
+                </motion.div>
+                <span className="text-base font-semibold text-gray-100">91% accuracy rate</span>
+              </div>
+              {/* Subtle inner glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
+
             <motion.div 
-              className="flex items-center gap-2"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              variants={statVariants}
+              className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-6 py-4 rounded-2xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
+              whileHover={{ y: -4, scale: 1.05 }}
             >
-              <Users className="w-5 h-5" />
-              10,000+ contacts found daily
+              <div className="flex items-center gap-3">
+                <motion.div
+                  whileHover={{ scale: 1.2 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Users className="w-6 h-6 text-accent" />
+                </motion.div>
+                <span className="text-base font-semibold text-gray-100">10,000+ contacts found daily</span>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
+
             <motion.div 
-              className="flex items-center gap-2"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              variants={statVariants}
+              className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-6 py-4 rounded-2xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
+              whileHover={{ y: -4, scale: 1.05 }}
             >
-              <TrendingUp className="w-5 h-5" />
-              Trusted by multiple industry leaders
+              <div className="flex items-center gap-3">
+                <motion.div
+                  animate={{ y: [-2, 2, -2] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <TrendingUp className="w-6 h-6 text-accent" />
+                </motion.div>
+                <span className="text-base font-semibold text-gray-100">Trusted by multiple industry leaders</span>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           </motion.div>
-        </div>
+
+          {/* Logo Marquee */}
+          <motion.div 
+            variants={itemVariants}
+            className="pt-12"
+          >
+            <LogoMarquee />
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );

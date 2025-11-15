@@ -4,10 +4,10 @@ import { DirectorPhoneSection, CTABanner, FAQSection } from '@/components/sectio
 
 export default function DirectorPhonePage() {
   return (
-    <>
+    <div className="pt-20">
       <DirectorPhoneSection />
       <CTABanner />
       <FAQSection />
-    </>
+    </div>
   );
 }

@@ -16,9 +16,9 @@ export const Button: React.FC<ButtonProps> = ({
   const baseClasses = 'font-semibold rounded-xl transition-all duration-200 flex items-center justify-center gap-2';
   
   const variantClasses = {
-    primary: 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:scale-105',
-    secondary: 'bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20',
-    outline: 'bg-white text-blue-700 shadow-md hover:shadow-2xl hover:scale-105 border-2 border-blue-900'
+    primary: 'bg-gradient-to-r from-accent to-accent text-black shadow-md hover:shadow-lg hover:shadow-accent/30 hover:scale-105',
+    secondary: 'bg-accent text-black hover:bg-accent-hover transition-colors',
+    outline: 'bg-transparent text-gray-100 hover:bg-accent/10 border-2 border-accent hover:border-accent-hover transition-all'
   };
   
   const sizeClasses = {
