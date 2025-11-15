@@ -24,7 +24,7 @@ export default function AICalendarPage() {
           <div className="bg-[#1a1a1a] rounded-xl p-8 border border-gray-800">
             <Clock className="w-12 h-12 text-accent mb-4" />
             <h3 className="text-xl font-bold text-gray-100 mb-3">Auto-Scheduling</h3>
-            <p className="text-gray-300">AI finds the best meeting times across all participants' calendars.</p>
+            <p className="text-gray-300">AI finds the best meeting times across all participants&apos; calendars.</p>
           </div>
           <div className="bg-[#1a1a1a] rounded-xl p-8 border border-gray-800">
             <Zap className="w-12 h-12 text-accent mb-4" />

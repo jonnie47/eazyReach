@@ -15,7 +15,7 @@ export default function ComingSoonPage() {
           Exciting Things Are Coming
         </h1>
         <p className="text-xl text-gray-300 mb-12">
-          We're working hard to bring you something amazing. Stay tuned for updates!
+          We&apos;re working hard to bring you something amazing. Stay tuned for updates!
         </p>
         <button
           onClick={() => window.history.back()}

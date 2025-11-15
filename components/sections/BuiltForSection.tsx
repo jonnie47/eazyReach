@@ -121,7 +121,7 @@ export const BuiltForSection: React.FC = () => {
             Built for All.
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Whether you're an individual seller or managing a sales team, our platform scales with your needs—from instant contact discovery to enterprise-grade workflow automation.
+            Whether you&apos;re an individual seller or managing a sales team, our platform scales with your needs—from instant contact discovery to enterprise-grade workflow automation.
           </p>
         </motion.div>
 
