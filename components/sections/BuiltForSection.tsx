@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { 
   Zap, 
   Search, 
@@ -16,7 +16,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -27,7 +27,7 @@ const containerVariants = {
   }
 };
 
-const columnVariants = {
+const columnVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
@@ -41,7 +41,7 @@ const columnVariants = {
   }
 };
 
-const screenshotVariants = {
+const screenshotVariants: Variants = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,
