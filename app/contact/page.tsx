@@ -1,8 +1,8 @@
 ﻿'use client';
 
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageSquare, User, Building2, Globe } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Mail, Phone, Send, MessageSquare, User, Building2, Globe } from 'lucide-react';
+import { motion, type Variants } from 'framer-motion';
 
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ export default function ContactUsPage() {
     });
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -38,12 +38,12 @@ export default function ContactUsPage() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+      transition: { duration: 0.5 }
     }
   };
 
