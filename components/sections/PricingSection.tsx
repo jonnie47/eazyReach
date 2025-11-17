@@ -51,7 +51,7 @@ export const PricingSection: React.FC = () => {
       try {
         // Step 1: Detect country from IP
         const countryResponse = await fetch('https://ipinfo.io/country');
-        const countryCode = US;
+        const countryCode = (await countryResponse.text()).trim();
 
         // Step 2: Fetch exchange rates
         const ratesResponse = await fetch('https://arc.vocallabs.ai/v1/graphql', {
