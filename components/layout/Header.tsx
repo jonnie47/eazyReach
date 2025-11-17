@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
                             <img
                                 src="/EazyReach.png"
                                 alt="EazyReach"
-                                className="h-16 w-auto object-contain"
+                                className="size-[230px] object-contain"
                             />
                         </Link>
                     </div>
