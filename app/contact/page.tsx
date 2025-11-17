@@ -1,7 +1,8 @@
 ﻿'use client';
 
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageSquare, User, Building2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare, User, Building2, Globe } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
@@ -26,64 +27,189 @@ export default function ContactUsPage() {
     });
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+
   return (
-    <div className="pt-20 bg-black min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className="pt-20 bg-black min-h-screen relative overflow-hidden">
+      {/* Animated background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/5 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
+        <motion.div 
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.div 
+            className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
             <MessageSquare className="w-4 h-4" />
             Get In Touch
-          </div>
-          <h1 className="text-5xl font-bold text-accent mb-6">
+          </motion.div>
+          <h1 className="text-6xl md:text-7xl font-bold text-accent mb-6 bg-clip-text text-transparent bg-gradient-to-r from-accent to-[#D4A000]">
             Contact Us
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
+            Have questions about AI voice agents? We&apos;re here to help!
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          {/* Contact Info Cards */}
-          <div className="bg-[#1a1a1a] rounded-xl p-8 border border-gray-800 hover:border-accent/50 transition-all">
-            <div className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-4">
-              <Mail className="w-6 h-6 text-accent" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-100 mb-2">Email Us</h3>
-            <p className="text-gray-400 mb-4">Our team is here to help</p>
-            <a href="mailto:support@eazyreach.com" className="text-accent hover:text-[#D4A000] transition-colors font-medium">
-              support@eazyreach.com
-            </a>
-          </div>
+        <div className="grid lg:grid-cols-2 gap-12 mb-20">
+          {/* Left Side - Contact Info */}
+          <motion.div 
+            className="space-y-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {/* Email Card */}
+            <motion.div 
+              className="bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] rounded-2xl p-8 border border-gray-800 hover:border-accent/50 transition-all group"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="flex items-start gap-6">
+                <div className="w-14 h-14 bg-accent/20 rounded-xl flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                  <Mail className="w-7 h-7 text-accent" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-gray-100 mb-2">Email Us</h3>
+                  <p className="text-gray-400 mb-3">Our team is here to help</p>
+                  <a 
+                    href="mailto:hello@vocallabs.ai" 
+                    className="text-accent hover:text-[#D4A000] transition-colors font-medium text-lg inline-flex items-center gap-2 group/link"
+                  >
+                    hello@vocallabs.ai
+                    <Send className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
 
-          <div className="bg-[#1a1a1a] rounded-xl p-8 border border-gray-800 hover:border-accent/50 transition-all">
-            <div className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-4">
-              <Phone className="w-6 h-6 text-accent" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-100 mb-2">Call Us</h3>
-            <p className="text-gray-400 mb-4">Mon-Fri from 9am to 6pm</p>
-            <a href="tel:+1234567890" className="text-accent hover:text-[#D4A000] transition-colors font-medium">
-              +1 (234) 567-890
-            </a>
-          </div>
+            {/* Phone Card */}
+            <motion.div 
+              className="bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] rounded-2xl p-8 border border-gray-800 hover:border-accent/50 transition-all group"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="flex items-start gap-6">
+                <div className="w-14 h-14 bg-accent/20 rounded-xl flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                  <Phone className="w-7 h-7 text-accent" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-gray-100 mb-2">Call Us</h3>
+                  <p className="text-gray-400 mb-4">Mon-Fri from 9am to 6pm</p>
+                  <div className="space-y-3">
+                    <div className="group/phone">
+                      <p className="text-gray-400 text-sm mb-1 flex items-center gap-2">
+                        <span className="text-xl">🇺🇸</span> United States
+                      </p>
+                      <a 
+                        href="tel:+19842550652" 
+                        className="text-accent hover:text-[#D4A000] transition-colors font-medium text-lg inline-flex items-center gap-2"
+                      >
+                        +1 984 255 0652
+                        <Phone className="w-4 h-4 group-hover/phone:rotate-12 transition-transform" />
+                      </a>
+                    </div>
+                    <div className="group/phone">
+                      <p className="text-gray-400 text-sm mb-1 flex items-center gap-2">
+                        <span className="text-xl">🇮🇳</span> India
+                      </p>
+                      <a 
+                        href="tel:+919019822136" 
+                        className="text-accent hover:text-[#D4A000] transition-colors font-medium text-lg inline-flex items-center gap-2"
+                      >
+                        +91 90198 22136
+                        <Phone className="w-4 h-4 group-hover/phone:rotate-12 transition-transform" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
 
-          <div className="bg-[#1a1a1a] rounded-xl p-8 border border-gray-800 hover:border-accent/50 transition-all">
-            <div className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-4">
-              <MapPin className="w-6 h-6 text-accent" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-100 mb-2">Visit Us</h3>
-            <p className="text-gray-400 mb-4">Come say hello</p>
-            <p className="text-accent font-medium">
-              123 Business Street<br />
-              San Francisco, CA 94102
-            </p>
-          </div>
-        </div>
+            {/* Offices Card */}
+            <motion.div 
+              className="bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] rounded-2xl p-8 border border-gray-800 hover:border-accent/50 transition-all group"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="flex items-start gap-6 mb-6">
+                <div className="w-14 h-14 bg-accent/20 rounded-xl flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                  <Globe className="w-7 h-7 text-accent" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-100 mb-2">Our Offices</h3>
+                  <p className="text-gray-400">Come say hello at our locations</p>
+                </div>
+              </div>
+              
+              <div className="grid gap-6">
+                <div className="relative pl-6 border-l-2 border-accent/30">
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 bg-accent rounded-full" />
+                  <p className="text-gray-300 font-semibold mb-2 flex items-center gap-2">
+                    <span className="text-xl">🇺🇸</span> US Office
+                  </p>
+                  <p className="text-gray-400 leading-relaxed">
+                    413 Willingham Rd.<br />
+                    Morrisville, NC 27560<br />
+                    United States of America
+                  </p>
+                </div>
+                <div className="relative pl-6 border-l-2 border-accent/30">
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 bg-accent rounded-full" />
+                  <p className="text-gray-300 font-semibold mb-2 flex items-center gap-2">
+                    <span className="text-xl">🇮🇳</span> India Office
+                  </p>
+                  <p className="text-gray-400 leading-relaxed">
+                    No. 39, 8th Main Road<br />
+                    Third Floor, Vasanth Nagar,<br />
+                    Bangalore, Karnataka,<br />
+                    India 560001
+                  </p>
+                  <p className="text-gray-500 text-xs mt-3 font-mono">CIN: U63121KA2025PTC197380</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
 
-        {/* Contact Form */}
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-[#1a1a1a] rounded-2xl p-8 md:p-12 border border-gray-800">
-            <h2 className="text-3xl font-bold text-gray-100 mb-8">Send us a message</h2>
+          {/* Right Side - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] rounded-2xl p-8 md:p-12 border border-gray-800 hover:border-accent/20 transition-all">
+              <h2 className="text-3xl font-bold text-gray-100 mb-8">Send us a message</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -202,13 +328,14 @@ export default function ContactUsPage() {
 
               <button
                 type="submit"
-                className="w-full px-8 py-4 bg-gradient-to-r from-accent to-accent text-black rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-accent/30 transition-all flex items-center justify-center gap-2"
+                className="w-full px-8 py-4 bg-gradient-to-r from-accent to-accent text-black rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-accent/30 transition-all flex items-center justify-center gap-2 group"
               >
-                <Send className="w-5 h-5" />
+                <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 Send Message
               </button>
             </form>
-          </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Additional Info */}

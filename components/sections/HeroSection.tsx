@@ -1,8 +1,8 @@
 ﻿'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Award, Users, TrendingUp, Chrome } from 'lucide-react';
+import { Globe, Award, Users, TrendingUp, Chrome, Send, Sparkles } from 'lucide-react';
 import { LogoMarquee } from '../ui/LogoMarquee';
 
 const containerVariants = {
@@ -43,6 +43,63 @@ const statVariants = {
 };
 
 export const HeroSection: React.FC = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [currentPlaceholder, setCurrentPlaceholder] = useState('');
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const placeholders = [
+    "List the top people I should contact from this company based on my ICP criteria.",
+    "Show me the stakeholders who influence buying decisions for my product within this company.",
+    "Map the leadership roles in this company that align with my target persona.",
+    "Who are the most relevant prospects in this organization for my outreach campaign?",
+    "Identify the executives or managers in this team who handle responsibilities related to my solution."
+  ];
+
+  const quickActions = [
+    {
+      label: "Find Leads",
+      text: "Find VPs of Sales and CROs at US B2B finance companies (>$1B revenue) in SF/LA using Salesforce."
+    },
+    {
+      label: "Enrich Leads",
+      text: "Enrich 500 contacts with work email, direct dials, LinkedIn, and employment history."
+    },
+    {
+      label: "Automate Reach",
+      text: "Summarize my last call with Jane and draft a follow-up email with key points and two meeting slots."
+    },
+    {
+      label: "Call Autopilot",
+      text: "Create a 6-step, 10-day email + LinkedIn sequence. Send 9:30–11:30am. Stop if they reply."
+    }
+  ];
+
+  useEffect(() => {
+    const typingSpeed = isDeleting ? 30 : 80;
+    const pauseDuration = 2000;
+
+    const timeout = setTimeout(() => {
+      const currentText = placeholders[placeholderIndex];
+
+      if (!isDeleting && charIndex < currentText.length) {
+        setCurrentPlaceholder(currentText.substring(0, charIndex + 1));
+        setCharIndex(charIndex + 1);
+      } else if (isDeleting && charIndex > 0) {
+        setCurrentPlaceholder(currentText.substring(0, charIndex - 1));
+        setCharIndex(charIndex - 1);
+      } else if (!isDeleting && charIndex === currentText.length) {
+        setTimeout(() => setIsDeleting(true), pauseDuration);
+      } else if (isDeleting && charIndex === 0) {
+        setIsDeleting(false);
+        setPlaceholderIndex((placeholderIndex + 1) % placeholders.length);
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, placeholderIndex]);
+
   return (
     <div className="relative overflow-hidden bg-slate-950 text-gray-100 pt-20 pb-32">
       {/* Multi-layer Background Effects */}
@@ -167,7 +224,7 @@ export const HeroSection: React.FC = () => {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <motion.div
-          className="text-center space-y-12"
+          className="text-center space-y-6"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -222,6 +279,58 @@ export const HeroSection: React.FC = () => {
             </p>
           </motion.div>
 
+          {/* AI Input Field */}
+          <motion.div 
+            variants={itemVariants}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/20 via-accent/10 to-accent/20 rounded-2xl blur-sm opacity-50 group-hover:opacity-75 transition duration-300" />
+              <div className="relative bg-gradient-to-br from-[#1a1a1a]/95 to-[#0a0a0a]/95 backdrop-blur-xl rounded-2xl border border-accent/30 shadow-lg shadow-accent/10 overflow-hidden">
+                <div className="px-5 py-4">
+                  <div className="flex items-start gap-3 mb-3">
+                    <Sparkles className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
+                    <textarea
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      placeholder={currentPlaceholder}
+                      rows={4}
+                      className="flex-1 bg-transparent text-white placeholder-gray-500 outline-none text-base resize-none"
+                    />
+                  </div>
+                  <div className="flex justify-end">
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+                      className="p-2 bg-accent/10 hover:bg-accent/20 rounded-lg transition-colors"
+                    >
+                      <Send className="size-5 text-accent" />
+                    </motion.button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Action Bubbles */}
+            <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+              {quickActions.map((action, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => setInputValue(action.text)}
+                  className="px-4 py-2 bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 hover:border-accent/30 rounded-full text-sm text-gray-300 hover:text-white transition-all duration-300"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.5 }}
+                >
+                  {action.label}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+
           {/* CTAs with Enhanced Depth */}
           <motion.div 
             variants={itemVariants}
@@ -263,58 +372,58 @@ export const HeroSection: React.FC = () => {
           {/* Stats Row - Elevated Mini Panels */}
           <motion.div 
             variants={itemVariants}
-            className="flex flex-wrap items-center justify-center gap-6 pt-16"
+            className="flex flex-wrap items-center justify-center gap-4 pt-16"
           >
             <motion.div 
               variants={statVariants}
-              className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-6 py-4 rounded-2xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
+              className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-4 py-2.5 rounded-xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
               whileHover={{ y: -4, scale: 1.05 }}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <motion.div
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <Award className="w-6 h-6 text-accent" />
+                  <Award className="w-4 h-4 text-accent" />
                 </motion.div>
-                <span className="text-base font-semibold text-gray-100">91% accuracy rate</span>
+                <span className="text-sm font-semibold text-gray-100">91% accuracy rate</span>
               </div>
               {/* Subtle inner glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
 
             <motion.div 
               variants={statVariants}
-              className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-6 py-4 rounded-2xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
+              className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-4 py-2.5 rounded-xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
               whileHover={{ y: -4, scale: 1.05 }}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <motion.div
                   whileHover={{ scale: 1.2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Users className="w-6 h-6 text-accent" />
+                  <Users className="w-4 h-4 text-accent" />
                 </motion.div>
-                <span className="text-base font-semibold text-gray-100">10,000+ contacts found daily</span>
+                <span className="text-sm font-semibold text-gray-100">10,000+ contacts found daily</span>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
 
             <motion.div 
               variants={statVariants}
-              className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-6 py-4 rounded-2xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
+              className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-4 py-2.5 rounded-xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
               whileHover={{ y: -4, scale: 1.05 }}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <motion.div
                   animate={{ y: [-2, 2, -2] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <TrendingUp className="w-6 h-6 text-accent" />
+                  <TrendingUp className="w-4 h-4 text-accent" />
                 </motion.div>
-                <span className="text-base font-semibold text-gray-100">Trusted by multiple industry leaders</span>
+                <span className="text-sm font-semibold text-gray-100">Trusted by multiple industry leaders</span>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           </motion.div>
 

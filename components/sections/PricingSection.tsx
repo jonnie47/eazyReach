@@ -1,191 +1,479 @@
 ﻿'use client';
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { PRICING_TIERS } from '../../constants/pricing';
-import { Sparkles, Zap, CreditCard, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, Variants } from 'framer-motion';
+import { Check, Zap, ArrowRight } from 'lucide-react';
 
-const containerVariants = {
+interface ExchangeRate {
+  exchange_rate: number;
+  country_code: string;
+  country_name: string;
+  currency_code: string;
+}
+
+interface CurrencyInfo {
+  code: string;
+  rate: number;
+  countryCode: string;
+}
+
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.2,
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
     }
   }
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      type: 'spring' as const,
-      stiffness: 100,
-      damping: 15,
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1]
     }
   }
 };
 
 export const PricingSection: React.FC = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isUSD, setIsUSD] = useState(false);
+  const [isAnnual, setIsAnnual] = useState(true);
+  const [detectedCurrency, setDetectedCurrency] = useState<CurrencyInfo>({ code: 'USD', rate: 0.012, countryCode: 'US' });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const detectCurrencyAndFetchRates = async () => {
+      try {
+        // Step 1: Detect country from IP
+        const countryResponse = await fetch('https://ipinfo.io/country');
+        const countryCode = (await countryResponse.text()).trim();
+
+        // Step 2: Fetch exchange rates
+        const ratesResponse = await fetch('https://arc.vocallabs.ai/v1/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: `
+              query GetExchangeRate {
+                vocallabs_exchange_rate {
+                  exchange_rate
+                  country_code
+                  country_name
+                  currency_code
+                }
+              }
+            `
+          })
+        });
+
+        const ratesData = await ratesResponse.json();
+        const exchangeRates: ExchangeRate[] = ratesData.data.vocallabs_exchange_rate;
+
+        // Step 3: Find matching currency
+        const matchedRate = exchangeRates.find(
+          (rate) => rate.country_code === countryCode
+        );
+
+        if (matchedRate) {
+          setDetectedCurrency({
+            code: matchedRate.currency_code,
+            rate: matchedRate.exchange_rate,
+            countryCode: matchedRate.country_code
+          });
+        } else {
+          // Fallback to USD
+          const usdRate = exchangeRates.find((rate) => rate.currency_code === 'USD');
+          setDetectedCurrency({
+            code: 'USD',
+            rate: usdRate?.exchange_rate || 0.012,
+            countryCode: 'US'
+          });
+        }
+      } catch (error) {
+        console.error('Error detecting currency:', error);
+        // Fallback to USD on error
+        setDetectedCurrency({ code: 'USD', rate: 0.012, countryCode: 'US' });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    detectCurrencyAndFetchRates();
+  }, []);
+
+  const convertPrice = (priceINR: number): number => {
+    const rate = isUSD ? 0.012 : detectedCurrency.rate;
+    return Math.round(priceINR * rate);
+  };
+
+  const formatPrice = (priceINR: number): string => {
+    const converted = convertPrice(priceINR);
+    const currencyCode = isUSD ? 'USD' : detectedCurrency.code;
+    return `${converted} ${currencyCode}`;
+  };
+
+  const plans = [
+    {
+      name: "Pro",
+      monthlyINR: 1499,
+      monthlyUSD: 18,
+      annualINR: 16151,
+      annualUSD: 193,
+      description: "Ideal for individual users focused on LinkedIn contact reveals",
+      credits: 150,
+      features: [
+        "150 free credits/month",
+        "LinkedIn contact reveal",
+        "Email & phone extraction",
+        // "Smart local caching",
+        "Organized contact groups",
+        // "Bulk enrichment",
+        "Duplicate detection",
+        // "Export to CSV"
+      ],
+      cta: "Get Pro",
+      popular: false
+    },
+    {
+      name: "Power",
+      monthlyINR: 2399,
+      monthlyUSD: 29,
+      annualINR: 25911,
+      annualUSD: 310,
+      description: "Best for sales and recruiting professionals who need calling features",
+      credits: 300,
+      features: [
+        "300 free credits/month",
+        "Everything in Pro, plus:",
+        "Click-to-call from browser",
+        "In-browser audio calling",
+        // "Multi-token caller IDs",
+        // "Real-time call status",
+        "Zaubacorp director lookup",
+        // "Call logging & history",
+        // "Infinite scroll enrichment"
+      ],
+      cta: "Get Power",
+      popular: true
+    },
+    {
+      name: "Enterprise",
+      monthlyINR: 4999,
+      monthlyUSD: 60,
+      annualINR: 53991,
+      annualUSD: 646,
+      description: "Designed for teams requiring automation, AI calling, and collaboration",
+      credits: 750,
+      features: [
+        "750 free credits/month",
+        "Everything in Power, plus:",
+        "AI-assisted calling agents",
+        // "Background call automation",
+        "Team contact management",
+        // "Role-based access control",
+        // "Bulk credit discounts",
+        // "Full API access",
+        // "Custom integrations",
+        "Dedicated account manager"
+      ],
+      cta: "Contact Sales",
+      popular: false
+    }
+  ];
 
   return (
-    <div id="pricing" className="py-24 bg-black relative overflow-hidden">
-      {/* Ambient background */}
+    <div id="pricing" className="py-20 bg-black relative overflow-hidden">
+      {/* Background */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-accent rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-accent rounded-full blur-[150px]" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-accent rounded-full blur-[180px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-accent rounded-full blur-[180px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header Section */}
+        {/* Header */}
         <motion.div
-          className="mb-20"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center gap-3 mb-6 justify-center">
-            <div className="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center backdrop-blur-xl border border-accent/20">
-              <CreditCard className="w-6 h-6 text-accent" />
-            </div>
-            <span className="text-sm font-medium text-gray-400 uppercase tracking-wider">Billing Console</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 rounded-full border border-accent/30 mb-4">
+            <Zap className="w-3.5 h-3.5 text-accent" />
+            <span className="text-xs font-semibold text-accent">Flexible Pricing</span>
           </div>
-          
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-center tracking-tight">
-            Simple, Transparent Pricing
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
+            Choose Your Plan
           </h2>
-          <p className="text-xl text-gray-400 text-center max-w-2xl mx-auto leading-relaxed">
-            Pay only for what you use. No hidden fees, no subscriptions. Scale effortlessly with credit-based pricing.
+          <p className="text-base text-gray-400 max-w-2xl mx-auto mb-6">
+            Pay monthly or save 10% with annual billing.
           </p>
+
+          {/* Billing & Currency Toggles */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-2">
+            {/* Billing Period Toggle */}
+            <div className="flex items-center gap-3">
+              <span className={`text-sm font-medium transition-colors ${!isAnnual ? 'text-white' : 'text-gray-500'}`}>
+                Monthly
+              </span>
+              <button
+                onClick={() => setIsAnnual(!isAnnual)}
+                className="relative w-14 h-7 bg-white/10 rounded-full border border-white/20 transition-all duration-300 hover:border-accent/50"
+              >
+                <motion.div
+                  className="absolute top-0.5 w-6 h-6 bg-accent rounded-full"
+                  animate={{ left: isAnnual ? '28px' : '2px' }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                />
+              </button>
+              <span className={`text-sm font-medium transition-colors ${isAnnual ? 'text-white' : 'text-gray-500'}`}>
+                Annual
+              </span>
+              {isAnnual && (
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded-full"
+                >
+                  Save 10%
+                </motion.span>
+              )}
+            </div>
+
+            {/* Currency Toggle */}
+            <div className="flex items-center gap-3">
+              <span className={`text-sm font-medium transition-colors ${!isUSD ? 'text-white' : 'text-gray-500'}`}>
+                {loading ? '...' : detectedCurrency.code}
+              </span>
+              <button
+                onClick={() => setIsUSD(!isUSD)}
+                className="relative w-14 h-7 bg-white/10 rounded-full border border-white/20 transition-all duration-300 hover:border-accent/50"
+                disabled={loading}
+              >
+                <motion.div
+                  className="absolute top-0.5 w-6 h-6 bg-accent rounded-full"
+                  animate={{ left: isUSD ? '28px' : '2px' }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                />
+              </button>
+              <span className={`text-sm font-medium transition-colors ${isUSD ? 'text-white' : 'text-gray-500'}`}>
+                USD
+              </span>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Pricing Grid - Masonry Style */}
+        {/* Pricing Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
         >
-          {PRICING_TIERS.map((tier, index) => {
-            const isHovered = hoveredIndex === index;
-
-            return (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                onHoverStart={() => setHoveredIndex(index)}
-                onHoverEnd={() => setHoveredIndex(null)}
-                className="relative group"
-              >
-                {/* Pricing Card */}
-                <div
-                  className="relative h-full bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-3xl p-8 border border-accent/40 shadow-xl shadow-accent/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-accent/50"
-                >
-                  {/* Inner glow effect */}
-                  <div
-                    className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-3xl opacity-100 transition-opacity duration-500"
-                  />
-
-                  <div className="relative z-10 flex flex-col h-full">
-                    {/* Credit Badge */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center gap-2 px-3 py-1.5 bg-black/40 rounded-full border border-white/10">
-                        <Zap className="w-3 h-3 text-accent" />
-                        <span className="text-xs font-medium text-gray-300">
-                          {tier.credits} Credit{tier.credits > 1 ? 's' : ''}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Pricing */}
-                    <motion.div
-                      className="mb-6"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
-                    >
-                      <div className="flex items-baseline gap-2 mb-1">
-                        <span className="text-5xl font-bold text-white">₹{tier.price}</span>
-                        <span className="text-gray-500 text-sm font-medium">/ contact</span>
-                      </div>
-                      
-                      {/* Divider */}
-                      <div className="w-16 h-0.5 bg-gradient-to-r from-accent to-transparent mt-4" />
-                    </motion.div>
-
-                    {/* Title & Description */}
-                    <div className="mb-6 flex-grow">
-                      <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
-                        {tier.title}
-                      </h3>
-                      <p className="text-sm text-gray-400 leading-relaxed">
-                        {tier.description}
-                      </p>
-                    </div>
-
-                    {/* CTA Button */}
-                    <motion.button
-                      onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
-                      className="w-full py-4 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden bg-transparent-to-r from-accent to-accent text-accent border border-accent "
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <span>Get Started</span>
-                      <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${isHovered ? 'translate-x-1' : ''}`} />
-                      
-                      {/* Button shine effect */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                        initial={{ x: '-100%' }}
-                        animate={{ x: '200%' }}
-                        transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-                      />
-                    </motion.button>
+          {plans.map((plan, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              className="relative group"
+            >
+              {plan.popular && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+                  <div className="bg-accent text-black text-xs font-bold px-3 py-1 rounded-full">
+                    Most Popular
                   </div>
                 </div>
-              </motion.div>
-            );
-          })}
+              )}
+
+              <div className={`bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl p-6 border transition-all duration-300 h-full flex flex-col ${
+                plan.popular 
+                  ? 'border-accent shadow-xl shadow-accent/20 scale-105' 
+                  : 'border-accent/30 hover:border-accent/50'
+              }`}>
+                <div className="flex-1">
+                  {/* Plan Name */}
+                  <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
+                  
+                  {/* Price */}
+                  <div className="mb-4">
+                    {isAnnual ? (
+                      <>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-4xl font-bold text-white">
+                            {loading ? '...' : formatPrice(Math.round(plan.annualINR / 12))}
+                          </span>
+                          <span className="text-sm text-gray-400">/month</span>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1">
+                          {loading ? '...' : formatPrice(plan.annualINR)} billed annually · Save 10%
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-4xl font-bold text-white">
+                            {loading ? '...' : formatPrice(plan.monthlyINR)}
+                          </span>
+                          <span className="text-sm text-gray-400">/month</span>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Billed monthly
+                        </p>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-gray-400 mb-2">{plan.description}</p>
+                  <p className="text-xs text-gray-500 mb-6">
+                    Includes {plan.credits} free credits/month. Additional credits purchased separately.
+                  </p>
+
+                  {/* Features */}
+                  <ul className="space-y-3 mb-6">
+                    {plan.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm text-gray-300">
+                        <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* CTA Button */}
+                <button
+                  onClick={() => {
+                    if (plan.name === 'Enterprise') {
+                      window.location.href = '/contact';
+                    } else {
+                      window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank');
+                    }
+                  }}
+                  className={`w-full py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 ${
+                    plan.popular
+                      ? 'bg-accent text-black hover:bg-accent/90'
+                      : 'bg-white/5 text-white hover:bg-white/10 border border-white/10'
+                  }`}
+                >
+                  <span>{plan.cta}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
 
-        {/* Bottom CTA Section */}
-        {/* <motion.div
-          className="text-center"
+        {/* Global Note */}
+        <motion.div
+          className="mt-8 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          <p className="text-sm text-gray-400 bg-white/5 border border-white/10 rounded-xl px-6 py-4 inline-block">
+            <span className="text-accent font-semibold">Note:</span> Credits are required for all reveals. You can buy credits anytime.
+          </p>
+        </motion.div>
+
+        {/* Credit Pricing Section */}
+        <motion.div
+          className="mt-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.8 }}
+          transition={{ delay: 0.3 }}
         >
-          <div className="inline-flex flex-col items-center gap-6 bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-3xl p-10 border border-white/5">
-            <div className="flex items-center gap-3">
-              <Sparkles className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium text-gray-400">Need more credits?</span>
-            </div>
-            
-            <motion.button
-              onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
-              className="px-8 py-4 bg-transparent text-accent border border-accent font-bold rounded-xl hover:bg-gray-100 transition-all duration-300 flex items-center gap-3 shadow-xl shadow-white/10"
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(255,255,255,0.2)' }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <CreditCard className="w-5 h-5" />
-              <span>Buy Credits Now</span>
-              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            </motion.button>
-
-            <p className="text-xs text-gray-500">
-              Enterprise plans available • Volume discounts • Custom integrations
+          <div className="text-center mb-10">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">
+              Pay-As-You-Go Credits
+            </h3>
+            <p className="text-sm text-gray-400">
+              Same pricing across all plans. Buy credits and use them as needed.
             </p>
           </div>
-        </motion.div> */}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+            {[
+              {
+                credits: 1,
+                priceINR: 1,
+                priceUSD: 0.01,
+                title: "Director Direct Dial (India)",
+                description: "Decision-maker contact numbers"
+              },
+              {
+                credits: 10,
+                priceINR: 10,
+                priceUSD: 0.12,
+                title: "Full Contact Enrichment (LinkedIn)",
+                description: "Email + phone + profile data"
+              },
+              {
+                credits: 7,
+                priceINR: 7,
+                priceUSD: 0.08,
+                title: "Phone Number Lookup",
+                description: "General phone lookup"
+              },
+              {
+                credits: 3,
+                priceINR: 3,
+                priceUSD: 0.04,
+                title: "Verified Email",
+                description: "Email address only"
+              }
+            ].map((tier, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-gradient-to-br from-[#1a1a1a]/50 to-[#0a0a0a]/50 backdrop-blur-xl rounded-xl p-5 border border-white/10 hover:border-accent/30 transition-all duration-300"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <Zap className="w-4 h-4 text-accent" />
+                  <span className="text-xs font-semibold text-accent">
+                    {tier.credits} Credit{tier.credits > 1 ? 's' : ''}
+                  </span>
+                </div>
+                
+                <div className="mb-3">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-bold text-white">
+                      {loading ? '...' : `${convertPrice(tier.priceINR)} ${isUSD ? 'USD' : detectedCurrency.code}`}
+                    </span>
+                    <span className="text-xs text-gray-500">/ contact</span>
+                  </div>
+                </div>
+
+                <h4 className="text-sm font-bold text-white mb-1">{tier.title}</h4>
+                <p className="text-xs text-gray-400">{tier.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Bottom Note */}
+        <motion.div
+          className="mt-12 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+        >
+          <p className="text-sm text-gray-500">
+            All plans include pay-as-you-go credits. No hidden fees. Cancel anytime.
+          </p>
+        </motion.div>
       </div>
     </div>
   );

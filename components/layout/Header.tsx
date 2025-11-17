@@ -384,6 +384,15 @@ export const Header: React.FC = () => {
                     {/* CTA Button - Far Right */}
                     <div className="flex items-center gap-4 flex-shrink-0">
                         <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                                window.location.href = "/contact";
+                            }}
+                        >
+                            Get a Demo
+                        </Button>
+                        <Button
                             variant="outline"
                             size="sm"
                             onClick={() => {
