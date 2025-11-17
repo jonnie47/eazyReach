@@ -41,7 +41,6 @@ const cardVariants: Variants = {
 };
 
 export const PricingSection: React.FC = () => {
-  const [isUSD, setIsUSD] = useState(false);
   const [isAnnual, setIsAnnual] = useState(true);
   const [detectedCurrency, setDetectedCurrency] = useState<CurrencyInfo>({ code: 'USD', rate: 0.012, countryCode: 'US' });
   const [loading, setLoading] = useState(true);
@@ -109,14 +108,20 @@ export const PricingSection: React.FC = () => {
   }, []);
 
   const convertPrice = (priceINR: number): number => {
-    const rate = isUSD ? 0.012 : detectedCurrency.rate;
-    return Math.round(priceINR * rate);
+    return Math.round(priceINR * detectedCurrency.rate);
   };
 
   const formatPrice = (priceINR: number): string => {
     const converted = convertPrice(priceINR);
-    const currencyCode = isUSD ? 'USD' : detectedCurrency.code;
-    return `${converted} ${currencyCode}`;
+    return `${converted} ${detectedCurrency.code}`;
+  };
+
+  const getPaymentLink = (plan: typeof plans[0]): string => {
+    const amountINR = isAnnual ? plan.annualINR : plan.monthlyINR;
+    const amountInCurrency = convertPrice(amountINR);
+    const amountInPaise = amountInCurrency * 100; // Convert to smallest unit (like paise for INR)
+    const currency = detectedCurrency.code.toLowerCase();
+    return `https://superflow.run/subspace_api/payment_v3/38fbb296-8899-4bcf-9cee-8709c242ebbc/${amountInPaise}/${currency}`;
   };
 
   const plans = [
@@ -216,57 +221,33 @@ export const PricingSection: React.FC = () => {
             Pay monthly or save 10% with annual billing.
           </p>
 
-          {/* Billing & Currency Toggles */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-2">
-            {/* Billing Period Toggle */}
-            <div className="flex items-center gap-3">
-              <span className={`text-sm font-medium transition-colors ${!isAnnual ? 'text-white' : 'text-gray-500'}`}>
-                Monthly
-              </span>
-              <button
-                onClick={() => setIsAnnual(!isAnnual)}
-                className="relative w-14 h-7 bg-white/10 rounded-full border border-white/20 transition-all duration-300 hover:border-accent/50"
+          {/* Billing Period Toggle */}
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <span className={`text-sm font-medium transition-colors ${!isAnnual ? 'text-white' : 'text-gray-500'}`}>
+              Monthly
+            </span>
+            <button
+              onClick={() => setIsAnnual(!isAnnual)}
+              className="relative w-14 h-7 bg-white/10 rounded-full border border-white/20 transition-all duration-300 hover:border-accent/50"
+            >
+              <motion.div
+                className="absolute top-0.5 w-6 h-6 bg-accent rounded-full"
+                animate={{ left: isAnnual ? '28px' : '2px' }}
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+              />
+            </button>
+            <span className={`text-sm font-medium transition-colors ${isAnnual ? 'text-white' : 'text-gray-500'}`}>
+              Annual
+            </span>
+            {isAnnual && (
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded-full"
               >
-                <motion.div
-                  className="absolute top-0.5 w-6 h-6 bg-accent rounded-full"
-                  animate={{ left: isAnnual ? '28px' : '2px' }}
-                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                />
-              </button>
-              <span className={`text-sm font-medium transition-colors ${isAnnual ? 'text-white' : 'text-gray-500'}`}>
-                Annual
-              </span>
-              {isAnnual && (
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded-full"
-                >
-                  Save 10%
-                </motion.span>
-              )}
-            </div>
-
-            {/* Currency Toggle */}
-            <div className="flex items-center gap-3">
-              <span className={`text-sm font-medium transition-colors ${!isUSD ? 'text-white' : 'text-gray-500'}`}>
-                {loading ? '...' : detectedCurrency.code}
-              </span>
-              <button
-                onClick={() => setIsUSD(!isUSD)}
-                className="relative w-14 h-7 bg-white/10 rounded-full border border-white/20 transition-all duration-300 hover:border-accent/50"
-                disabled={loading}
-              >
-                <motion.div
-                  className="absolute top-0.5 w-6 h-6 bg-accent rounded-full"
-                  animate={{ left: isUSD ? '28px' : '2px' }}
-                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                />
-              </button>
-              <span className={`text-sm font-medium transition-colors ${isUSD ? 'text-white' : 'text-gray-500'}`}>
-                USD
-              </span>
-            </div>
+                Save 10%
+              </motion.span>
+            )}
           </div>
         </motion.div>
 
@@ -353,7 +334,7 @@ export const PricingSection: React.FC = () => {
                     if (plan.name === 'Enterprise') {
                       window.location.href = '/contact';
                     } else {
-                      window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank');
+                      window.open(getPaymentLink(plan), '_blank');
                     }
                   }}
                   className={`w-full py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 ${
@@ -449,7 +430,7 @@ export const PricingSection: React.FC = () => {
                 <div className="mb-3">
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-bold text-white">
-                      {loading ? '...' : `${convertPrice(tier.priceINR)} ${isUSD ? 'USD' : detectedCurrency.code}`}
+                      {loading ? '...' : `${convertPrice(tier.priceINR)} ${detectedCurrency.code}`}
                     </span>
                     <span className="text-xs text-gray-500">/ contact</span>
                   </div>
