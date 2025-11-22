@@ -98,8 +98,8 @@ export const FeaturesSection: React.FC = () => {
     },
     {
       icon: Building2,
-      title: 'Zaubacorp Director Intel',
-      description: 'Extract director info from DIN-based profiles.',
+      title: 'CXO Intel',
+      description: 'Extract CXO info from DIN-based profiles.',
       badge: 'India',
       badgeColor: 'bg-accent',
       gridClass: 'md:col-span-2',

@@ -3,7 +3,7 @@ import { FAQ } from '../types';
 export const FAQS: FAQ[] = [
   {
     q: 'How do credits work?',
-    a: 'Credits map directly to INR pricing: Director numbers = 1 credit (₹1), Email = 3 credits (₹3), Phone = 7 credits (₹7), Full LinkedIn contact = 10 credits (₹10). You only pay for successful lookups.'
+    a: 'Credits map directly to INR pricing: CXO numbers = 10 credit (₹10), Email = 3 credits (₹3), Phone = 7 credits (₹7), Full LinkedIn contact = 10 credits (₹10). You only pay for successful lookups.'
   },
   // {
   //   q: 'What is your refund guarantee?',

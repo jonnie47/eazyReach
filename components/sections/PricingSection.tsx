@@ -161,7 +161,7 @@ export const PricingSection: React.FC = () => {
         "In-browser audio calling",
         // "Multi-token caller IDs",
         // "Real-time call status",
-        "Zaubacorp director lookup",
+        "CXO lookup",
         // "Call logging & history",
         // "Infinite scroll enrichment"
       ],
@@ -384,10 +384,10 @@ export const PricingSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
             {[
               {
-                credits: 1,
-                priceINR: 1,
-                priceUSD: 0.01,
-                title: "Director Direct Dial (India)",
+                credits: 10,
+                priceINR: 10,
+                priceUSD: 0.12,
+                title: "CXO Direct Dial (India)",
                 description: "Decision-maker contact numbers"
               },
               {
