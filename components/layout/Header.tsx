@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '../ui/Button';
-import { ChevronDown, Zap, Database, Globe, Phone, Mail, BookOpen, LayoutDashboard, PhoneCall, Calendar, Inbox, Linkedin, Chrome, UserCheck, Sparkles, MessageSquare, Video, TrendingUp, Target, Settings, Rocket, Code, DollarSign, ShoppingCart, Heart, Building, Building2 } from 'lucide-react';
+import { ChevronDown, CodeXml, Zap, Database, Globe, Phone, Mail, BookOpen, LayoutDashboard, PhoneCall, Calendar, Inbox, Linkedin, Chrome, UserCheck, Sparkles, MessageSquare, Video, TrendingUp, Target, Settings, Rocket, Code, DollarSign, ShoppingCart, Heart, Building, Building2 } from 'lucide-react';
 
 export const Header: React.FC = () => {
     const [featuresOpen, setFeaturesOpen] = useState(false);
@@ -352,6 +352,15 @@ export const Header: React.FC = () => {
                                         <div>
                                             <div className="text-gray-100 font-medium">Blogs</div>
                                             <div className="text-xs text-gray-400">Latest insights</div>
+                                        </div>
+                                    </Link>
+                                    <Link href="https://docs.eazyreach.app" target="_blank" rel="noopener noreferrer" onClick={() => setResourcesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                        <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                                            <CodeXml  className="w-5 h-5 text-accent" />
+                                        </div>
+                                        <div>
+                                            <div className="text-gray-100 font-medium">Docs</div>
+                                            <div className="text-xs text-gray-400">API Documentation</div>
                                         </div>
                                     </Link>
                                     <Link href="/dashboard" onClick={() => setResourcesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
