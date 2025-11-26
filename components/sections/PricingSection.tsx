@@ -2,7 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { Check, Zap, ArrowRight } from 'lucide-react';
+import { Check, Zap, ArrowRight, Sparkles, Gift, TrendingUp } from 'lucide-react';
+import CircularText from '@/components/CircularText';
+import GlitchText from '@/components/GlitchText';
+import ShinyText from '@/components/ShinyText';
 
 interface ExchangeRate {
   exchange_rate: number;
@@ -121,7 +124,9 @@ export const PricingSection: React.FC = () => {
     const amountInCurrency = convertPrice(amountINR);
     const amountInPaise = amountInCurrency * 100; // Convert to smallest unit (like paise for INR)
     const currency = detectedCurrency.code.toLowerCase();
-    return `https://superflow.run/subspace_api/payment_v3/38fbb296-8899-4bcf-9cee-8709c242ebbc/${amountInPaise}/${currency}`;
+    
+    // Redirect to backend endpoint which handles authentication and client_id
+    return `https://app.vocallabs.ai/auth/payment?amount=${amountInPaise}&currency=${currency}`;
   };
 
   const plans = [
@@ -259,96 +264,209 @@ export const PricingSection: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {plans.map((plan, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              className="relative group"
-            >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
-                  <div className="bg-accent text-black text-xs font-bold px-3 py-1 rounded-full">
-                    Most Popular
+          {plans.map((plan, index) => {
+            const cardContent = (
+              <div className="flex-1">
+                {/* Plan Name */}
+                {plan.popular ? (
+                  <div className="mb-2">
+                    <GlitchText speed={0.8} enableOnHover className="!text-3xl !font-bold !text-accent !mx-0">
+                      {plan.name}
+                    </GlitchText>
                   </div>
-                </div>
-              )}
-
-              <div className={`bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl p-6 border transition-all duration-300 h-full flex flex-col ${
-                plan.popular 
-                  ? 'border-accent shadow-xl shadow-accent/20 scale-105' 
-                  : 'border-accent/30 hover:border-accent/50'
-              }`}>
-                <div className="flex-1">
-                  {/* Plan Name */}
+                ) : (
                   <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
-                  
-                  {/* Price */}
-                  <div className="mb-4">
-                    {isAnnual ? (
-                      <>
-                        <div className="flex items-baseline gap-1">
+                )}
+                
+                {/* Black Friday Sale Badge - Only for Power Plan */}
+                {plan.popular && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="mb-4 relative overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-orange-500/20 to-yellow-500/20 blur-xl" />
+                    <div className="relative bg-gradient-to-r from-red-500/10 via-orange-500/10 to-yellow-500/10 border-2 border-red-500/50 rounded-xl p-4 backdrop-blur-sm">
+                      <div className="flex items-center gap-2 mb-2">
+                        <motion.div
+                          animate={{ rotate: [0, 10, -10, 0] }}
+                          transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
+                        >
+                          <Gift className="w-5 h-5 text-red-400" />
+                        </motion.div>
+                        <span className="text-sm font-bold bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
+                          🔥 BLACK FRIDAY EXCLUSIVE
+                        </span>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex items-baseline gap-2">
+                          <Sparkles className="w-4 h-4 text-yellow-400 flex-shrink-0" />
+                          <p className="text-xs text-gray-300">
+                            <span className="font-bold text-white">LinkedIn Premium Account</span> worth{' '}
+                            <span className="text-red-400 font-bold line-through">₹18,000</span>
+                          </p>
+                        </div>
+                        <div className="flex items-baseline gap-2">
+                          <TrendingUp className="w-4 h-4 text-green-400 flex-shrink-0" />
+                          <p className="text-xs text-gray-300">
+                            Get it for just <span className="text-green-400 font-bold text-base">₹200</span>
+                          </p>
+                        </div>
+                      </div>
+                      <motion.div
+                        className="absolute -right-8 -top-8 w-24 h-24 bg-gradient-to-br from-red-500/30 to-orange-500/30 rounded-full blur-2xl"
+                        animate={{ 
+                          scale: [1, 1.2, 1],
+                          opacity: [0.3, 0.6, 0.3]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                    </div>
+                  </motion.div>
+                )}
+                
+                {/* Price */}
+                <div className="mb-4">
+                  {isAnnual ? (
+                    <>
+                      <div className="flex items-baseline gap-1">
+                        {plan.popular ? (
+                          <ShinyText 
+                            text={loading ? '...' : formatPrice(Math.round(plan.annualINR / 12))}
+                            speed={3}
+                            className="!text-5xl !font-bold !text-white"
+                          />
+                        ) : (
                           <span className="text-4xl font-bold text-white">
                             {loading ? '...' : formatPrice(Math.round(plan.annualINR / 12))}
                           </span>
-                          <span className="text-sm text-gray-400">/month</span>
-                        </div>
-                        <p className="text-xs text-gray-500 mt-1">
-                          {loading ? '...' : formatPrice(plan.annualINR)} billed annually · Save 10%
-                        </p>
-                      </>
-                    ) : (
-                      <>
-                        <div className="flex items-baseline gap-1">
+                        )}
+                        <span className="text-sm text-gray-400">/month</span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        {loading ? '...' : formatPrice(plan.annualINR)} billed annually · Save 10%
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-baseline gap-1">
+                        {plan.popular ? (
+                          <ShinyText 
+                            text={loading ? '...' : formatPrice(plan.monthlyINR)}
+                            speed={3}
+                            className="!text-5xl !font-bold !text-white"
+                          />
+                        ) : (
                           <span className="text-4xl font-bold text-white">
                             {loading ? '...' : formatPrice(plan.monthlyINR)}
                           </span>
-                          <span className="text-sm text-gray-400">/month</span>
-                        </div>
-                        <p className="text-xs text-gray-500 mt-1">
-                          Billed monthly
-                        </p>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-sm text-gray-400 mb-2">{plan.description}</p>
-                  <p className="text-xs text-gray-500 mb-6">
-                    Includes {plan.credits} free credits/month. Additional credits purchased separately.
-                  </p>
-
-                  {/* Features */}
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm text-gray-300">
-                        <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                        )}
+                        <span className="text-sm text-gray-400">/month</span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Billed monthly
+                      </p>
+                    </>
+                  )}
                 </div>
 
-                {/* CTA Button */}
-                <button
-                  onClick={() => {
-                    if (plan.name === 'Enterprise') {
-                      window.location.href = '/contact';
-                    } else {
-                      window.open(getPaymentLink(plan), '_blank');
-                    }
-                  }}
-                  className={`w-full py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 ${
-                    plan.popular
-                      ? 'bg-accent text-black hover:bg-accent/90'
-                      : 'bg-white/5 text-white hover:bg-white/10 border border-white/10'
-                  }`}
-                >
-                  <span>{plan.cta}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+                {/* Description */}
+                <p className="text-sm text-gray-400 mb-2">{plan.description}</p>
+                <p className="text-xs text-gray-500 mb-6">
+                  Includes {plan.credits} free credits/month. Additional credits purchased separately.
+                </p>
+
+                {/* Features */}
+                <ul className="space-y-3 mb-6">
+                  {plan.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-300">
+                      <Check className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </motion.div>
-          ))}
+            );
+
+            const ctaButton = (
+              <button
+                onClick={() => {
+                  if (plan.name === 'Enterprise') {
+                    window.location.href = '/contact';
+                  } else {
+                    window.open(getPaymentLink(plan), '_blank');
+                  }
+                }}
+                className={`w-full py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 ${
+                  plan.popular
+                    ? 'bg-gradient-to-r from-accent via-yellow-400 to-accent text-black hover:shadow-lg hover:shadow-accent/50 relative overflow-hidden group hover:scale-105'
+                    : 'bg-white/5 text-white hover:bg-white/10 border border-white/10'
+                }`}
+              >
+                {plan.popular && (
+                  <>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                      animate={{ x: ['-100%', '100%'] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                    />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-accent/50 to-yellow-400/50 blur-xl"
+                      animate={{ opacity: [0.3, 0.6, 0.3] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  </>
+                )}
+                <span className="relative z-10">{plan.cta}</span>
+                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+              </button>
+            );
+
+            return (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                className="relative group"
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+                    <div className="bg-accent text-black text-xs font-bold px-3 py-1 rounded-full">
+                      Most Popular
+                    </div>
+                  </div>
+                )}
+
+                {plan.popular ? (
+                  <div className="bg-gradient-to-br from-[#1a1a1a]/95 to-[#0a0a0a]/95 backdrop-blur-xl rounded-2xl p-6 border-2 border-accent hover:border-accent/80 transition-all duration-300 h-full flex flex-col relative overflow-hidden group">
+                    {/* Animated background effects */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-yellow-500/5 to-accent/5 animate-pulse" />
+                    <div className="absolute -inset-1 bg-gradient-to-r from-accent via-yellow-500 to-accent opacity-20 blur-3xl group-hover:opacity-30 transition-opacity duration-300" />
+                    
+                    {/* Circular rotating text decoration */}
+                    <div className="absolute -top-16 -right-16 opacity-30 group-hover:opacity-50 transition-opacity">
+                      <CircularText 
+                        text="⚡ MOST POPULAR ⚡ BEST VALUE ⚡ "
+                        spinDuration={15}
+                        onHover="speedUp"
+                        className="text-accent"
+                      />
+                    </div>
+                    
+                    <div className="relative z-10 flex flex-col h-full">
+                      {cardContent}
+                      {ctaButton}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl p-6 border border-accent/30 hover:border-accent/50 transition-all duration-300 h-full flex flex-col">
+                    {cardContent}
+                    {ctaButton}
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Global Note */}
