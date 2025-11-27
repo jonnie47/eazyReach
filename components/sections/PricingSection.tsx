@@ -175,12 +175,13 @@ export const PricingSection: React.FC = () => {
     },
     {
       name: "Enterprise",
-      monthlyINR: 4999,
-      monthlyUSD: 60,
-      annualINR: 53991,
-      annualUSD: 646,
+      monthlyINR: 0,
+      monthlyUSD: 0,
+      annualINR: 0,
+      annualUSD: 0,
       description: "Designed for teams requiring automation, AI calling, and collaboration",
       credits: 750,
+      isCustomPricing: true,
       features: [
         "750 free credits/month",
         "Everything in Power, plus:",
@@ -328,7 +329,18 @@ export const PricingSection: React.FC = () => {
                 
                 {/* Price */}
                 <div className="mb-4">
-                  {isAnnual ? (
+                  {plan.isCustomPricing ? (
+                    <>
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-4xl font-bold text-white">
+                          Custom
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Tailored pricing for your team
+                      </p>
+                    </>
+                  ) : isAnnual ? (
                     <>
                       <div className="flex items-baseline gap-1">
                         {plan.popular ? (
@@ -373,9 +385,11 @@ export const PricingSection: React.FC = () => {
 
                 {/* Description */}
                 <p className="text-sm text-gray-400 mb-2">{plan.description}</p>
-                <p className="text-xs text-gray-500 mb-6">
-                  Includes {plan.credits} free credits/month. Additional credits purchased separately.
-                </p>
+                {!plan.isCustomPricing && (
+                  <p className="text-xs text-gray-500 mb-6">
+                    Includes {plan.credits} free credits/month. Additional credits purchased separately.
+                  </p>
+                )}
 
                 {/* Features */}
                 <ul className="space-y-3 mb-6">

@@ -12,6 +12,11 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "EazyReach - LinkedIn Contact Finder",
   description: "Find  phone numbers, verified emails, and complete contact profiles in seconds. Pay only for what you use.",
+  icons: {
+    icon: '/EazyE.png',
+    shortcut: '/EazyE.png',
+    apple: '/EazyE.png',
+  },
 };
 
 export default function RootLayout({
