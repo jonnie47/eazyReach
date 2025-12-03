@@ -1,8 +1,9 @@
 ﻿'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Globe, Award, Users, TrendingUp, Chrome, Send, Sparkles } from 'lucide-react';
+import VariableProximity from '@/components/VariableProximity';
 import { LogoMarquee } from '../ui/LogoMarquee';
 
 const containerVariants = {
@@ -43,6 +44,7 @@ const statVariants = {
 };
 
 export const HeroSection: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [inputValue, setInputValue] = useState('');
   const [currentPlaceholder, setCurrentPlaceholder] = useState('');
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
@@ -235,11 +237,27 @@ export const HeroSection: React.FC = () => {
           <motion.div variants={itemVariants} className="relative">
             {/* Glass Background */}
             
-            <div className="relative z-10 py-8">
+            <div className="relative z-10 py-8" ref={containerRef}>
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-[1.15] text-white tracking-tight">
-                Supercharge Sales With <br />
+                <VariableProximity
+                  label="Supercharge Sales With"
+                  fromFontVariationSettings="'wght' 400, 'wdth' 100"
+                  toFontVariationSettings="'wght' 900, 'wdth' 125"
+                  containerRef={containerRef}
+                  radius={120}
+                  falloff="exponential"
+                  className="inline-block"
+                />
+                <br />
                 <span className="relative inline-block">
-                  <span className="">Conversational AI</span>
+                  <VariableProximity
+                    label="Conversational AI"
+                    fromFontVariationSettings="'wght' 400, 'wdth' 100"
+                    toFontVariationSettings="'wght' 900, 'wdth' 125"
+                    containerRef={containerRef}
+                    radius={120}
+                    falloff="exponential"
+                  />
                   {/* Elegant Animated Underline */}
                   <motion.div
                     className="absolute -bottom-2 left-0 right-0 h-1 rounded-full overflow-hidden"

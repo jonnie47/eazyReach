@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Roboto_Flex } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
 import { FloatingCTA } from "@/components/ui";
@@ -7,6 +7,11 @@ import { FloatingCTA } from "@/components/ui";
 const montserrat = Montserrat({ 
   subsets: ["latin"],
   weight: ['300', '400', '500', '600', '700', '800', '900']
+});
+
+const robotoFlex = Roboto_Flex({
+  subsets: ["latin"],
+  variable: "--font-roboto-flex",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className}>
+      <body className={`${montserrat.className} ${robotoFlex.variable}`}>
         <Header />
         {children}
         <Footer />

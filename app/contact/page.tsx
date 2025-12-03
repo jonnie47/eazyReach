@@ -9,15 +9,60 @@ export default function ContactUsPage() {
     name: '',
     email: '',
     company: '',
-    phone: '',
-    subject: '',
-    message: ''
+    phone: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('https://arc.vocallabs.ai/v1/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            mutation InsertWebsiteLead($company_email_id: String!, $name: String!, $phone_number: String!, $referral: String!, $type: String!) {
+              insert_vocallabs_website_leads_one(object: {
+                company_email_id: $company_email_id, 
+                name: $name, 
+                phone_number: $phone_number, 
+                referral: $referral, 
+                type: $type
+              }) {
+                id
+              }
+            }
+          `,
+          variables: {
+            company_email_id: formData.email,
+            name: formData.name,
+            phone_number: formData.phone,
+            referral: 'website_contact_form',
+            type: 'eazyreach'
+          }
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.data?.insert_vocallabs_website_leads_one?.id) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', company: '', phone: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -208,16 +253,40 @@ export default function ContactUsPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] rounded-2xl p-8 md:p-12 border border-gray-800 hover:border-accent/20 transition-all">
-              <h2 className="text-3xl font-bold text-gray-100 mb-8">Send us a message</h2>
+            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] rounded-2xl p-8 md:p-12 border border-gray-800 hover:border-accent/20 transition-all shadow-2xl">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-bold text-white mb-3">Get Started Today</h2>
+                <p className="text-gray-400">Fill out the form below and we&apos;ll get back to you shortly</p>
+              </div>
+
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 text-center"
+                >
+                  ✓ Message sent successfully! We&apos;ll be in touch soon.
+                </motion.div>
+              )}
+
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-center"
+                >
+                  ✗ Something went wrong. Please try again.
+                </motion.div>
+              )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                    Full Name *
+                  <label htmlFor="name" className="block text-sm font-semibold text-gray-300 mb-3">
+                    Full Name <span className="text-accent">*</span>
                   </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <div className="relative group">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
                     <input
                       type="text"
                       id="name"
@@ -225,18 +294,18 @@ export default function ContactUsPage() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full pl-12 pr-4 py-3 bg-black border border-gray-800 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent transition-colors"
+                      className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
                       placeholder="John Doe"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                    Email Address *
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-300 mb-3">
+                    Email Address <span className="text-accent">*</span>
                   </label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <div className="relative group">
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
                     <input
                       type="email"
                       id="email"
@@ -244,94 +313,66 @@ export default function ContactUsPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full pl-12 pr-4 py-3 bg-black border border-gray-800 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent transition-colors"
+                      className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
                       placeholder="john@company.com"
                     />
                   </div>
                 </div>
-              </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-2">
-                    Company
+                  <label htmlFor="company" className="block text-sm font-semibold text-gray-300 mb-3">
+                    Company Name
                   </label>
-                  <div className="relative">
-                    <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <div className="relative group">
+                    <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
                     <input
                       type="text"
                       id="company"
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-3 bg-black border border-gray-800 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent transition-colors"
+                      className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
                       placeholder="Your Company"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
-                    Phone Number
+                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-300 mb-3">
+                    Phone Number <span className="text-accent">*</span>
                   </label>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <div className="relative group">
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-3 bg-black border border-gray-800 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent transition-colors"
+                      required
+                      className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
                       placeholder="+1 (234) 567-890"
                     />
                   </div>
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
-                  Subject *
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-gray-100 focus:outline-none focus:border-accent transition-colors"
-                >
-                  <option value="">Select a subject</option>
-                  <option value="sales">Sales Inquiry</option>
-                  <option value="support">Technical Support</option>
-                  <option value="partnership">Partnership Opportunity</option>
-                  <option value="feedback">Feedback</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-black border border-gray-800 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent transition-colors resize-none"
-                  placeholder="Tell us more about your inquiry..."
-                />
-              </div>
-
               <button
                 type="submit"
-                className="w-full px-8 py-4 bg-gradient-to-r from-accent to-accent text-black rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-accent/30 transition-all flex items-center justify-center gap-2 group"
+                disabled={isSubmitting}
+                className="w-full px-8 py-5 bg-gradient-to-r from-accent via-[#D4A000] to-accent bg-size-200 bg-pos-0 hover:bg-pos-100 text-black rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-accent/40 transition-all duration-500 flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none mt-8"
               >
-                <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
             </div>

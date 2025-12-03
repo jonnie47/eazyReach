@@ -174,20 +174,20 @@ export const FeaturesSection: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-2xl opacity-100" />
                 
                 <div className="relative z-10 flex flex-col flex-1">
-                  {/* Badge & Icon */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                      <feature.icon className="w-6 h-6 text-accent" />
+                  {/* Icon, Title & Badge */}
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                        <feature.icon className="w-6 h-6 text-accent" />
+                      </div>
+                      <h3 className="text-lg font-bold text-white tracking-tight">
+                        {feature.title}
+                      </h3>
                     </div>
                     <div className={`${feature.badgeColor} text-black text-[10px] font-bold px-2 py-1 rounded-full flex-shrink-0`}>
                       {feature.badge}
                     </div>
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-lg font-bold text-white mb-2 tracking-tight">
-                    {feature.title}
-                  </h3>
 
                   {/* Description */}
                   <p className="text-sm text-gray-400 leading-relaxed mb-4 flex-shrink-0">
