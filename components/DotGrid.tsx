@@ -1,13 +1,38 @@
 'use client';
 import React, { useRef, useEffect, useCallback, useMemo } from 'react';
 import { gsap } from 'gsap';
-import { InertiaPlugin } from 'gsap/InertiaPlugin';
 
-gsap.registerPlugin(InertiaPlugin);
+// Custom momentum function to replace paid InertiaPlugin
+const applyMomentum = (
+  dot: Dot,
+  pushX: number,
+  pushY: number,
+  resistance: number,
+  returnDuration: number
+) => {
+  const distance = Math.sqrt(pushX * pushX + pushY * pushY);
+  const duration = Math.min(distance / resistance, 0.8);
+  
+  gsap.to(dot, {
+    xOffset: pushX * 0.3,
+    yOffset: pushY * 0.3,
+    duration: duration,
+    ease: 'power2.out',
+    onComplete: () => {
+      gsap.to(dot, {
+        xOffset: 0,
+        yOffset: 0,
+        duration: returnDuration,
+        ease: 'elastic.out(1,0.75)'
+      });
+      dot._inertiaApplied = false;
+    }
+  });
+};
 
-const throttle = (func: (...args: any[]) => void, limit: number) => {
+const throttle = <T extends unknown[]>(func: (...args: T) => void, limit: number) => {
   let lastCall = 0;
-  return function (this: any, ...args: any[]) {
+  return function (this: unknown, ...args: T) {
     const now = performance.now();
     if (now - lastCall >= limit) {
       lastCall = now;
@@ -224,18 +249,7 @@ const DotGrid: React.FC<DotGridProps> = ({
           gsap.killTweensOf(dot);
           const pushX = dot.cx - pr.x + vx * 0.005;
           const pushY = dot.cy - pr.y + vy * 0.005;
-          gsap.to(dot, {
-            inertia: { xOffset: pushX, yOffset: pushY, resistance },
-            onComplete: () => {
-              gsap.to(dot, {
-                xOffset: 0,
-                yOffset: 0,
-                duration: returnDuration,
-                ease: 'elastic.out(1,0.75)'
-              });
-              dot._inertiaApplied = false;
-            }
-          });
+          applyMomentum(dot, pushX, pushY, resistance, returnDuration);
         }
       }
     };
@@ -252,18 +266,7 @@ const DotGrid: React.FC<DotGridProps> = ({
           const falloff = Math.max(0, 1 - dist / shockRadius);
           const pushX = (dot.cx - cx) * shockStrength * falloff;
           const pushY = (dot.cy - cy) * shockStrength * falloff;
-          gsap.to(dot, {
-            inertia: { xOffset: pushX, yOffset: pushY, resistance },
-            onComplete: () => {
-              gsap.to(dot, {
-                xOffset: 0,
-                yOffset: 0,
-                duration: returnDuration,
-                ease: 'elastic.out(1,0.75)'
-              });
-              dot._inertiaApplied = false;
-            }
-          });
+          applyMomentum(dot, pushX, pushY, resistance, returnDuration);
         }
       }
     };
