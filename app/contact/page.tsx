@@ -120,7 +120,7 @@ export default function ContactUsPage() {
             Contact Us
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Have questions about AI voice agents? We&apos;re here to help!
+            Have questions about EazyReach? We&apos;re here to help!
           </p>
         </motion.div>
 
