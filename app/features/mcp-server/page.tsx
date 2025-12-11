@@ -280,7 +280,7 @@ export default function MCPServerPage() {
                             Get Started with MCP Server
                         </h2>
                         <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-                            Connect Claude Desktop to EazyReach's B2B data in minutes. Secure authentication with phone OTP verification.
+                            Connect Claude Desktop to EazyReach&apos;s B2B data in minutes. Secure authentication with phone OTP verification.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <button
