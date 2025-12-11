@@ -161,7 +161,7 @@ export default function MCPServerPage() {
                             {/* Superflow APIs */}
                             <div className="bg-accent/10 border border-accent/30 rounded-xl p-6 text-center min-w-[180px]">
                                 <Globe className="w-10 h-10 text-accent mx-auto mb-3" />
-                                <p className="text-white font-semibold">Superflow APIs</p>
+                                <p className="text-white font-semibold">EazyReach APIs</p>
                                 <p className="text-xs text-gray-400">B2B Data & Calling</p>
                             </div>
                         </div>

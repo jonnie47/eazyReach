@@ -71,7 +71,7 @@ export const FeaturesSection: React.FC = () => {
     },
     {
       icon: Search,
-      title: 'Search Results Enrichment',
+      title: 'Search Enrichment',
       description: 'Enrich multiple profiles at once from search results.',
       badge: 'Bulk',
       badgeColor: 'bg-accent',
