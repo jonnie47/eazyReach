@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
                     <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
                         {/* Features Dropdown */}
                         <div className="relative">
-                            <button 
+                            <button
                                 onClick={() => {
                                     setFeaturesOpen(!featuresOpen);
                                     setSolutionsOpen(false);
@@ -43,86 +43,98 @@ export const Header: React.FC = () => {
                             {featuresOpen && (
                                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[560px] bg-[#1a1a1a] border border-gray-800 rounded-xl shadow-xl shadow-accent/10 p-4 z-50 max-h-[80vh] overflow-y-auto">
                                     <div className="grid grid-cols-2 gap-4">
-                                    <Link href="/features/ai-outbound" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
-                                        <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                                            <PhoneCall className="w-5 h-5 text-accent" />
-                                        </div>
-                                        <div>
-                                            <div className="text-gray-100 font-medium">AI Outbound</div>
-                                            <div className="text-xs text-gray-400">Outreach calls</div>
-                                        </div>
-                                    </Link>
-                                    <Link href="/features/ai-calendar" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
-                                        <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                                            <Calendar className="w-5 h-5 text-accent" />
-                                        </div>
-                                        <div>
-                                            <div className="text-gray-100 font-medium">AI Calendar Assist</div>
-                                            <div className="text-xs text-gray-400">Smart meeting scheduling</div>
-                                        </div>
-                                    </Link>
-                                    <Link href="/coming-soon" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
-                                        <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                                            <Inbox className="w-5 h-5 text-accent" />
-                                        </div>
-                                        <div>
-                                            <div className="text-gray-100 font-medium">AI Inbox</div>
-                                            <div className="text-xs text-gray-400">Coming Soon</div>
-                                        </div>
-                                                                                    <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full">Soon</span>
-
-                                    </Link>
-                                    <Link href="/features/ai-linkedin" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
-                                        <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                                            <Linkedin className="w-5 h-5 text-accent" />
-                                        </div>
-                                        <div>
-                                            <div className="text-gray-100 font-medium">AI LinkedIn</div>
-                                            <div className="text-xs text-gray-400">AI-driven LinkedIn outreach</div>
-                                        </div>
-                                    </Link>
-                                    <Link href="/features/chrome-extension" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
-                                        <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                                            <Chrome className="w-5 h-5 text-accent" />
-                                        </div>
-                                        <div>
-                                            <div className="text-gray-100 font-medium">Chrome Extension</div>
-                                            <div className="text-xs text-gray-400">Find contacts from browser</div>
-                                        </div>
-                                    </Link>
-                                    <Link href="/coming-soond" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
-                                        <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                                            <UserCheck className="w-5 h-5 text-accent" />
-                                        </div>
-                                        <div>
-                                            <div className="text-gray-100 font-medium">AI Inbound</div>
-                                            <div className="text-xs text-gray-400">Coming Soon</div>
-                                        </div>
-                                                                                    <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full">Soon</span>
-
-                                    </Link>
-                                    <Link href="/features/ai-enrichment" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
-                                        <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                                            <Sparkles className="w-5 h-5 text-accent" />
-                                        </div>
-                                        <div>
-                                            <div className="text-gray-100 font-medium">AI Enrichment</div>
-                                            <div className="text-xs text-gray-400">Auto-fill lead data</div>
-                                        </div>
-                                    </Link>
-                                    <Link href="/coming-soon" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
-                                        <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                                            <Video className="w-5 h-5 text-accent" />
-                                        </div>
-                                        <div className="flex items-center gap-2">
+                                        <Link href="/features/ai-outbound" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                            <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                                                <PhoneCall className="w-5 h-5 text-accent" />
+                                            </div>
                                             <div>
-                                                <div className="text-gray-100 font-medium">AI Notetaker</div>
-                                                <div className="text-xs text-gray-400">Coming soon</div>
+                                                <div className="text-gray-100 font-medium">AI Outbound</div>
+                                                <div className="text-xs text-gray-400">Outreach calls</div>
+                                            </div>
+                                        </Link>
+                                        <Link href="/features/ai-calendar" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                            <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                                                <Calendar className="w-5 h-5 text-accent" />
+                                            </div>
+                                            <div>
+                                                <div className="text-gray-100 font-medium">AI Calendar Assist</div>
+                                                <div className="text-xs text-gray-400">Smart meeting scheduling</div>
+                                            </div>
+                                        </Link>
+                                        <Link href="/coming-soon" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                            <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                                                <Inbox className="w-5 h-5 text-accent" />
+                                            </div>
+                                            <div>
+                                                <div className="text-gray-100 font-medium">AI Inbox</div>
+                                                <div className="text-xs text-gray-400">Coming Soon</div>
                                             </div>
                                             <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full">Soon</span>
-                                        </div>
-                                    </Link>
-                                    {/* <Link href="/features/ai-chat" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+
+                                        </Link>
+                                        <Link href="/features/ai-linkedin" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                            <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                                                <Linkedin className="w-5 h-5 text-accent" />
+                                            </div>
+                                            <div>
+                                                <div className="text-gray-100 font-medium">AI LinkedIn</div>
+                                                <div className="text-xs text-gray-400">AI-driven LinkedIn outreach</div>
+                                            </div>
+                                        </Link>
+                                        <Link href="/features/chrome-extension" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                            <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                                                <Chrome className="w-5 h-5 text-accent" />
+                                            </div>
+                                            <div>
+                                                <div className="text-gray-100 font-medium">Chrome Extension</div>
+                                                <div className="text-xs text-gray-400">Find contacts from browser</div>
+                                            </div>
+                                        </Link>
+                                        <Link href="/coming-soond" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                            <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                                                <UserCheck className="w-5 h-5 text-accent" />
+                                            </div>
+                                            <div>
+                                                <div className="text-gray-100 font-medium">AI Inbound</div>
+                                                <div className="text-xs text-gray-400">Coming Soon</div>
+                                            </div>
+                                            <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full">Soon</span>
+
+                                        </Link>
+                                        <Link href="/features/ai-enrichment" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                            <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                                                <Sparkles className="w-5 h-5 text-accent" />
+                                            </div>
+                                            <div>
+                                                <div className="text-gray-100 font-medium">AI Enrichment</div>
+                                                <div className="text-xs text-gray-400">Auto-fill lead data</div>
+                                            </div>
+                                        </Link>
+                                        <Link href="/features/mcp-server" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                            <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                                                <MessageSquare className="w-5 h-5 text-accent" />
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <div>
+                                                    <div className="text-gray-100 font-medium">MCP Server</div>
+                                                    <div className="text-xs text-gray-400">B2B data for AI agents</div>
+                                                </div>
+                                                <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full">New</span>
+                                            </div>
+                                        </Link>
+                                        <Link href="/coming-soon" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                            <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                                                <Video className="w-5 h-5 text-accent" />
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <div>
+                                                    <div className="text-gray-100 font-medium">AI Notetaker</div>
+                                                    <div className="text-xs text-gray-400">Coming soon</div>
+                                                </div>
+                                                <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full">Soon</span>
+                                            </div>
+                                        </Link>
+                                        {/* <Link href="/features/ai-chat" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
                                         <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
                                             <MessageSquare className="w-5 h-5 text-accent" />
                                         </div>
@@ -138,7 +150,7 @@ export const Header: React.FC = () => {
 
                         {/* Solutions Dropdown */}
                         <div className="relative">
-                            <button 
+                            <button
                                 onClick={() => {
                                     setSolutionsOpen(!solutionsOpen);
                                     setFeaturesOpen(false);
@@ -332,7 +344,7 @@ export const Header: React.FC = () => {
 
                         {/* Resources Dropdown */}
                         <div className="relative">
-                            <button 
+                            <button
                                 onClick={() => {
                                     setResourcesOpen(!resourcesOpen);
                                     setFeaturesOpen(false);
@@ -356,7 +368,7 @@ export const Header: React.FC = () => {
                                     </Link>
                                     <Link href="https://docs.eazyreach.app" target="_blank" rel="noopener noreferrer" onClick={() => setResourcesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
                                         <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
-                                            <CodeXml  className="w-5 h-5 text-accent" />
+                                            <CodeXml className="w-5 h-5 text-accent" />
                                         </div>
                                         <div>
                                             <div className="text-gray-100 font-medium">Docs</div>

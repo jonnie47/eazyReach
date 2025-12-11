@@ -2,17 +2,18 @@
 
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
-import { 
-  Search, 
-  Phone, 
-  Bot, 
-  Users, 
+import {
+  Search,
+  Phone,
+  Bot,
+  Users,
   Database,
   Linkedin,
   Building2,
   Check,
   Zap,
-  Sparkles
+  Sparkles,
+  MessageSquare
 } from 'lucide-react';
 
 const containerVariants: Variants = {
@@ -46,7 +47,7 @@ export const FeaturesSection: React.FC = () => {
       description: 'Extract verified contact information from any LinkedIn profile instantly.',
       badge: 'Popular',
       badgeColor: 'bg-accent',
-      gridClass: 'md:col-span-2',
+      gridClass: 'md:col-span-6',
       features: [
         'Reveal phone and email instantly',
         'Smart caching - never pay twice',
@@ -60,13 +61,13 @@ export const FeaturesSection: React.FC = () => {
       description: 'Browser-native calling with no downloads required.',
       badge: 'Live',
       badgeColor: 'bg-accent',
-      gridClass: 'md:col-span-1',
+      gridClass: 'md:col-span-6',
       features: [
         'Browser-native calling',
         'Multi-token caller IDs',
         'Click-to-call anywhere',
         'Real-time status updates',
-        ]
+      ]
     },
     {
       icon: Search,
@@ -74,7 +75,7 @@ export const FeaturesSection: React.FC = () => {
       description: 'Enrich multiple profiles at once from search results.',
       badge: 'Bulk',
       badgeColor: 'bg-accent',
-      gridClass: 'md:col-span-1',
+      gridClass: 'md:col-span-3',
       features: [
         'Bulk select profiles',
         'Select all instantly',
@@ -88,7 +89,7 @@ export const FeaturesSection: React.FC = () => {
       description: 'Let AI handle outbound calls with custom scripts.',
       badge: 'New',
       badgeColor: 'bg-accent',
-      gridClass: 'md:col-span-2',
+      gridClass: 'md:col-span-6',
       features: [
         'Custom scripts per campaign',
         'Async with notifications',
@@ -102,7 +103,7 @@ export const FeaturesSection: React.FC = () => {
       description: 'Extract CXO info from DIN-based profiles.',
       badge: 'India',
       badgeColor: 'bg-accent',
-      gridClass: 'md:col-span-2',
+      gridClass: 'md:col-span-3',
       features: [
         'DIN-based profiles',
         'Perfect for Indian B2B',
@@ -111,12 +112,26 @@ export const FeaturesSection: React.FC = () => {
       ]
     },
     {
+      icon: MessageSquare,
+      title: 'MCP Server for AI Agents',
+      description: 'Connect Claude Desktop to live B2B data via natural language.',
+      badge: 'New',
+      badgeColor: 'bg-accent',
+      gridClass: 'md:col-span-6',
+      features: [
+        'Natural language lookup',
+        'LinkedIn & DIN enrichment',
+        'AI agent-powered calling',
+        'Real-time call monitoring'
+      ]
+    },
+    {
       icon: Users,
       title: 'Contact Management',
       description: 'Organize and track all contacts in one place.',
       badge: 'Core',
       badgeColor: 'bg-accent',
-      gridClass: 'md:col-span-1',
+      gridClass: 'md:col-span-6',
       features: [
         'Multiple contact groups',
         'Duplicate detection',
@@ -155,9 +170,9 @@ export const FeaturesSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Bento Grid */}
+        {/* Bento Grid - Hourglass Layout */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-4"
+          className="grid grid-cols-1 md:grid-cols-12 gap-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -172,7 +187,7 @@ export const FeaturesSection: React.FC = () => {
               <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl p-6 border border-accent/30 shadow-xl shadow-accent/10 hover:shadow-accent/30 transition-all duration-500 h-full flex flex-col">
                 {/* Inner glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-2xl opacity-100" />
-                
+
                 <div className="relative z-10 flex flex-col flex-1">
                   {/* Icon, Title & Badge */}
                   <div className="flex items-center justify-between gap-3 mb-4">
