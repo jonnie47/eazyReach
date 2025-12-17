@@ -174,18 +174,6 @@ export default function ContactUsPage() {
                   <div className="space-y-3">
                     <div className="group/phone">
                       <p className="text-gray-400 text-sm mb-1 flex items-center gap-2">
-                        <span className="text-xl">🇺🇸</span> United States
-                      </p>
-                      <a
-                        href="tel:+19842550652"
-                        className="text-accent hover:text-[#D4A000] transition-colors font-medium text-lg inline-flex items-center gap-2"
-                      >
-                        +1
-                        <Phone className="w-4 h-4 group-hover/phone:rotate-12 transition-transform" />
-                      </a>
-                    </div>
-                    <div className="group/phone">
-                      <p className="text-gray-400 text-sm mb-1 flex items-center gap-2">
                         <span className="text-xl">🇮🇳</span> India
                       </p>
                       <a
