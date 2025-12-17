@@ -101,13 +101,13 @@ export default function ContactUsPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-20"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <motion.div 
+          <motion.div
             className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -126,14 +126,14 @@ export default function ContactUsPage() {
 
         <div className="grid lg:grid-cols-2 gap-12 mb-20">
           {/* Left Side - Contact Info */}
-          <motion.div 
+          <motion.div
             className="space-y-8"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             {/* Email Card */}
-            <motion.div 
+            <motion.div
               className="bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] rounded-2xl p-8 border border-gray-800 hover:border-accent/50 transition-all group"
               variants={itemVariants}
               whileHover={{ scale: 1.02, y: -5 }}
@@ -146,11 +146,11 @@ export default function ContactUsPage() {
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold text-gray-100 mb-2">Email Us</h3>
                   <p className="text-gray-400 mb-3">Our team is here to help</p>
-                  <a 
-                    href="mailto:hello@vocallabs.ai" 
+                  <a
+                    href="mailto:athuljohney@eazyreach.app"
                     className="text-accent hover:text-[#D4A000] transition-colors font-medium text-lg inline-flex items-center gap-2 group/link"
                   >
-                    hello@vocallabs.ai
+                    athuljohney@eazyreach.app
                     <Send className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                   </a>
                 </div>
@@ -158,7 +158,7 @@ export default function ContactUsPage() {
             </motion.div>
 
             {/* Phone Card */}
-            <motion.div 
+            <motion.div
               className="bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] rounded-2xl p-8 border border-gray-800 hover:border-accent/50 transition-all group"
               variants={itemVariants}
               whileHover={{ scale: 1.02, y: -5 }}
@@ -176,11 +176,11 @@ export default function ContactUsPage() {
                       <p className="text-gray-400 text-sm mb-1 flex items-center gap-2">
                         <span className="text-xl">🇺🇸</span> United States
                       </p>
-                      <a 
-                        href="tel:+19842550652" 
+                      <a
+                        href="tel:+19842550652"
                         className="text-accent hover:text-[#D4A000] transition-colors font-medium text-lg inline-flex items-center gap-2"
                       >
-                        +1 984 255 0652
+                        +1
                         <Phone className="w-4 h-4 group-hover/phone:rotate-12 transition-transform" />
                       </a>
                     </div>
@@ -188,11 +188,11 @@ export default function ContactUsPage() {
                       <p className="text-gray-400 text-sm mb-1 flex items-center gap-2">
                         <span className="text-xl">🇮🇳</span> India
                       </p>
-                      <a 
-                        href="tel:+919019822136" 
+                      <a
+                        href="tel:+919353447253"
                         className="text-accent hover:text-[#D4A000] transition-colors font-medium text-lg inline-flex items-center gap-2"
                       >
-                        +91 90198 22136
+                        +91 9353447253
                         <Phone className="w-4 h-4 group-hover/phone:rotate-12 transition-transform" />
                       </a>
                     </div>
@@ -202,7 +202,7 @@ export default function ContactUsPage() {
             </motion.div>
 
             {/* Offices Card */}
-            <motion.div 
+            <motion.div
               className="bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] rounded-2xl p-8 border border-gray-800 hover:border-accent/50 transition-all group"
               variants={itemVariants}
               whileHover={{ scale: 1.02, y: -5 }}
@@ -217,7 +217,7 @@ export default function ContactUsPage() {
                   <p className="text-gray-400">Come say hello at our locations</p>
                 </div>
               </div>
-              
+
               <div className="grid gap-6">
                 <div className="relative pl-6 border-l-2 border-accent/30">
                   <div className="absolute -left-[9px] top-0 w-4 h-4 bg-accent rounded-full" />
@@ -241,7 +241,6 @@ export default function ContactUsPage() {
                     Bangalore, Karnataka,<br />
                     India 560001
                   </p>
-                  <p className="text-gray-500 text-xs mt-3 font-mono">CIN: U63121KA2025PTC197380</p>
                 </div>
               </div>
             </motion.div>
@@ -279,102 +278,102 @@ export default function ContactUsPage() {
                 </motion.div>
               )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-300 mb-3">
-                    Full Name <span className="text-accent">*</span>
-                  </label>
-                  <div className="relative group">
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
-                      placeholder="John Doe"
-                    />
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-semibold text-gray-300 mb-3">
+                      Full Name <span className="text-accent">*</span>
+                    </label>
+                    <div className="relative group">
+                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
+                        placeholder="John Doe"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-300 mb-3">
+                      Email Address <span className="text-accent">*</span>
+                    </label>
+                    <div className="relative group">
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
+                        placeholder="john@company.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-semibold text-gray-300 mb-3">
+                      Company Name
+                    </label>
+                    <div className="relative group">
+                      <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
+                      <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
+                        placeholder="Your Company"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-300 mb-3">
+                      Phone Number <span className="text-accent">*</span>
+                    </label>
+                    <div className="relative group">
+                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
+                        placeholder="+1 (234) 567-890"
+                      />
+                    </div>
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-gray-300 mb-3">
-                    Email Address <span className="text-accent">*</span>
-                  </label>
-                  <div className="relative group">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
-                      placeholder="john@company.com"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-sm font-semibold text-gray-300 mb-3">
-                    Company Name
-                  </label>
-                  <div className="relative group">
-                    <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
-                      placeholder="Your Company"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-300 mb-3">
-                    Phone Number <span className="text-accent">*</span>
-                  </label>
-                  <div className="relative group">
-                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-accent transition-colors" />
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      className="w-full pl-12 pr-4 py-4 bg-black/50 border-2 border-gray-800 rounded-xl text-gray-100 placeholder-gray-500 focus:outline-none focus:border-accent focus:bg-black transition-all"
-                      placeholder="+1 (234) 567-890"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full px-8 py-5 bg-gradient-to-r from-accent via-[#D4A000] to-accent bg-size-200 bg-pos-0 hover:bg-pos-100 text-black rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-accent/40 transition-all duration-500 flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none mt-8"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    Send Message
-                  </>
-                )}
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full px-8 py-5 bg-gradient-to-r from-accent via-[#D4A000] to-accent bg-size-200 bg-pos-0 hover:bg-pos-100 text-black rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-accent/40 transition-all duration-500 flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none mt-8"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      Send Message
+                    </>
+                  )}
+                </button>
+              </form>
             </div>
           </motion.div>
         </div>
