@@ -210,17 +210,6 @@ export default function ContactUsPage() {
                 <div className="relative pl-6 border-l-2 border-accent/30">
                   <div className="absolute -left-[9px] top-0 w-4 h-4 bg-accent rounded-full" />
                   <p className="text-gray-300 font-semibold mb-2 flex items-center gap-2">
-                    <span className="text-xl">🇺🇸</span> US Office
-                  </p>
-                  <p className="text-gray-400 leading-relaxed">
-                    413 Willingham Rd.<br />
-                    Morrisville, NC 27560<br />
-                    United States of America
-                  </p>
-                </div>
-                <div className="relative pl-6 border-l-2 border-accent/30">
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 bg-accent rounded-full" />
-                  <p className="text-gray-300 font-semibold mb-2 flex items-center gap-2">
                     <span className="text-xl">🇮🇳</span> India Office
                   </p>
                   <p className="text-gray-400 leading-relaxed">
