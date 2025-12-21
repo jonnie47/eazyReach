@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { Check, Zap, ArrowRight, Sparkles, Gift, TrendingUp } from 'lucide-react';
+import { Check, Zap, ArrowRight } from 'lucide-react';
 import CircularText from '@/components/CircularText';
 import GlitchText from '@/components/GlitchText';
 import ShinyText from '@/components/ShinyText';
@@ -124,7 +124,7 @@ export const PricingSection: React.FC = () => {
     const amountInCurrency = convertPrice(amountINR);
     const amountInPaise = amountInCurrency * 100; // Convert to smallest unit (like paise for INR)
     const currency = detectedCurrency.code.toLowerCase();
-    
+
     // Redirect to backend endpoint which handles authentication and client_id
     return `https://app.vocallabs.ai/auth/payment?amount=${amountInPaise}&currency=${currency}`;
   };
@@ -278,55 +278,7 @@ export const PricingSection: React.FC = () => {
                 ) : (
                   <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
                 )}
-                
-                {/* Black Friday Sale Badge - Only for Power Plan */}
-                {plan.popular && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="mb-4 relative overflow-hidden"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-orange-500/20 to-yellow-500/20 blur-xl" />
-                    <div className="relative bg-gradient-to-r from-red-500/10 via-orange-500/10 to-yellow-500/10 border-2 border-red-500/50 rounded-xl p-4 backdrop-blur-sm">
-                      <div className="flex items-center gap-2 mb-2">
-                        <motion.div
-                          animate={{ rotate: [0, 10, -10, 0] }}
-                          transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
-                        >
-                          <Gift className="w-5 h-5 text-red-400" />
-                        </motion.div>
-                        <span className="text-sm font-bold bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
-                          🔥 BLACK FRIDAY EXCLUSIVE
-                        </span>
-                      </div>
-                      <div className="space-y-1">
-                        <div className="flex items-baseline gap-2">
-                          <Sparkles className="w-4 h-4 text-yellow-400 flex-shrink-0" />
-                          <p className="text-xs text-gray-300">
-                            <span className="font-bold text-white">LinkedIn Premium Account</span> worth{' '}
-                            <span className="text-red-400 font-bold line-through">₹18,000</span>
-                          </p>
-                        </div>
-                        <div className="flex items-baseline gap-2">
-                          <TrendingUp className="w-4 h-4 text-green-400 flex-shrink-0" />
-                          <p className="text-xs text-gray-300">
-                            Get it for just <span className="text-green-400 font-bold text-base">₹200</span>
-                          </p>
-                        </div>
-                      </div>
-                      <motion.div
-                        className="absolute -right-8 -top-8 w-24 h-24 bg-gradient-to-br from-red-500/30 to-orange-500/30 rounded-full blur-2xl"
-                        animate={{ 
-                          scale: [1, 1.2, 1],
-                          opacity: [0.3, 0.6, 0.3]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      />
-                    </div>
-                  </motion.div>
-                )}
-                
+
                 {/* Price */}
                 <div className="mb-4">
                   {plan.isCustomPricing ? (
@@ -344,7 +296,7 @@ export const PricingSection: React.FC = () => {
                     <>
                       <div className="flex items-baseline gap-1">
                         {plan.popular ? (
-                          <ShinyText 
+                          <ShinyText
                             text={loading ? '...' : formatPrice(Math.round(plan.annualINR / 12))}
                             speed={3}
                             className="!text-5xl !font-bold !text-white"
@@ -364,7 +316,7 @@ export const PricingSection: React.FC = () => {
                     <>
                       <div className="flex items-baseline gap-1">
                         {plan.popular ? (
-                          <ShinyText 
+                          <ShinyText
                             text={loading ? '...' : formatPrice(plan.monthlyINR)}
                             speed={3}
                             className="!text-5xl !font-bold !text-white"
@@ -412,11 +364,10 @@ export const PricingSection: React.FC = () => {
                     window.open(getPaymentLink(plan), '_blank');
                   }
                 }}
-                className={`w-full py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 ${
-                  plan.popular
-                    ? 'bg-gradient-to-r from-accent via-yellow-400 to-accent text-black hover:shadow-lg hover:shadow-accent/50 relative overflow-hidden group hover:scale-105'
-                    : 'bg-white/5 text-white hover:bg-white/10 border border-white/10'
-                }`}
+                className={`w-full py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 ${plan.popular
+                  ? 'bg-gradient-to-r from-accent via-yellow-400 to-accent text-black hover:shadow-lg hover:shadow-accent/50 relative overflow-hidden group hover:scale-105'
+                  : 'bg-white/5 text-white hover:bg-white/10 border border-white/10'
+                  }`}
               >
                 {plan.popular && (
                   <>
@@ -456,17 +407,17 @@ export const PricingSection: React.FC = () => {
                     {/* Animated background effects */}
                     <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-yellow-500/5 to-accent/5 animate-pulse" />
                     <div className="absolute -inset-1 bg-gradient-to-r from-accent via-yellow-500 to-accent opacity-20 blur-3xl group-hover:opacity-30 transition-opacity duration-300" />
-                    
+
                     {/* Circular rotating text decoration */}
                     <div className="absolute -top-16 -right-16 opacity-30 group-hover:opacity-50 transition-opacity">
-                      <CircularText 
+                      <CircularText
                         text="⚡ MOST POPULAR ⚡ BEST VALUE ⚡ "
                         spinDuration={15}
                         onHover="speedUp"
                         className="text-accent"
                       />
                     </div>
-                    
+
                     <div className="relative z-10 flex flex-col h-full">
                       {cardContent}
                       {ctaButton}
@@ -558,7 +509,7 @@ export const PricingSection: React.FC = () => {
                     {tier.credits} Credit{tier.credits > 1 ? 's' : ''}
                   </span>
                 </div>
-                
+
                 <div className="mb-3">
                   <div className="flex items-baseline gap-1">
                     <span className="text-3xl font-bold text-white">

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Award, Users, TrendingUp, Chrome, Send, Sparkles } from 'lucide-react';
+import { Globe, Award, Users, TrendingUp, Chrome, Send, Sparkles, MessageSquare } from 'lucide-react';
 import VariableProximity from '@/components/VariableProximity';
 import { LogoMarquee } from '../ui/LogoMarquee';
 
@@ -75,6 +75,10 @@ export const HeroSection: React.FC = () => {
     {
       label: "Call Autopilot",
       text: "Create a 6-step, 10-day email + LinkedIn sequence. Send 9:30–11:30am. Stop if they reply."
+    },
+    {
+      label: "Connect Claude AI",
+      text: "Find emails and phones from LinkedIn profiles using natural language with Claude Desktop."
     }
   ];
 
@@ -105,7 +109,7 @@ export const HeroSection: React.FC = () => {
   return (
     <div className="relative overflow-hidden bg-slate-950 text-gray-100 pt-20 pb-32">
       {/* Multi-layer Background Effects */}
-      
+
       {/* Animated Grid Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-60" />
 
@@ -127,7 +131,7 @@ export const HeroSection: React.FC = () => {
         ];
         const durations = [4, 5.5, 6, 4.5, 5, 6.5, 4.8, 5.3];
         const delays = [0, 1, 2, 0.5, 1.5, 2.5, 0.8, 1.8];
-        
+
         return (
           <motion.div
             key={i}
@@ -232,11 +236,11 @@ export const HeroSection: React.FC = () => {
           animate="visible"
         >
           {/* Badge with Breathing Animation */}
-        
+
           {/* Headline with Glass Container */}
           <motion.div variants={itemVariants} className="relative">
             {/* Glass Background */}
-            
+
             <div className="relative z-10 py-8" ref={containerRef}>
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-[1.15] text-white tracking-tight">
                 <VariableProximity
@@ -267,13 +271,13 @@ export const HeroSection: React.FC = () => {
                   >
                     <motion.div
                       className="h-full bg-gradient-to-r from-accent/40 via-accent to-accent/40"
-                      animate={{ 
+                      animate={{
                         backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                       }}
-                      transition={{ 
-                        duration: 3, 
-                        repeat: Infinity, 
-                        ease: "easeInOut" 
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut"
                       }}
                       style={{ backgroundSize: "200% 100%" }}
                     />
@@ -298,7 +302,7 @@ export const HeroSection: React.FC = () => {
           </motion.div>
 
           {/* AI Input Field */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="max-w-4xl mx-auto"
           >
@@ -350,49 +354,51 @@ export const HeroSection: React.FC = () => {
           </motion.div>
 
           {/* CTAs with Enhanced Depth */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8"
           >
-            <motion.button 
+            <motion.button
               onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
               className="group relative px-4 py-2 bg-black text-accent rounded-xl text-l shadow-2xl shadow-accent/40 transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden"
-              whileHover={{ 
-                scale: 1.05, 
+              whileHover={{
+                scale: 1.05,
                 rotateY: 2,
                 boxShadow: '0 25px 50px rgba(244, 180, 0, 0.6)'
               }}
               whileTap={{ scale: 0.95 }}
             >
               {/* Shine Effect */}
-          
-              
+
+
               <Chrome className="size-5 relative z-10" />
               <span className="relative z-10">Add to Chrome</span>
               <span className="inline-block group-hover:translate-x-2 transition-transform relative z-10"></span>
             </motion.button>
 
-            {/* <motion.button 
-              onClick={() => document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group px-10 py-5 bg-white/5 backdrop-blur-xl border-2 border-accent text-white rounded-xl font-semibold text-xl hover:bg-accent/10 transition-all duration-300 shadow-xl shadow-black/20"
-              whileHover={{ 
+            <motion.button
+              onClick={() => window.location.href = '/features/mcp-server'}
+              className="group relative px-4 py-2 bg-white/5 backdrop-blur-xl border-2 border-accent text-white rounded-xl text-l hover:bg-accent/10 transition-all duration-300 shadow-xl shadow-accent/20 flex items-center justify-center gap-3"
+              whileHover={{
                 scale: 1.05,
                 rotateY: -2,
-                borderColor: 'rgb(var(--accent-rgb))',
-                boxShadow: '0 20px 40px rgba(var(--accent-rgb), 0.3)'
+                borderColor: 'rgb(244, 180, 0)',
+                boxShadow: '0 20px 40px rgba(244, 180, 0, 0.3)'
               }}
               whileTap={{ scale: 0.95 }}
             >
-              Watch Demo
-            </motion.button> */}
+              <MessageSquare className="size-5" />
+              <span>Try MCP Server</span>
+              <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full font-bold">New</span>
+            </motion.button>
           </motion.div>
 
           {/* Stats Row - Elevated Mini Panels */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="flex flex-wrap items-center justify-center gap-4 pt-16"
           >
-            <motion.div 
+            <motion.div
               variants={statVariants}
               className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-4 py-2.5 rounded-xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
               whileHover={{ y: -4, scale: 1.05 }}
@@ -410,7 +416,7 @@ export const HeroSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={statVariants}
               className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-4 py-2.5 rounded-xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
               whileHover={{ y: -4, scale: 1.05 }}
@@ -427,7 +433,7 @@ export const HeroSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={statVariants}
               className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-4 py-2.5 rounded-xl border border-accent/20 shadow-lg shadow-accent/10 hover:shadow-accent/30 transition-all duration-300"
               whileHover={{ y: -4, scale: 1.05 }}
@@ -446,7 +452,7 @@ export const HeroSection: React.FC = () => {
           </motion.div>
 
           {/* Logo Marquee */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="pt-12"
           >

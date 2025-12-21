@@ -168,6 +168,41 @@ export default function MCPServerPage() {
                     </div>
                 </motion.div>
 
+                {/* Video Demo Section */}
+                <motion.div
+                    className="mb-20"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">See It In Action</h2>
+                        <p className="text-gray-400 max-w-2xl mx-auto">
+                            Watch how to connect Claude Desktop to EazyReach and start using AI-powered prospecting
+                        </p>
+                    </div>
+
+                    <div className="relative">
+                        {/* Decorative background blur */}
+                        <div className="absolute -inset-4 bg-accent/10 rounded-3xl blur-2xl"></div>
+
+                        {/* Video container */}
+                        <div className="relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl shadow-2xl shadow-accent/10 p-4 border border-accent/30">
+                            <div className="relative rounded-xl overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+                                <iframe
+                                    className="absolute top-0 left-0 w-full h-full"
+                                    src="https://www.youtube.com/embed/o6o8XfB0at8"
+                                    title="EazyReach MCP Server Demo"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+
                 {/* Use Cases Grid */}
                 <motion.div
                     className="mb-20"
