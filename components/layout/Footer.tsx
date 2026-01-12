@@ -12,9 +12,9 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Logo - Top Right Corner */}
         <div className="absolute top-0 right-4 sm:right-6 lg:right-8">
-          <img 
-            src="/EazyReach.png" 
-            alt="EazyReach Logo" 
+          <img
+            src="/EazyReach.png"
+            alt="EazyReach Logo"
             className="h-16 w-auto opacity-90"
           />
         </div>
@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
                   { label: 'Platform', href: '/dashboard' },
                 ].map((link, index) => (
                   <li key={index}>
-                    <a 
+                    <a
                       href={link.href}
                       className="text-sm text-gray-400 hover:text-accent transition-colors duration-300 inline-flex items-center gap-1 group"
                     >
@@ -91,7 +91,7 @@ export const Footer: React.FC = () => {
                   { label: 'Dashboard', href: '/dashboard' },
                 ].map((link, index) => (
                   <li key={index}>
-                    <a 
+                    <a
                       href={link.href}
                       className="text-sm text-gray-400 hover:text-accent transition-colors duration-300 inline-flex items-center gap-1 group"
                     >
@@ -117,12 +117,12 @@ export const Footer: React.FC = () => {
               <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Legal</h4>
               <ul className="space-y-3">
                 {[
-                  { label: 'Privacy Policy', href: '#' },
+                  { label: 'Privacy Policy', href: '/privacy-policy' },
                   { label: 'Terms of Service', href: '#' },
                   { label: 'Cookie Policy', href: '#' },
                 ].map((link, index) => (
                   <li key={index}>
-                    <a 
+                    <a
                       href={link.href}
                       className="text-sm text-gray-400 hover:text-accent transition-colors duration-300 inline-flex items-center gap-1 group"
                     >
