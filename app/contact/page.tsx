@@ -213,7 +213,7 @@ export default function ContactUsPage() {
                     <span className="text-xl">🇮🇳</span> India Office
                   </p>
                   <p className="text-gray-400 leading-relaxed">
-                    No. 39, 8th Main Road<br />
+                   WolfPack, No. 39, 8th Main Road<br />
                     Third Floor, Vasanth Nagar,<br />
                     Bangalore, Karnataka,<br />
                     India 560001
