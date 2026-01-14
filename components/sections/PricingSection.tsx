@@ -104,28 +104,45 @@ export const PricingSection: React.FC = () => {
     detectCurrencyAndFetchRates();
   }, []);
 
-  const convertPrice = (priceINR: number): number => {
-    return Math.round(priceINR * detectedCurrency.rate);
+  // Get price for display based on currency
+  const getPrice = (plan: { monthlyINR: number; monthlyUSD: number; name: string }): number => {
+    // For India, use hardcoded INR prices
+    if (detectedCurrency.code === 'INR') {
+      return plan.monthlyINR;
+    }
+
+    // For other currencies, convert from base USD price
+    const baseUSD = plan.monthlyUSD;
+    return Math.round(baseUSD / 0.012); // Convert USD to currency using exchange rate
   };
 
-  const formatPrice = (priceINR: number): string => {
-    const converted = convertPrice(priceINR);
+  const formatPrice = (plan: { monthlyINR: number; monthlyUSD: number; name: string }): string => {
+    const price = getPrice(plan);
+
+    // For India, return INR directly
+    if (detectedCurrency.code === 'INR') {
+      return `${price.toLocaleString()} INR`;
+    }
+
+    // For other currencies, convert from USD
+    const usdPrice = plan.monthlyUSD;
+    const converted = Math.round(usdPrice * (1 / 0.012) * detectedCurrency.rate);
     return `${converted} ${detectedCurrency.code}`;
   };
 
   const getPaymentLink = (plan: typeof plans[0]): string => {
-    const amountINR = plan.monthlyINR;
-    const amountInCurrency = convertPrice(amountINR);
-    const amountInPaise = amountInCurrency * 100;
+    const price = getPrice(plan);
+    const amountInSmallestUnit = price * 100; // Convert to smallest unit (paise, cents, etc.)
     const currency = detectedCurrency.code.toLowerCase();
 
-    return `https://app.vocallabs.ai/auth/payment?amount=${amountInPaise}&currency=${currency}`;
+    return `https://app.vocallabs.ai/auth/payment?amount=${amountInSmallestUnit}&currency=${currency}`;
   };
 
   const plans = [
     {
       name: "Free Trial",
       monthlyINR: 0,
+      monthlyUSD: 0,
       description: "Earn free credits to try real contact data",
       credits: 150,
       isFreeTrial: true,
@@ -146,7 +163,8 @@ export const PricingSection: React.FC = () => {
     },
     {
       name: "Starter",
-      monthlyINR: 4083, // $49
+      monthlyINR: 4099, // Hardcoded for India
+      monthlyUSD: 49,   // Base USD price for other countries
       description: "Contact discovery made simple",
       credits: 2000,
       features: [
@@ -161,7 +179,8 @@ export const PricingSection: React.FC = () => {
     },
     {
       name: "Growth",
-      monthlyINR: 8250, // $99
+      monthlyINR: 8249, // Hardcoded for India
+      monthlyUSD: 99,   // Base USD price for other countries
       description: "Contact data + human calling",
       credits: 4000,
       features: [
@@ -177,7 +196,8 @@ export const PricingSection: React.FC = () => {
     },
     {
       name: "Pro",
-      monthlyINR: 16583, // $199
+      monthlyINR: 16599, // Hardcoded for India
+      monthlyUSD: 199,   // Base USD price for other countries
       description: "Full AI-powered outreach",
       credits: 7500,
       features: [
@@ -194,6 +214,7 @@ export const PricingSection: React.FC = () => {
     {
       name: "Enterprise",
       monthlyINR: 0,
+      monthlyUSD: 0,
       description: "Advanced teams & custom workflows",
       credits: 0,
       isCustomPricing: true,
@@ -346,7 +367,7 @@ export const PricingSection: React.FC = () => {
                         <div className="mb-4">
                           <div className="flex items-baseline gap-1 mb-1">
                             <ShinyText
-                              text={loading ? '...' : formatPrice(plan.monthlyINR)}
+                              text={loading ? '...' : formatPrice(plan)}
                               speed={3}
                               className="!text-3xl !font-bold !text-white"
                             />
@@ -409,7 +430,7 @@ export const PricingSection: React.FC = () => {
                           <>
                             <div className="flex items-baseline gap-1 mb-1">
                               <span className="text-3xl font-bold text-white">
-                                {loading ? '...' : formatPrice(plan.monthlyINR)}
+                                {loading ? '...' : formatPrice(plan)}
                               </span>
                               <span className="text-sm text-gray-400">/mo</span>
                             </div>
@@ -463,7 +484,9 @@ export const PricingSection: React.FC = () => {
           <div className="inline-flex items-center gap-4 bg-gradient-to-r from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl px-8 py-4 rounded-full border border-accent/30">
             <span className="text-gray-400">Need more credits?</span>
             <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-white">{loading ? '...' : formatPrice(2083)}</span>
+              <span className="text-2xl font-bold text-white">
+                {loading ? '...' : (detectedCurrency.code === 'INR' ? '2,099 INR' : `${Math.round(25 * (1 / 0.012) * detectedCurrency.rate)} ${detectedCurrency.code}`)}
+              </span>
               <span className="text-gray-400">→</span>
               <span className="text-2xl font-bold text-accent">1,000 credits</span>
             </div>
