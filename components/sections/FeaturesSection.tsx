@@ -62,7 +62,7 @@ export const FeaturesSection: React.FC = () => {
       badge: 'Live',
       badgeColor: 'bg-accent',
       gridClass: 'md:col-span-6',
-      features: [
+      features: [ 
         'Browser-native calling',
         'Multi-token caller IDs',
         'Click-to-call anywhere',
