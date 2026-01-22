@@ -149,7 +149,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
             {/* Copyright */}
             <p className="text-xs text-gray-500">
-              � {new Date().getFullYear()} EazyReach. All rights reserved.
+              Â© {new Date().getFullYear()} EazyReach. All rights reserved.
             </p>
 
             {/* Made in India */}

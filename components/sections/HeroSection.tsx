@@ -74,7 +74,7 @@ export const HeroSection: React.FC = () => {
     },
     {
       label: "Call Autopilot",
-      text: "Create a 6-step, 10-day email + LinkedIn sequence. Send 9:30�11:30am. Stop if they reply."
+      text: "Create a 6-step, 10-day email + LinkedIn sequence. Send 9:30â€“11:30am. Stop if they reply."
     },
     {
       label: "Connect Claude AI",

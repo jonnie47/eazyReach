@@ -307,7 +307,7 @@ export const PricingSection: React.FC = () => {
                     ))}
                   </div>
                   <div className="text-xs text-gray-500">
-                    Limits: {plans[0].limitations?.join(' � ')}
+                    Limits: {plans[0].limitations?.join(' â€¢ ')}
                   </div>
                 </div>
                 <div className="md:text-right flex-shrink-0">
@@ -528,7 +528,7 @@ export const PricingSection: React.FC = () => {
           transition={{ delay: 0.5 }}
         >
           <p className="text-sm text-gray-500">
-            All plans include pay-as-you-go credits � Credits charged once per contact � No hidden fees � Cancel anytime
+            All plans include pay-as-you-go credits â€¢ Credits charged once per contact â€¢ No hidden fees â€¢ Cancel anytime
           </p>
         </motion.div>
       </div>
