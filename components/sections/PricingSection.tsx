@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
@@ -297,7 +297,7 @@ export const PricingSection: React.FC = () => {
             <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl p-8 border border-accent/30 hover:border-accent/50 transition-all duration-300">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-2">🎁 Free Trial</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">?? Free Trial</h3>
                   <p className="text-gray-400 mb-4">{plans[0].description}</p>
                   <div className="flex flex-wrap gap-3 text-sm mb-4">
                     {plans[0].features.map((feature, idx) => (
@@ -307,7 +307,7 @@ export const PricingSection: React.FC = () => {
                     ))}
                   </div>
                   <div className="text-xs text-gray-500">
-                    Limits: {plans[0].limitations?.join(' • ')}
+                    Limits: {plans[0].limitations?.join(' � ')}
                   </div>
                 </div>
                 <div className="md:text-right flex-shrink-0">
@@ -350,7 +350,7 @@ export const PricingSection: React.FC = () => {
 
                       <div className="absolute -top-16 -right-16 opacity-30 group-hover:opacity-50 transition-opacity">
                         <CircularText
-                          text="⚡ POPULAR ⚡ BEST VALUE ⚡ "
+                          text="? POPULAR ? BEST VALUE ? "
                           spinDuration={15}
                           onHover="speedUp"
                           className="text-accent"
@@ -487,7 +487,7 @@ export const PricingSection: React.FC = () => {
               <span className="text-2xl font-bold text-white">
                 {loading ? '...' : (detectedCurrency.code === 'INR' ? '2,099 INR' : `${Math.round(25 * (1 / 0.012) * detectedCurrency.rate)} ${detectedCurrency.code}`)}
               </span>
-              <span className="text-gray-400">→</span>
+              <span className="text-gray-400">?</span>
               <span className="text-2xl font-bold text-accent">1,000 credits</span>
             </div>
           </div>
@@ -528,7 +528,7 @@ export const PricingSection: React.FC = () => {
           transition={{ delay: 0.5 }}
         >
           <p className="text-sm text-gray-500">
-            All plans include pay-as-you-go credits • Credits charged once per contact • No hidden fees • Cancel anytime
+            All plans include pay-as-you-go credits � Credits charged once per contact � No hidden fees � Cancel anytime
           </p>
         </motion.div>
       </div>

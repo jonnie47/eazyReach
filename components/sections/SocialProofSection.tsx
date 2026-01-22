@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { LogoMarquee } from '../ui/LogoMarquee';
 
 export const SocialProofSection: React.FC = () => {

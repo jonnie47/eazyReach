@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import { Mail, Phone, Send, MessageSquare, User, Building2, Globe } from 'lucide-react';
@@ -174,7 +174,7 @@ export default function ContactUsPage() {
                   <div className="space-y-3">
                     <div className="group/phone">
                       <p className="text-gray-400 text-sm mb-1 flex items-center gap-2">
-                        <span className="text-xl">🇮🇳</span> India
+                        <span className="text-xl">????</span> India
                       </p>
                       <a
                         href="tel:+919353447253"
@@ -210,7 +210,7 @@ export default function ContactUsPage() {
                 <div className="relative pl-6 border-l-2 border-accent/30">
                   <div className="absolute -left-[9px] top-0 w-4 h-4 bg-accent rounded-full" />
                   <p className="text-gray-300 font-semibold mb-2 flex items-center gap-2">
-                    <span className="text-xl">🇮🇳</span> India Office
+                    <span className="text-xl">????</span> India Office
                   </p>
                   <p className="text-gray-400 leading-relaxed">
                    WolfPack, No. 39, 8th Main Road<br />
@@ -241,7 +241,7 @@ export default function ContactUsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 text-center"
                 >
-                  ✓ Message sent successfully! We&apos;ll be in touch soon.
+                  ? Message sent successfully! We&apos;ll be in touch soon.
                 </motion.div>
               )}
 
@@ -251,7 +251,7 @@ export default function ContactUsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-center"
                 >
-                  ✗ Something went wrong. Please try again.
+                  ? Something went wrong. Please try again.
                 </motion.div>
               )}
 

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
@@ -74,7 +74,7 @@ export const HeroSection: React.FC = () => {
     },
     {
       label: "Call Autopilot",
-      text: "Create a 6-step, 10-day email + LinkedIn sequence. Send 9:30–11:30am. Stop if they reply."
+      text: "Create a 6-step, 10-day email + LinkedIn sequence. Send 9:30�11:30am. Stop if they reply."
     },
     {
       label: "Connect Claude AI",
@@ -324,7 +324,7 @@ export const HeroSection: React.FC = () => {
                     <motion.button
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
-                      onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+                      onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
                       className="p-2 bg-accent/10 hover:bg-accent/20 rounded-lg transition-colors"
                     >
                       <Send className="size-5 text-accent" />
@@ -359,7 +359,7 @@ export const HeroSection: React.FC = () => {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8"
           >
             <motion.button
-              onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+              onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
               className="group relative px-4 py-2 bg-black text-accent rounded-xl text-l shadow-2xl shadow-accent/40 transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden"
               whileHover={{
                 scale: 1.05,

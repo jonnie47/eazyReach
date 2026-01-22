@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Phone, Shield, Zap } from 'lucide-react';
 
 export const DirectorPhoneSection: React.FC = () => {
@@ -77,7 +77,7 @@ export const DirectorPhoneSection: React.FC = () => {
               <div className="text-center">
                 <p className="text-sm text-gray-600 mb-4">Perfect for B2B sales & recruitment</p>
                 <button 
-                  onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+                  onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
                   className="w-full px-6 py-3 bg-accent text-black rounded-lg font-semibold hover:bg-accent-hover transition-all duration-200"
                 >
                   Try CXO Phone Feature

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { UserCheck, Bell, Zap, MessageSquare } from 'lucide-react';
@@ -42,7 +42,7 @@ export default function AIInboundPage() {
           <h2 className="text-3xl font-bold text-gray-100 mb-4">Never Miss a Lead Again</h2>
           <p className="text-gray-300 mb-8">Start using AI Inbound today</p>
           <button
-            onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+            onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
             className="px-10 py-4 bg-accent text-black rounded-xl font-bold text-lg hover:bg-accent-hover transition-all"
           >
             Get Started

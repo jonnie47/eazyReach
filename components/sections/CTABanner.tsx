@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { Chrome, Sparkles, Zap } from 'lucide-react';
@@ -7,7 +7,7 @@ import DotGrid from '@/components/DotGrid';
 
 export const CTABanner: React.FC = () => {
   const handleAddToChrome = () => {
-    window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank');
+    window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank');
   };
 
   return (

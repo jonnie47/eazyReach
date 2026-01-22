@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Mail, Infinity, CheckCircle } from 'lucide-react';
 
 export const UnlimitedEmailSection: React.FC = () => {
@@ -56,7 +56,7 @@ export const UnlimitedEmailSection: React.FC = () => {
             Build unlimited contact lists for your sales and marketing campaigns. Pay only for what you use.
           </p>
           <button 
-            onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+            onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
             className="px-10 py-4 bg-accent text-black rounded-xl font-bold text-lg hover:bg-accent-hover hover:scale-105 transition-all duration-200"
           >
             Start Finding Emails Now

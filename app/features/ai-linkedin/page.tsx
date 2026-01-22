@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { Linkedin, Users, MessageCircle, TrendingUp } from 'lucide-react';
@@ -42,7 +42,7 @@ export default function AILinkedInPage() {
           <h2 className="text-3xl font-bold text-gray-100 mb-4">Scale Your LinkedIn Outreach</h2>
           <p className="text-gray-300 mb-8">Start using AI LinkedIn today</p>
           <button
-            onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+            onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
             className="px-10 py-4 bg-accent text-black rounded-xl font-bold text-lg hover:bg-accent-hover transition-all"
           >
             Get Started

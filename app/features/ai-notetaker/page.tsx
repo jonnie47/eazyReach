@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { Video, FileText, Zap, Clock } from 'lucide-react';
@@ -43,7 +43,7 @@ export default function AINotetakerPage() {
           <h2 className="text-3xl font-bold text-gray-100 mb-4">Join the Waitlist</h2>
           <p className="text-gray-300 mb-8">Be the first to try AI Notetaker when it launches in Q1 2026</p>
           <button
-            onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+            onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
             className="px-10 py-4 bg-accent text-black rounded-xl font-bold text-lg hover:bg-accent-hover transition-all"
           >
             Join Waitlist

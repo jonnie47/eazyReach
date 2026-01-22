@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
                 <span className="text-accent">You Drive the Revenue.</span>
               </p>
               <motion.button
-                onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+                onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
                 className="px-4 py-2 bg-transparent border border-accent text-white rounded-lg font-medium text-sm hover:bg-accent/10 transition-all duration-300"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -149,7 +149,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
             {/* Copyright */}
             <p className="text-xs text-gray-500">
-              © {new Date().getFullYear()} EazyReach. All rights reserved.
+              � {new Date().getFullYear()} EazyReach. All rights reserved.
             </p>
 
             {/* Made in India */}
@@ -160,7 +160,7 @@ export const Footer: React.FC = () => {
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                ❤️
+                ??
               </motion.span>
               <span>in India</span>
             </p> */}

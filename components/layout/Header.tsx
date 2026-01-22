@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -417,7 +417,7 @@ export const Header: React.FC = () => {
                             variant="outline"
                             size="sm"
                             onClick={() => {
-                                window.open("https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj", "_blank");
+                                window.open("https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi", "_blank");
                             }}
                             className=" "
                         >

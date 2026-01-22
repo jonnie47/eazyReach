@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
@@ -121,7 +121,7 @@ export const BuiltForSection: React.FC = () => {
             Built for All.
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Whether you&apos;re an individual seller or managing a sales team, our platform scales with your needs—from instant contact discovery to enterprise-grade workflow automation.
+            Whether you&apos;re an individual seller or managing a sales team, our platform scales with your needs�from instant contact discovery to enterprise-grade workflow automation.
           </p>
         </motion.div>
 
@@ -252,7 +252,7 @@ export const BuiltForSection: React.FC = () => {
 
                 {/* CTA Button */}
                 <motion.button
-                  onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+                  onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
                   className="w-full py-4 px-6 bg-transparent text-white font-bold rounded-xl border-2 border-accent hover:bg-accent/10 transition-all duration-300 flex items-center justify-center gap-2 group/btn"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -384,7 +384,7 @@ export const BuiltForSection: React.FC = () => {
 
                 {/* CTA Button */}
                 <motion.button
-                  onClick={() => window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank')}
+                  onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
                   className="w-full py-4 px-6 bg-transparent text-white font-bold rounded-xl border-2 border-accent hover:bg-accent/10 transition-all duration-300 flex items-center justify-center gap-2 group/btn"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}

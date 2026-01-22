@@ -23,7 +23,7 @@ export const FloatingCTA: React.FC = () => {
   }, []);
 
   const handleClick = () => {
-    window.open('https://chromewebstore.google.com/detail/vocallabs/njkifaijmekkinldkmklijhdhbddjhdj', '_blank');
+    window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank');
   };
 
   return (
