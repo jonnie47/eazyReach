@@ -142,7 +142,7 @@ export default function DashboardPage() {
                             <span className="text-sm font-medium text-accent">Studio Platform</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-accent to-purple-400 bg-clip-text text-transparent">
+                        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
                             EazyReach Dashboard
                         </h1>
 
@@ -177,9 +177,7 @@ export default function DashboardPage() {
                     >
                         <h2 className="text-3xl font-bold mb-6 text-center">The All-in-One Solution</h2>
                         <p className="text-lg text-gray-300 text-center leading-relaxed">
-                            EazyReach Dashboard consolidates <span className="text-accent font-semibold">B2B contact intelligence</span>,
-                            <span className="text-accent font-semibold"> outreach orchestration</span>, and
-                            <span className="text-accent font-semibold"> performance measurement</span> into a single cohesive workspace.
+                            EazyReach Dashboard consolidates B2B contact intelligence, outreach orchestration, and performance measurement into a single cohesive workspace.
                             It eliminates tool sprawl by combining discovery, enrichment, campaign execution, and analytics—enabling
                             teams to move from prospect identification to engagement without switching platforms or losing context.
                         </p>
@@ -260,59 +258,6 @@ export default function DashboardPage() {
                 </div>
             </section>
 
-            {/* Data Flow Diagram */}
-            <section className="py-20 px-4 bg-gradient-to-b from-accent/5 to-transparent">
-                <div className="max-w-5xl mx-auto">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-4xl font-bold text-center mb-12"
-                    >
-                        Module Interaction Flow
-                    </motion.h2>
-
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-accent/30"
-                    >
-                        <div className="font-mono text-center space-y-4">
-                            <div className="text-lg md:text-xl text-accent">
-                                EazyReach → Contacts → Campaigns → Agents
-                            </div>
-                            <div className="text-gray-500 text-sm md:text-base">
-                                ↓ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↓
-                            </div>
-                            <div className="text-lg md:text-xl text-accent">
-                                Transactions ← Analytics (observes all)
-                            </div>
-                            <div className="text-gray-500 text-sm md:text-base mt-4">
-                                ↑
-                            </div>
-                            <div className="text-lg md:text-xl text-purple-400">
-                                Marketplace (extends all)
-                            </div>
-                        </div>
-
-                        <div className="mt-8 pt-8 border-t border-gray-800">
-                            <h3 className="text-xl font-semibold mb-4 text-center">Data Flow Summary</h3>
-                            <p className="text-gray-300 leading-relaxed">
-                                Prospects are discovered in <span className="text-accent font-semibold">EazyReach</span>,
-                                enriched with contact details, then added to <span className="text-blue-400 font-semibold">Contacts</span>.
-                                From there, they are organized into <span className="text-orange-400 font-semibold">Campaigns</span>,
-                                which deploy <span className="text-purple-400 font-semibold">Agents</span> for automated outreach.
-                                All credit-consuming actions are logged in <span className="text-yellow-400 font-semibold">Transactions</span>,
-                                while <span className="text-green-400 font-semibold">Analytics</span> provides performance visibility
-                                across the entire workflow. <span className="text-indigo-400 font-semibold">Marketplace</span> expands
-                                capabilities at every stage.
-                            </p>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
 
             {/* CTA Section */}
             <section className="py-20 px-4">
