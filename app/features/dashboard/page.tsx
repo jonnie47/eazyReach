@@ -16,25 +16,24 @@ import {
 
 const modules = [
     {
-        id: 'agents',
-        title: 'Agents',
-        icon: MessageSquare,
-        color: 'from-purple-500 to-pink-500',
-        tagline: 'AI-Powered Voice Outreach',
-        description: 'Deploy automated voice outreach agents that handle conversations, qualify leads, and gather responses without manual dial time.',
+        id: 'eazyreach',
+        title: 'EazyReach',
+        icon: Zap,
+        tagline: 'Contact Discovery Engine',
+        description: 'Find B2B prospects from LinkedIn and company databases, then enrich profiles with verified contact details.',
         capabilities: [
-            'Agent Configuration & Scripting',
-            'Call Orchestration & Automation',
-            'Performance Monitoring',
-            'Agent Library Management'
+            'Profile Discovery & Search',
+            'Real-Time Enrichment',
+            'Browser Extension Integration',
+            'Bulk Operations & XLSX Export'
         ],
-        connections: ['Campaigns', 'Contacts', 'Analytics']
+        connections: ['Contacts', 'Transactions', 'Analytics', 'Campaigns'],
+        emphasized: true
     },
     {
         id: 'contacts',
         title: 'Contacts',
         icon: Users,
-        color: 'from-blue-500 to-cyan-500',
         tagline: 'Centralized Contact Repository',
         description: 'Your central hub for all prospect and customer records with powerful enrichment, segmentation, and organization capabilities.',
         capabilities: [
@@ -49,7 +48,6 @@ const modules = [
         id: 'campaign',
         title: 'Campaigns',
         icon: Target,
-        color: 'from-orange-500 to-red-500',
         tagline: 'Multi-Step Outreach Orchestration',
         description: 'Design, launch, and manage targeted outreach sequences that guide prospects through defined engagement workflows.',
         capabilities: [
@@ -61,10 +59,23 @@ const modules = [
         connections: ['Contacts', 'Agents', 'Analytics', 'Transactions']
     },
     {
+        id: 'agents',
+        title: 'Agents',
+        icon: MessageSquare,
+        tagline: 'AI-Powered Voice Outreach',
+        description: 'Deploy automated voice outreach agents that handle conversations, qualify leads, and gather responses without manual dial time.',
+        capabilities: [
+            'Agent Configuration & Scripting',
+            'Call Orchestration & Automation',
+            'Performance Monitoring',
+            'Agent Library Management'
+        ],
+        connections: ['Campaigns', 'Contacts', 'Analytics']
+    },
+    {
         id: 'analytics',
         title: 'Analytics',
         icon: BarChart3,
-        color: 'from-green-500 to-emerald-500',
         tagline: 'Performance Intelligence',
         description: 'Measure outreach effectiveness, understand ROI, and identify optimization opportunities with comprehensive analytics.',
         capabilities: [
@@ -76,25 +87,9 @@ const modules = [
         connections: ['Campaigns', 'Contacts', 'Transactions', 'EazyReach', 'Agents']
     },
     {
-        id: 'marketplace',
-        title: 'Marketplace',
-        icon: Store,
-        color: 'from-indigo-500 to-purple-500',
-        tagline: 'Platform Extensions',
-        description: 'Discover and activate integrations, templates, and third-party services to extend your platform capabilities.',
-        capabilities: [
-            'Integration Discovery',
-            'One-Click Activation',
-            'Template Library Access',
-            'Service Management'
-        ],
-        connections: ['Campaigns', 'Agents', 'EazyReach', 'Transactions']
-    },
-    {
         id: 'transactions',
         title: 'Transactions',
         icon: CreditCard,
-        color: 'from-yellow-500 to-orange-500',
         tagline: 'Credit Economy Management',
         description: 'Track consumption, manage purchases, and monitor account balances with complete transparency into credit usage.',
         capabilities: [
@@ -106,19 +101,18 @@ const modules = [
         connections: ['EazyReach', 'Campaigns', 'Agents', 'Analytics']
     },
     {
-        id: 'eazyreach',
-        title: 'EazyReach',
-        icon: Zap,
-        color: 'from-accent to-yellow-500',
-        tagline: 'Contact Discovery Engine',
-        description: 'Find B2B prospects from LinkedIn and company databases, then enrich profiles with verified contact details.',
+        id: 'marketplace',
+        title: 'Marketplace',
+        icon: Store,
+        tagline: 'Platform Extensions',
+        description: 'Discover and activate integrations, templates, and third-party services to extend your platform capabilities.',
         capabilities: [
-            'Profile Discovery & Search',
-            'Real-Time Enrichment',
-            'Browser Extension Integration',
-            'Bulk Operations & XLSX Export'
+            'Integration Discovery',
+            'One-Click Activation',
+            'Template Library Access',
+            'Service Management'
         ],
-        connections: ['Contacts', 'Transactions', 'Analytics', 'Campaigns']
+        connections: ['Campaigns', 'Agents', 'EazyReach', 'Transactions']
     }
 ];
 
@@ -185,7 +179,7 @@ export default function DashboardPage() {
                 </div>
             </section>
 
-            {/* Modules Grid */}
+            {/* Modules Bento Grid */}
             <section className="py-20 px-4">
                 <div className="max-w-7xl mx-auto">
                     <motion.h2
@@ -197,24 +191,28 @@ export default function DashboardPage() {
                         Platform Modules
                     </motion.h2>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {/* Bento Grid Layout */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {modules.map((module, index) => (
                             <motion.div
                                 key={module.id}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl p-6 border border-gray-800 hover:border-accent/50 transition-all duration-300"
+                                transition={{ duration: 0.5, delay: index * 0.05 }}
+                                className={`group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl p-6 border border-gray-800 hover:border-accent/50 transition-all duration-300 ${module.emphasized ? 'md:col-span-2 md:row-span-2' : ''
+                                    }`}
                             >
-                                {/* Icon with gradient background */}
-                                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${module.color} p-3 mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                                    <module.icon className="w-full h-full text-white" />
+                                {/* Icon */}
+                                <div className="w-12 h-12 rounded-lg bg-accent/10 border border-accent/30 p-2.5 mb-4 group-hover:bg-accent/20 transition-colors duration-300">
+                                    <module.icon className="w-full h-full text-accent" />
                                 </div>
 
                                 {/* Title & Tagline */}
-                                <h3 className="text-2xl font-bold mb-2">{module.title}</h3>
-                                <p className="text-sm text-accent mb-4">{module.tagline}</p>
+                                <h3 className={`font-bold mb-2 ${module.emphasized ? 'text-3xl' : 'text-xl'}`}>
+                                    {module.title}
+                                </h3>
+                                <p className="text-sm text-gray-400 mb-4">{module.tagline}</p>
 
                                 {/* Description */}
                                 <p className="text-gray-400 text-sm mb-6 leading-relaxed">
