@@ -191,17 +191,77 @@ export default function DashboardPage() {
                         Platform Modules
                     </motion.h2>
 
-                    {/* Bento Grid Layout */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {modules.map((module, index) => (
+                    {/* Featured EazyReach Card */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="mb-8 group relative bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] backdrop-blur-xl rounded-3xl p-8 md:p-10 border-2 border-accent/30 hover:border-accent/50 transition-all duration-300"
+                    >
+                        <div className="flex flex-col md:flex-row gap-8">
+                            {/* Left side - Icon & Title */}
+                            <div className="flex-shrink-0">
+                                <div className="w-20 h-20 rounded-2xl bg-accent/10 border border-accent/30 p-4 mb-6 group-hover:bg-accent/20 transition-colors duration-300">
+                                    <Zap className="w-full h-full text-accent" />
+                                </div>
+                                <h3 className="text-3xl font-bold mb-2">EazyReach</h3>
+                                <p className="text-sm text-gray-400 mb-6">Contact Discovery Engine</p>
+                            </div>
+
+                            {/* Right side - Details */}
+                            <div className="flex-1">
+                                <p className="text-gray-300 mb-6 leading-relaxed">
+                                    Find B2B prospects from LinkedIn and company databases, then enrich profiles with verified contact details.
+                                </p>
+
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    {/* Capabilities */}
+                                    <div>
+                                        <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                            Core Capabilities
+                                        </h4>
+                                        <ul className="space-y-2">
+                                            {['Profile Discovery & Search', 'Real-Time Enrichment', 'Browser Extension Integration', 'Bulk Operations & XLSX Export'].map((capability, idx) => (
+                                                <li key={idx} className="flex items-start gap-2 text-sm text-gray-300">
+                                                    <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                                                    <span>{capability}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Connections */}
+                                    <div>
+                                        <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                            Connects With
+                                        </h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {['Contacts', 'Transactions', 'Analytics', 'Campaigns'].map((connection, idx) => (
+                                                <span
+                                                    key={idx}
+                                                    className="text-xs px-3 py-1.5 bg-accent/10 border border-accent/30 rounded-lg text-accent"
+                                                >
+                                                    {connection}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Other Modules Grid */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {modules.slice(1).map((module, index) => (
                             <motion.div
                                 key={module.id}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.05 }}
-                                className={`group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl p-6 border border-gray-800 hover:border-accent/50 transition-all duration-300 ${module.emphasized ? 'md:col-span-2 md:row-span-2' : ''
-                                    }`}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="group relative bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl p-6 border border-gray-800 hover:border-accent/50 transition-all duration-300"
                             >
                                 {/* Icon */}
                                 <div className="w-12 h-12 rounded-lg bg-accent/10 border border-accent/30 p-2.5 mb-4 group-hover:bg-accent/20 transition-colors duration-300">
@@ -209,9 +269,7 @@ export default function DashboardPage() {
                                 </div>
 
                                 {/* Title & Tagline */}
-                                <h3 className={`font-bold mb-2 ${module.emphasized ? 'text-3xl' : 'text-xl'}`}>
-                                    {module.title}
-                                </h3>
+                                <h3 className="text-xl font-bold mb-2">{module.title}</h3>
                                 <p className="text-sm text-gray-400 mb-4">{module.tagline}</p>
 
                                 {/* Description */}
