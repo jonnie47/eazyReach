@@ -135,7 +135,7 @@ export const PricingSection: React.FC = () => {
     const amountInSmallestUnit = price * 100; // Convert to smallest unit (paise, cents, etc.)
     const currency = detectedCurrency.code.toLowerCase();
 
-    return `https://app.vocallabs.ai/auth/payment?amount=${amountInSmallestUnit}&currency=${currency}`;
+    return `https://studio.eazyreach.app/auth/payment?amount=${amountInSmallestUnit}&currency=${currency}`;
   };
 
   const plans = [
