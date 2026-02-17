@@ -292,37 +292,7 @@ export const PricingSection: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {/* Free Trial - Full Width */}
-          <motion.div variants={cardVariants} className="max-w-2xl mx-auto mb-12">
-            <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl p-8 border border-accent/30 hover:border-accent/50 transition-all duration-300">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-2">Free Trial</h3>
-                  <p className="text-gray-400 mb-4">{plans[0].description}</p>
-                  <div className="flex flex-wrap gap-3 text-sm mb-4">
-                    {plans[0].features.map((feature, idx) => (
-                      <span key={idx} className="text-gray-300 bg-white/5 px-3 py-1 rounded-full">
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    Limits: {plans[0].limitations?.join(' â€¢ ')}
-                  </div>
-                </div>
-                <div className="md:text-right flex-shrink-0">
-                  <div className="text-4xl font-bold text-accent mb-4">$0</div>
-                  <button
-                    onClick={() => window.location.href = '/contact'}
-                    className="bg-white/5 text-white hover:bg-white/10 border border-white/10 px-6 py-3 rounded-xl font-semibold text-sm inline-flex items-center gap-2 transition-all duration-300"
-                  >
-                    <span>Get Started</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+
 
           {/* Paid Plans - 2x2 Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -487,7 +457,7 @@ export const PricingSection: React.FC = () => {
               <span className="text-2xl font-bold text-white">
                 {loading ? '...' : (detectedCurrency.code === 'INR' ? '2,099 INR' : `${Math.round(25 * (1 / 0.012) * detectedCurrency.rate)} ${detectedCurrency.code}`)}
               </span>
-              <span className="text-gray-400">?</span>
+              <span className="text-gray-400">for</span>
               <span className="text-2xl font-bold text-accent">1,000 credits</span>
             </div>
           </div>
@@ -527,9 +497,7 @@ export const PricingSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
-          <p className="text-sm text-gray-500">
-            All plans include pay-as-you-go credits â€¢ Credits charged once per contact â€¢ No hidden fees â€¢ Cancel anytime
-          </p>
+      
         </motion.div>
       </div>
     </div>

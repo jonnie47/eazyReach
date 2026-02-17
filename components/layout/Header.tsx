@@ -110,7 +110,7 @@ export const Header: React.FC = () => {
                                                 <div className="text-xs text-gray-400">Auto-fill lead data</div>
                                             </div>
                                         </Link>
-                                        <Link href="/features/mcp-server" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                        {/* <Link href="/features/mcp-server" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
                                             <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
                                                 <MessageSquare className="w-5 h-5 text-accent" />
                                             </div>
@@ -121,7 +121,7 @@ export const Header: React.FC = () => {
                                                 </div>
                                                 <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full">New</span>
                                             </div>
-                                        </Link>
+                                        </Link> */}
                                         <Link href="/coming-soon" onClick={() => setFeaturesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
                                             <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
                                                 <Video className="w-5 h-5 text-accent" />
@@ -405,23 +405,18 @@ export const Header: React.FC = () => {
                     {/* CTA Button - Far Right */}
                     <div className="flex items-center gap-4 flex-shrink-0">
                         <Button
-                            variant="secondary"
-                            size="sm"
-                            onClick={() => {
-                                window.location.href = "/contact";
-                            }}
-                        >
-                            Get a Demo
-                        </Button>
-                        <Button
                             variant="outline"
                             size="sm"
                             onClick={() => {
                                 window.open("https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi", "_blank");
                             }}
-                            className=" "
+                            className="flex items-center gap-2"
                         >
                             Get Started
+                            <span className="flex items-center gap-1 text-xs text-accent">
+                                <Zap className="w-3 h-3" />
+                                in 2 mins
+                            </span>
                         </Button>
                     </div>
                 </div>

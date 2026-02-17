@@ -376,7 +376,7 @@ export const HeroSection: React.FC = () => {
               <span className="inline-block group-hover:translate-x-2 transition-transform relative z-10"></span>
             </motion.button>
 
-            <motion.button
+            {/* <motion.button
               onClick={() => window.location.href = '/features/mcp-server'}
               className="group relative px-4 py-2 bg-white/5 backdrop-blur-xl border-2 border-accent text-white rounded-xl text-l hover:bg-accent/10 transition-all duration-300 shadow-xl shadow-accent/20 flex items-center justify-center gap-3"
               whileHover={{
@@ -390,7 +390,7 @@ export const HeroSection: React.FC = () => {
               <MessageSquare className="size-5" />
               <span>Try MCP Server</span>
               <span className="text-xs bg-accent/20 text-accent px-2 py-0.5 rounded-full font-bold">New</span>
-            </motion.button>
+            </motion.button> */}
           </motion.div>
 
           {/* Stats Row - Elevated Mini Panels */}

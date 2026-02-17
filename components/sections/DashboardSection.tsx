@@ -47,7 +47,7 @@ export const DashboardSection: React.FC = () => {
             onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
             className="px-10 py-4 bg-accent text-black rounded-xl font-bold text-lg hover:bg-accent-hover hover:scale-105 transition-all duration-200"
           >
-            Join Waitlist â€¢ Free
+            Join Waitlist For Free
           </button>
           <p className="text-sm text-gray-400 mt-4">Expected launch: Q1 2026</p>
         </div>
