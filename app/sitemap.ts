@@ -14,7 +14,7 @@ const staticPages = [
   { path: '/coming-soon', priority: 0.5, changeFrequency: 'monthly' as const },
   { path: '/director-phone', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/unlimited-email', priority: 0.8, changeFrequency: 'weekly' as const },
-  
+
   // Feature pages
   { path: '/features/ai-calendar', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/features/ai-chat', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -25,7 +25,7 @@ const staticPages = [
   { path: '/features/ai-notetaker', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/features/ai-outbound', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/features/chrome-extension', priority: 0.9, changeFrequency: 'weekly' as const },
-  
+
   // India SEO pages
   { path: '/india', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/india/mumbai', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -34,12 +34,31 @@ const staticPages = [
   { path: '/india/pune', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/india/chennai', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/india/hyderabad', priority: 0.8, changeFrequency: 'weekly' as const },
-  
+
   // Comparison pages
   { path: '/compare/peakai-vs-easyleadz-vs-eazyreach', priority: 0.8, changeFrequency: 'monthly' as const },
-  
+
   // Blog listing page
   { path: '/blogs', priority: 0.8, changeFrequency: 'daily' as const },
+
+  // Competitor SEO pages
+  { path: '/apollo-alternative-india', priority: 0.9, changeFrequency: 'monthly' as const },
+  { path: '/lusha-alternative-india', priority: 0.9, changeFrequency: 'monthly' as const },
+  { path: '/easyleadz-alternative', priority: 0.9, changeFrequency: 'monthly' as const },
+  { path: '/thepeakai-alternative', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/linkedin-phone-number-finder', priority: 0.9, changeFrequency: 'monthly' as const },
+  { path: '/b2b-contact-database-india', priority: 0.9, changeFrequency: 'monthly' as const },
+
+  // Commercial-intent pages
+  { path: '/sales-prospecting-tool-india', priority: 0.9, changeFrequency: 'monthly' as const },
+
+  // Blog authority cluster
+  { path: '/blog/apollo-vs-lusha-vs-eazyreach-india', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/blog/find-director-phone-numbers-india', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/blog/best-linkedin-contact-finder-india', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/blog/ai-calling-vs-manual-sdr-outreach', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/blog/prospecting-tools-recruiters-india', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/blog/b2b-contact-enrichment-india-guide', priority: 0.8, changeFrequency: 'monthly' as const },
 ];
 
 interface BlogPost {
@@ -56,7 +75,7 @@ async function fetchBlogPosts(): Promise<BlogPost[]> {
       headers: { 'User-Agent': 'Mozilla/5.0' },
       next: { revalidate: 3600 } // Cache for 1 hour
     });
-    
+
     if (sitemapResponse.ok) {
       const sitemapXml = await sitemapResponse.text();
       return parseBlogUrlsFromSitemap(sitemapXml);
@@ -83,15 +102,15 @@ async function fetchBlogPosts(): Promise<BlogPost[]> {
 // Parse blog URLs from sitemap XML
 function parseBlogUrlsFromSitemap(xml: string): BlogPost[] {
   const blogs: BlogPost[] = [];
-  
+
   // Extract URLs that match /blog/ or /blogs/ pattern
   const urlRegex = /<url>\s*<loc>([^<]*(?:\/blog\/|\/blogs\/)[^<]*)<\/loc>(?:\s*<lastmod>([^<]*)<\/lastmod>)?/g;
   let match;
-  
+
   while ((match = urlRegex.exec(xml)) !== null) {
     const fullUrl = match[1];
     const lastmod = match[2];
-    
+
     // Extract slug from URL
     const blogMatch = fullUrl.match(/\/blogs?\/(.+?)(?:\/)?$/);
     if (blogMatch && blogMatch[1]) {
@@ -101,7 +120,7 @@ function parseBlogUrlsFromSitemap(xml: string): BlogPost[] {
       });
     }
   }
-  
+
   return blogs;
 }
 
@@ -109,27 +128,27 @@ function parseBlogUrlsFromSitemap(xml: string): BlogPost[] {
 function extractBlogLinksFromHtml(html: string): BlogPost[] {
   const blogs: BlogPost[] = [];
   const seen = new Set<string>();
-  
+
   // Match href patterns for blog posts
   const hrefRegex = /href=["'](?:https?:\/\/[^"']*)?\/blogs?\/([^"'#?]+)["']/g;
   let match;
-  
+
   while ((match = hrefRegex.exec(html)) !== null) {
     const slug = match[1].replace(/\/$/, ''); // Remove trailing slash
-    
+
     // Skip non-article slugs
     if (slug && !seen.has(slug) && !slug.includes('.') && slug !== 'blogs' && slug !== 'blog') {
       seen.add(slug);
       blogs.push({ slug });
     }
   }
-  
+
   return blogs;
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date().toISOString();
-  
+
   // Generate static page entries
   const staticEntries: MetadataRoute.Sitemap = staticPages.map((page) => ({
     url: `${BASE_URL}${page.path}`,
@@ -137,17 +156,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: page.changeFrequency,
     priority: page.priority,
   }));
-  
+
   // Fetch and generate blog entries
   const blogPosts = await fetchBlogPosts();
-  
+
   const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
     lastModified: post.updatedAt || post.publishedAt || currentDate,
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }));
-  
+
   // Also add /blogs/:slug entries if needed (in case both routes are used)
   const blogsEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${BASE_URL}/blogs/${post.slug}`,
@@ -155,7 +174,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }));
-  
+
   return [...staticEntries, ...blogEntries, ...blogsEntries];
 }
 

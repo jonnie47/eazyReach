@@ -10,17 +10,9 @@ export const Footer: React.FC = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-32 bg-gradient-to-b from-accent/5 to-transparent blur-2xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Logo - Top Right Corner */}
-        <div className="absolute top-0 right-4 sm:right-6 lg:right-8">
-          <img
-            src="/EazyReach.png"
-            alt="EazyReach Logo"
-            className="h-16 w-auto opacity-90"
-          />
-        </div>
 
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
           {/* Brand Column */}
           <div className="md:col-span-1">
             <motion.div
@@ -29,6 +21,11 @@ export const Footer: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
+              <img
+                src="/EazyReach.png"
+                alt="EazyReach Logo"
+                className="h-12 w-auto opacity-90 mb-5"
+              />
               <p className="text-lg text-gray-300 leading-relaxed mb-6 font-medium">
                 AI Handles the Details. <br />
                 <span className="text-accent">You Drive the Revenue.</span>
@@ -120,6 +117,39 @@ export const Footer: React.FC = () => {
                   { label: 'Privacy Policy', href: '/privacy-policy' },
                   { label: 'Terms of Service', href: '#' },
                   { label: 'Cookie Policy', href: '#' },
+                ].map((link, index) => (
+                  <li key={index}>
+                    <a
+                      href={link.href}
+                      className="text-sm text-gray-400 hover:text-accent transition-colors duration-300 inline-flex items-center gap-1 group"
+                    >
+                      <span>{link.label}</span>
+                      <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+          {/* Compare Column */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+            >
+              <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Compare</h4>
+              <ul className="space-y-3">
+                {[
+                  { label: 'vs Apollo', href: '/apollo-alternative-india' },
+                  { label: 'vs Lusha', href: '/lusha-alternative-india' },
+                  { label: 'vs EasyLeadz', href: '/easyleadz-alternative' },
+                  { label: 'vs The Peak AI', href: '/thepeakai-alternative' },
+                  { label: 'LinkedIn Phone Finder', href: '/linkedin-phone-number-finder' },
+                  { label: 'B2B Database India', href: '/b2b-contact-database-india' },
                 ].map((link, index) => (
                   <li key={index}>
                     <a

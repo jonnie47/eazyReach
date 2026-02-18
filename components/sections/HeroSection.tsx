@@ -244,7 +244,7 @@ export const HeroSection: React.FC = () => {
             <div className="relative z-10 py-8" ref={containerRef}>
               <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-[1.15] text-white tracking-tight">
                 <VariableProximity
-                  label="Supercharge Sales With"
+                  label="AI-First B2B Contact Enrichment"
                   fromFontVariationSettings="'wght' 400, 'wdth' 100"
                   toFontVariationSettings="'wght' 900, 'wdth' 125"
                   containerRef={containerRef}
@@ -255,7 +255,7 @@ export const HeroSection: React.FC = () => {
                 <br />
                 <span className="relative inline-block">
                   <VariableProximity
-                    label="Conversational AI"
+                    label="& Outreach Platform"
                     fromFontVariationSettings="'wght' 400, 'wdth' 100"
                     toFontVariationSettings="'wght' 900, 'wdth' 125"
                     containerRef={containerRef}
@@ -297,7 +297,7 @@ export const HeroSection: React.FC = () => {
           {/* Subheading */}
           <motion.div variants={itemVariants}>
             <p className="text-l md:text-l lg:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto font-light">
-              Close more deals with the most accurate AI contact finder for B2B teams. Instantly uncover CXO-level phone numbers, verified emails, and complete buyer profiles.
+              The most accurate <strong className="text-white font-medium">LinkedIn contact finder</strong> and <strong className="text-white font-medium">B2B contact database</strong> for Indian sales teams. Instantly uncover CXO-level phone numbers, verified emails, and complete buyer profiles — from enrichment to execution in one workflow.
             </p>
           </motion.div>
 
