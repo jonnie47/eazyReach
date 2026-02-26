@@ -44,7 +44,7 @@ export const DemoSection: React.FC = () => {
               onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
               className="px-8 py-4 bg-transparent  text-accent border border-accent rounded-xl font-bold text-lg hover:bg-accent-hover hover:scale-105 transition-all duration-200"
             >
-              Start Free Trial
+              Get Started
             </button>
             <button 
               onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}

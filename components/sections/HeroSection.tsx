@@ -297,7 +297,7 @@ export const HeroSection: React.FC = () => {
           {/* Subheading */}
           <motion.div variants={itemVariants}>
             <p className="text-l md:text-l lg:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto font-light">
-              The most accurate <strong className="text-white font-medium">LinkedIn contact finder</strong> and <strong className="text-white font-medium">B2B contact database</strong> for Indian sales teams. Instantly uncover CXO-level phone numbers, verified emails, and complete buyer profiles — from enrichment to execution in one workflow.
+              The most accurate <strong className="text-white font-medium">LinkedIn contact finder</strong> and <strong className="text-white font-medium">B2B contact database</strong> for Indian sales teams. Instantly uncover CXO-level phone numbers, verified emails, and complete buyer profiles from enrichment to execution in one workflow.
             </p>
           </motion.div>
 
@@ -306,7 +306,7 @@ export const HeroSection: React.FC = () => {
             variants={itemVariants}
             className="max-w-4xl mx-auto"
           >
-            <div className="relative group">
+            {/* <div className="relative group">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/20 via-accent/10 to-accent/20 rounded-2xl blur-sm opacity-50 group-hover:opacity-75 transition duration-300" />
               <div className="relative bg-gradient-to-br from-[#1a1a1a]/95 to-[#0a0a0a]/95 backdrop-blur-xl rounded-2xl border border-accent/30 shadow-lg shadow-accent/10 overflow-hidden">
                 <div className="px-5 py-4">
@@ -332,10 +332,10 @@ export const HeroSection: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Quick Action Bubbles */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+            {/* <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
               {quickActions.map((action, index) => (
                 <motion.button
                   key={index}
@@ -350,7 +350,7 @@ export const HeroSection: React.FC = () => {
                   {action.label}
                 </motion.button>
               ))}
-            </div>
+            </div> */}
           </motion.div>
 
           {/* CTAs with Enhanced Depth */}

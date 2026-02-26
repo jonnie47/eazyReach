@@ -269,7 +269,7 @@ export const PricingSection: React.FC = () => {
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-accent" />
               <span className="text-gray-400">Phone:</span>
-              <span className="text-white font-semibold">5 credits</span>
+              <span className="text-white font-semibold">8 credits</span>
             </div>
             <div className="flex items-center gap-2">
               <PhoneCall className="w-4 h-4 text-accent" />
