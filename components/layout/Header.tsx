@@ -357,7 +357,7 @@ export const Header: React.FC = () => {
                             </button>
                             {resourcesOpen && (
                                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-[#1a1a1a] border border-gray-800 rounded-xl shadow-xl shadow-accent/10 py-2 z-50">
-                                    <Link href="/blogs" target="_blank" rel="noopener noreferrer" onClick={() => setResourcesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
+                                    <Link href="https://blogs.eazyreach.app/blogs/Eazyreach" target="_blank" rel="noopener noreferrer" onClick={() => setResourcesOpen(false)} className="flex items-center gap-3 px-4 py-3 hover:bg-accent/10 transition-colors group">
                                         <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
                                             <BookOpen className="w-5 h-5 text-accent" />
                                         </div>
