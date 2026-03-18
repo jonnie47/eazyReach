@@ -1,6 +1,6 @@
 export default async (request: Request) => {
   const url = new URL(request.url);
-  const targetUrl = `https://blogs.vocallabs.ai${url.pathname}${url.search}`;
+  const targetUrl = `https://blogs.eazyreach.app${url.pathname}${url.search}`;
   
   try {
     const response = await fetch(targetUrl, {
@@ -11,7 +11,7 @@ export default async (request: Request) => {
     let body = await response.text();
     
     // Replace blog URLs to keep them on our domain
-    body = body.replace(/https?:\/\/blogs\.vocallabs\.ai/g, '');
+    body = body.replace(/https?:\/\/blogs\.eazyreach\.app/g, '');
     
     return new Response(body, {
       status: response.status,

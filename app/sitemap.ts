@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 const BASE_URL = 'https://eazyreach.app';
-const BLOG_SOURCE_URL = 'https://blogs.vocallabs.ai';
+const BLOG_SOURCE_URL = 'https://blogs.eazyreach.app';
 
 // Static pages with their priorities and change frequencies
 const staticPages = [
@@ -82,7 +82,7 @@ async function fetchBlogPosts(): Promise<BlogPost[]> {
     }
 
     // Fallback: Try to fetch blog listing page and extract links
-    const blogListResponse = await fetch(`${BLOG_SOURCE_URL}/blogs`, {
+    const blogListResponse = await fetch(`${BLOG_SOURCE_URL}`, {
       headers: { 'User-Agent': 'Mozilla/5.0' },
       next: { revalidate: 3600 }
     });
