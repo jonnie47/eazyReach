@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
 import { FloatingCTA } from "@/components/ui";
+import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -132,10 +133,12 @@ export default function RootLayout({
         />
       </head>
       <body className={`${montserrat.className} ${robotoFlex.variable}`}>
-        <Header />
-        {children}
-        <Footer />
-        <FloatingCTA />
+        <SmoothScrollProvider>
+          <Header />
+          {children}
+          <Footer />
+          <FloatingCTA />
+        </SmoothScrollProvider>
       </body>
     </html>
   );
