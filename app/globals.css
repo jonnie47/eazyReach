@@ -23,6 +23,14 @@
     font-family: 'Montserrat', sans-serif;
   }
   
+  html,
+  body {
+    /* Prevents subpixel pixel/jagged-corner artifacts during Lenis smooth scroll */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
   body {
     @apply bg-black text-gray-100;
   }

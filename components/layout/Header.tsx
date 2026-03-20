@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '../ui/Button';
 import { ChevronDown, CodeXml, Zap, Database, Globe, Phone, Mail, BookOpen, LayoutDashboard, PhoneCall, Calendar, Inbox, Linkedin, Chrome, UserCheck, Sparkles, MessageSquare, Video, TrendingUp, Target, Settings, Rocket, Code, DollarSign, ShoppingCart, Heart, Building, Building2 } from 'lucide-react';
@@ -9,6 +9,23 @@ export const Header: React.FC = () => {
     const [featuresOpen, setFeaturesOpen] = useState(false);
     const [solutionsOpen, setSolutionsOpen] = useState(false);
     const [resourcesOpen, setResourcesOpen] = useState(false);
+    const navRef = useRef<HTMLDivElement>(null);
+
+    const closeAll = () => {
+        setFeaturesOpen(false);
+        setSolutionsOpen(false);
+        setResourcesOpen(false);
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (navRef.current && !navRef.current.contains(e.target as Node)) {
+                closeAll();
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md shadow-lg">
@@ -26,7 +43,7 @@ export const Header: React.FC = () => {
                     </div>
 
                     {/* Navigation - Center */}
-                    <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+                    <nav ref={navRef} className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
                         {/* Features Dropdown */}
                         <div className="relative">
                             <button

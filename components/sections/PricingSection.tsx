@@ -320,7 +320,7 @@ export const PricingSection: React.FC = () => {
 
                       <div className="absolute -top-16 -right-16 opacity-30 group-hover:opacity-50 transition-opacity">
                         <CircularText
-                          text="? POPULAR ? BEST VALUE ? "
+                          text="x POPULAR x BEST VALUE "
                           spinDuration={15}
                           onHover="speedUp"
                           className="text-accent"
