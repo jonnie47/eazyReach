@@ -103,7 +103,7 @@ export default function LinkedInPhoneNumberFinder() {
                             The most accurate LinkedIn contact finder Chrome extension for Indian B2B teams. CXO-level contacts, DIN director lookup, and built-in calling — all in one tool.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link href="https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">
+                            <Link href="/get-started" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">
                                 Add to Chrome — Free
                             </Link>
                             <Link href="/pricing" className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition-colors">
@@ -151,7 +151,7 @@ export default function LinkedInPhoneNumberFinder() {
                         <h2 className="text-3xl font-bold text-white mb-4">Start Finding LinkedIn Phone Numbers</h2>
                         <p className="text-gray-400 mb-8">Install the Chrome extension and find your first contact in under 2 minutes. No credit card required.</p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link href="https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">Add to Chrome — Free</Link>
+                            <Link href="/get-started" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">Add to Chrome — Free</Link>
                             <Link href="/pricing" className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition-colors">See Pricing</Link>
                         </div>
                     </div>

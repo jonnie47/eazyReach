@@ -252,7 +252,7 @@ export const BuiltForSection: React.FC = () => {
 
                 {/* CTA Button */}
                 <motion.button
-                  onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
+                  onClick={() => window.location.href = '/get-started'}
                   className="w-full py-4 px-6 bg-transparent text-white font-bold rounded-xl border-2 border-accent hover:bg-accent/10 transition-all duration-300 flex items-center justify-center gap-2 group/btn"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -384,7 +384,7 @@ export const BuiltForSection: React.FC = () => {
 
                 {/* CTA Button */}
                 <motion.button
-                  onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
+                  onClick={() => window.location.href = '/get-started'}
                   className="w-full py-4 px-6 bg-transparent text-white font-bold rounded-xl border-2 border-accent hover:bg-accent/10 transition-all duration-300 flex items-center justify-center gap-2 group/btn"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}

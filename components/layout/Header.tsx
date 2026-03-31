@@ -425,7 +425,7 @@ export const Header: React.FC = () => {
                             variant="outline"
                             size="sm"
                             onClick={() => {
-                                window.open("https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi", "_blank");
+                                window.location.href = '/get-started';
                             }}
                             className="flex items-center gap-2"
                         >

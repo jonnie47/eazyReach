@@ -44,7 +44,7 @@ export const DashboardSection: React.FC = () => {
             Join our waitlist to be the first to try the new dashboard. Plus, get <span className="font-bold text-accent">500 bonus credits</span> when you sign up!
           </p>
           <button 
-            onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
+            onClick={() => window.location.href = '/get-started'}
             className="px-10 py-4 bg-accent text-black rounded-xl font-bold text-lg hover:bg-accent-hover hover:scale-105 transition-all duration-200"
           >
             Join Waitlist For Free

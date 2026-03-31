@@ -107,7 +107,7 @@ export default function EasyleadzAlternative() {
                             EasyLeadz alternative with AI calling: find director contacts via DIN, enrich with LinkedIn data, and call directly from your browser — all in one workflow.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link href="https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">
+                            <Link href="/get-started" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">
                                 Try EazyReach Free
                             </Link>
                             <Link href="/pricing" className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition-colors">
@@ -168,7 +168,7 @@ export default function EasyleadzAlternative() {
                         <h2 className="text-3xl font-bold text-white mb-4">Upgrade from EasyLeadz</h2>
                         <p className="text-gray-400 mb-8">From enrichment to execution in one workflow. Built for teams upgrading from legacy prospecting tools.</p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link href="https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">Get Started Free</Link>
+                            <Link href="/get-started" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">Get Started Free</Link>
                             <Link href="/pricing" className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition-colors">See Pricing</Link>
                         </div>
                     </div>

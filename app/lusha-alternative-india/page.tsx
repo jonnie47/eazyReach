@@ -115,7 +115,7 @@ export default function LushaAlternativeIndia() {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link
-                                href="https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi"
+                                href="/get-started"
                                 target="_blank"
                                 className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors"
                             >
@@ -210,7 +210,7 @@ export default function LushaAlternativeIndia() {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link
-                                href="https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi"
+                                href="/get-started"
                                 target="_blank"
                                 className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors"
                             >

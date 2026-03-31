@@ -7,7 +7,7 @@ import DotGrid from '@/components/DotGrid';
 
 export const CTABanner: React.FC = () => {
   const handleAddToChrome = () => {
-    window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank');
+    window.location.href = '/get-started';
   };
 
   return (

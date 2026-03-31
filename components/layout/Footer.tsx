@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
                 <span className="text-accent">You Drive the Revenue.</span>
               </p>
               <motion.button
-                onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
+                onClick={() => window.location.href = '/get-started'}
                 className="px-4 py-2 bg-transparent border border-accent text-white rounded-lg font-medium text-sm hover:bg-accent/10 transition-all duration-300"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

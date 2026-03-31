@@ -41,7 +41,7 @@ export const DemoSection: React.FC = () => {
           <p className="text-gray-300 mb-6">Ready to start finding contacts?</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
-              onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
+              onClick={() => window.location.href = '/get-started'}
               className="px-8 py-4 bg-transparent  text-accent border border-accent rounded-xl font-bold text-lg hover:bg-accent-hover hover:scale-105 transition-all duration-200"
             >
               Get Started

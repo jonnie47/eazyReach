@@ -107,7 +107,7 @@ export default function ThePeakAIAlternative() {
                             From enrichment to execution in one workflow. Find contacts, enrich profiles, and call — without switching between tools or paying per seat.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link href="https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">
+                            <Link href="/get-started" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">
                                 Try EazyReach Free
                             </Link>
                             <Link href="/pricing" className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition-colors">
@@ -168,7 +168,7 @@ export default function ThePeakAIAlternative() {
                         <h2 className="text-3xl font-bold text-white mb-4">Switch to a Complete Outreach Platform</h2>
                         <p className="text-gray-400 mb-8">Modern alternative to traditional AI outreach tools. Built for teams that need enrichment and execution in one place.</p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link href="https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">Get Started Free</Link>
+                            <Link href="/get-started" target="_blank" className="px-8 py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:bg-yellow-300 transition-colors">Get Started Free</Link>
                             <Link href="/pricing" className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition-colors">See Pricing</Link>
                         </div>
                     </div>

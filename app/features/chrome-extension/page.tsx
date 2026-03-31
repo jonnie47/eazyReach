@@ -42,7 +42,7 @@ export default function ChromeExtensionPage() {
           <h2 className="text-3xl font-bold text-gray-100 mb-4">Install the Extension Now</h2>
           <p className="text-gray-300 mb-8">Free to install, pay only for contacts you find</p>
           <button
-            onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
+            onClick={() => window.location.href = '/get-started'}
             className="px-10 py-4 bg-accent text-black rounded-xl font-bold text-lg hover:bg-accent-hover transition-all"
           >
             Add to Chrome

@@ -238,7 +238,7 @@ export const FeaturesSection: React.FC = () => {
           transition={{ delay: 0.3, duration: 0.6 }}
         >
           <button
-            onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
+            onClick={() => window.location.href = '/get-started'}
             className="px-6 py-3 bg-transparent border-2 border-accent text-accent font-bold rounded-xl shadow-lg shadow-accent/50 hover:shadow-accent/70 transition-all duration-300 inline-flex items-center gap-2 group text-sm"
           >
             <span>Get Started Free</span>

@@ -67,7 +67,7 @@ export const PartnersSection: React.FC = () => {
             Interested in partnership opportunities? Contact us to learn about our partner program and exclusive benefits.
           </p>
           <button 
-            onClick={() => window.open('https://chromewebstore.google.com/detail/eazyreach/fffgeopnkmehonbljgdgejmpfnfbgooi', '_blank')}
+            onClick={() => window.location.href = '/get-started'}
             className="px-8 py-3 bg-accent text-black rounded-lg font-semibold hover:bg-accent-hover transition-all duration-200"
           >
             Get Started Today
