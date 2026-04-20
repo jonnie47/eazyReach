@@ -1,39 +1,29 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { animate } from 'framer-motion';
+import { useEffect } from 'react';
+import Lenis from 'lenis';
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
-  const animationRef = useRef<ReturnType<typeof animate> | null>(null);
-
   useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 2,
+    });
 
-      // Stop any in-progress spring
-      animationRef.current?.stop();
-
-      const from = window.scrollY;
-      const to = Math.max(0, Math.min(from + e.deltaY * 2.5, document.body.scrollHeight - window.innerHeight));
-
-animationRef.current = animate(from, to, {
-  type: 'spring',
-  stiffness: 120,
-  damping: 20,
-  mass: 0.5,
-  restDelta: 0.5,
-  onUpdate: (v) => window.scrollTo(0, v),
-});
+    let rafId = 0;
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
     };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
+    rafId = requestAnimationFrame(raf);
 
     return () => {
-      window.removeEventListener('wheel', handleWheel);
-      animationRef.current?.stop();
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
     };
   }, []);
 
   return <>{children}</>;
 }
-
