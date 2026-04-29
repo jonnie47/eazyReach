@@ -297,7 +297,7 @@ export const HeroSection: React.FC = () => {
           {/* Subheading */}
           <motion.div variants={itemVariants}>
             <p className="text-l md:text-l lg:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto font-light">
-              The most accurate <strong className="text-white font-medium">LinkedIn contact finder</strong> and <strong className="text-white font-medium">B2B contact database</strong> for Indian sales teams. Instantly uncover CXO-level phone numbers, verified emails, and complete buyer profiles from enrichment to execution in one workflow.
+              The most accurate <strong className="text-white font-medium">LinkedIn phone number finder</strong> and <strong className="text-white font-medium">B2B contact database</strong> for Indian sales teams. Instantly uncover CXO-level phone numbers, verified emails, and complete buyer profiles from enrichment to execution in one workflow.
             </p>
           </motion.div>
 

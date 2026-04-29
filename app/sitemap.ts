@@ -46,8 +46,16 @@ const staticPages = [
   { path: '/lusha-alternative-india', priority: 0.9, changeFrequency: 'monthly' as const },
   { path: '/easyleadz-alternative', priority: 0.9, changeFrequency: 'monthly' as const },
   { path: '/thepeakai-alternative', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/signalhire-alternative-india', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/rocketreach-alternative-india', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/zoominfo-alternative-india', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/clearbit-alternative-india', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/cognism-alternative-india', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/linkedin-phone-number-finder', priority: 0.9, changeFrequency: 'monthly' as const },
   { path: '/b2b-contact-database-india', priority: 0.9, changeFrequency: 'monthly' as const },
+
+  // AI category pillar
+  { path: '/ai-calling-platform-india', priority: 1.0, changeFrequency: 'weekly' as const },
 
   // Commercial-intent pages
   { path: '/sales-prospecting-tool-india', priority: 0.9, changeFrequency: 'monthly' as const },

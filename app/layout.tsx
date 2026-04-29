@@ -24,21 +24,23 @@ export const metadata: Metadata = {
     template: "%s | EazyReach",
   },
   description:
-    "Find verified phone numbers, emails & LinkedIn contacts for Indian decision-makers. AI-powered B2B contact enrichment, browser calling & outreach automation — built for Indian sales teams.",
+    "Verified phone numbers, emails & LinkedIn contacts for Indian decision-makers. The AI-first Apollo, Lusha & EasyLeadz alternative — enrichment, browser calling & outreach automation in one platform.",
   metadataBase: new URL(BASE_URL),
   alternates: {
     canonical: BASE_URL,
   },
   keywords: [
+    "LinkedIn phone number finder",
     "LinkedIn contact finder",
-    "B2B contact enrichment tool",
+    "best LinkedIn contact finder India",
+    "B2B contact database India",
     "sales prospecting tool India",
-    "AI calling platform",
-    "B2B outreach automation",
+    "EasyLeadz alternative India",
     "Apollo alternative India",
     "Lusha alternative India",
-    "B2B contact database India",
-    "LinkedIn phone number finder",
+    "AI calling platform",
+    "B2B outreach automation",
+    "DIN director phone lookup",
     "director contact India",
   ],
   openGraph: {
@@ -47,7 +49,7 @@ export const metadata: Metadata = {
     siteName: "EazyReach",
     title: "EazyReach — AI-First B2B Contact Enrichment & Outreach Platform India",
     description:
-      "Find verified phone numbers, emails & LinkedIn contacts for Indian decision-makers. AI-powered enrichment, browser calling & outreach automation — built for Indian sales teams.",
+      "The AI-first Apollo, Lusha & EasyLeadz alternative for Indian sales teams. Verified phone numbers, LinkedIn enrichment, browser calling & outreach automation in one platform.",
     images: [
       {
         url: `${BASE_URL}/EazyE.png`,
@@ -63,7 +65,7 @@ export const metadata: Metadata = {
     site: "@eazyreach",
     title: "EazyReach — AI-First B2B Contact Enrichment & Outreach Platform India",
     description:
-      "Find verified phone numbers, emails & LinkedIn contacts for Indian decision-makers. AI-powered enrichment & outreach automation.",
+      "The AI-first Apollo, Lusha & EasyLeadz alternative. Verified phones, LinkedIn enrichment & AI calling for Indian sales teams.",
     images: [`${BASE_URL}/EazyE.png`],
   },
   robots: {
@@ -97,12 +99,7 @@ const softwareApplicationSchema = {
     "@type": "Offer",
     priceCurrency: "INR",
     price: "0",
-    description: "Pay-per-use model. No seat penalties. Shared credit pool.",
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "120",
+    description: "Credit-based model. No seat penalties. Shared credit pool.",
   },
   featureList: [
     "LinkedIn contact finder",
@@ -117,18 +114,51 @@ const softwareApplicationSchema = {
   inLanguage: "en-IN",
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "EazyReach",
+  url: BASE_URL,
+  logo: `${BASE_URL}/EazyReach.png`,
+  description:
+    "AI-first B2B contact enrichment and outreach platform built for Indian sales teams.",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "IN",
+  },
+  areaServed: [
+    { "@type": "City", name: "Mumbai" },
+    { "@type": "City", name: "Bangalore" },
+    { "@type": "City", name: "Delhi" },
+    { "@type": "City", name: "Pune" },
+    { "@type": "City", name: "Chennai" },
+    { "@type": "City", name: "Hyderabad" },
+    { "@type": "Country", name: "India" },
+  ],
+  sameAs: [
+    "https://twitter.com/eazyreach",
+    "https://x.com/eazyreach",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN">
+    <html lang="en-IN" suppressHydrationWarning>
       <head>
         <Script
           id="software-application-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
+          strategy="beforeInteractive"
+        />
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
           strategy="beforeInteractive"
         />
       </head>

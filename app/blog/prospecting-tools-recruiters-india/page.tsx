@@ -70,7 +70,7 @@ export default function ProspectingToolsRecruitersIndia() {
                             {[
                                 {
                                     rank: 1, name: 'EazyReach', badge: '🏆 Best for India',
-                                    desc: 'Chrome extension that reveals phone numbers and emails from LinkedIn profiles. Works for both active and passive candidates. Shared credits across your recruiting team — pay only for what you use.',
+                                    desc: 'Chrome extension that reveals phone numbers and emails from LinkedIn profiles. Works for both active and passive candidates. Shared credits across your recruiting team — no per-seat waste.',
                                     features: ['LinkedIn phone & email finder', 'DIN director lookup (for C-suite hiring)', 'Shared team credits', 'INR pricing', 'Built-in calling'],
                                     link: '/linkedin-phone-number-finder',
                                 },
@@ -123,7 +123,7 @@ export default function ProspectingToolsRecruitersIndia() {
                             <div className="grid grid-cols-3 gap-4 text-sm text-center">
                                 <div>
                                     <div className="text-yellow-400 font-semibold mb-1">EazyReach</div>
-                                    <div className="text-gray-300">INR · Pay per use</div>
+                                    <div className="text-gray-300">INR · Shared credits</div>
                                     <div className="text-gray-400 text-xs mt-1">Shared team credits</div>
                                 </div>
                                 <div>

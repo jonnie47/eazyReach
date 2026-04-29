@@ -4,14 +4,14 @@ import Link from 'next/link';
 export const metadata: Metadata = {
     title: 'B2B Contact Database India — EazyReach | Verified Emails & Phones',
     description:
-        'Access India\'s most accurate B2B contact database. Find verified phone numbers, emails, and LinkedIn profiles for Indian decision-makers — with DIN director intelligence and pay-per-use pricing.',
+        'Access India\'s most accurate B2B contact database. Find verified phone numbers, emails, and LinkedIn profiles for Indian decision-makers — with DIN director intelligence and shared team credits.',
     alternates: {
         canonical: 'https://eazyreach.app/b2b-contact-database-india',
     },
     openGraph: {
         title: 'B2B Contact Database India — EazyReach | Verified Emails & Phones',
         description:
-            'B2B contact database India pricing: pay only for what you use. Verified emails, phone numbers, and DIN director intelligence for Indian sales teams.',
+            'B2B contact database India: shared team credits in INR. Verified emails, phone numbers, and DIN director intelligence for Indian sales teams.',
         url: 'https://eazyreach.app/b2b-contact-database-india',
         type: 'website',
     },
@@ -43,7 +43,7 @@ const faqSchema = {
             name: 'How does B2B contact database India pricing work with EazyReach?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'EazyReach uses a pay-per-use credit model with shared team credits. You pay only for the contacts you actually reveal — no monthly seat fees, no unused credit waste. Pricing is in INR, making it significantly more affordable than USD-priced global alternatives.',
+                text: 'EazyReach uses a credit-based model with a shared pool across your team. Credits scale with your actual usage — no per-seat fees, no unused credit waste. Pricing is in INR, making it significantly more affordable than USD-priced global alternatives.',
             },
         },
         {
@@ -76,7 +76,7 @@ const comparisonData = [
     { feature: 'India-first data coverage', eazyreach: true, others: false },
     { feature: 'DIN-based director lookup', eazyreach: true, others: false },
     { feature: 'Shared credit pool', eazyreach: true, others: false },
-    { feature: 'Pay-per-use model (INR)', eazyreach: true, others: false },
+    { feature: 'Shared credit pool (INR pricing)', eazyreach: true, others: false },
     { feature: 'LinkedIn enrichment', eazyreach: true, others: true },
     { feature: 'Verified email finder', eazyreach: true, others: true },
     { feature: 'Direct-dial phone numbers', eazyreach: true, others: true },
@@ -108,7 +108,7 @@ export default function B2BContactDatabaseIndia() {
                             <span className="text-yellow-400">B2B Contact Database</span>
                         </h1>
                         <p className="text-xl text-gray-300 mb-4 leading-relaxed max-w-3xl mx-auto">
-                            B2B contact database India pricing that makes sense: pay per use in INR, share credits across your team, and access verified phone numbers and emails for Indian decision-makers — including DIN-based director contacts.
+                            B2B contact database India that makes sense: share credits across your team in INR, and access verified phone numbers and emails for Indian decision-makers — including DIN-based director contacts.
                         </p>
                         <p className="text-gray-400 mb-10 max-w-2xl mx-auto">
                             Apollo alternative B2B database India: EazyReach combines India-specific data intelligence with a full outreach execution layer — not just a data export tool.

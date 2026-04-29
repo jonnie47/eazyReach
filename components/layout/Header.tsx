@@ -9,12 +9,14 @@ export const Header: React.FC = () => {
     const [featuresOpen, setFeaturesOpen] = useState(false);
     const [solutionsOpen, setSolutionsOpen] = useState(false);
     const [resourcesOpen, setResourcesOpen] = useState(false);
+    const [compareOpen, setCompareOpen] = useState(false);
     const navRef = useRef<HTMLDivElement>(null);
 
     const closeAll = () => {
         setFeaturesOpen(false);
         setSolutionsOpen(false);
         setResourcesOpen(false);
+        setCompareOpen(false);
     };
 
     useEffect(() => {
@@ -51,6 +53,7 @@ export const Header: React.FC = () => {
                                     setFeaturesOpen(!featuresOpen);
                                     setSolutionsOpen(false);
                                     setResourcesOpen(false);
+                                    setCompareOpen(false);
                                 }}
                                 className="flex items-center gap-1 text-gray-100 hover:text-accent transition-colors font-medium"
                             >
@@ -172,6 +175,7 @@ export const Header: React.FC = () => {
                                     setSolutionsOpen(!solutionsOpen);
                                     setFeaturesOpen(false);
                                     setResourcesOpen(false);
+                                    setCompareOpen(false);
                                 }}
                                 className="flex items-center gap-1 text-gray-100 hover:text-accent transition-colors font-medium"
                             >
@@ -366,6 +370,7 @@ export const Header: React.FC = () => {
                                     setResourcesOpen(!resourcesOpen);
                                     setFeaturesOpen(false);
                                     setSolutionsOpen(false);
+                                    setCompareOpen(false);
                                 }}
                                 className="flex items-center gap-1 text-gray-100 hover:text-accent transition-colors font-medium"
                             >
@@ -401,6 +406,138 @@ export const Header: React.FC = () => {
                                             <div className="text-xs text-gray-400">Explore all modules</div>
                                         </div>
                                     </Link>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Compare Dropdown */}
+                        <div className="relative">
+                            <button
+                                onClick={() => {
+                                    setCompareOpen(!compareOpen);
+                                    setFeaturesOpen(false);
+                                    setSolutionsOpen(false);
+                                    setResourcesOpen(false);
+                                }}
+                                className="flex items-center gap-1 text-gray-100 hover:text-accent transition-colors font-medium"
+                            >
+                                Compare
+                                <ChevronDown className={`w-4 h-4 transition-transform ${compareOpen ? 'rotate-180' : ''}`} />
+                            </button>
+                            {compareOpen && (
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[640px] bg-[#1a1a1a] border border-gray-800 rounded-xl shadow-xl shadow-accent/10 p-4 z-50 max-h-[80vh] overflow-y-auto">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        {/* Column 1: India-Focused */}
+                                        <div>
+                                            <h3 className="text-xs font-bold text-gray-500 uppercase mb-3 px-2">India-Focused Tools</h3>
+                                            <Link href="/easyleadz-alternative" onClick={() => setCompareOpen(false)} className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-accent/10 transition-colors group mb-1">
+                                                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors flex-shrink-0">
+                                                    <Building className="w-4 h-4 text-accent" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="text-gray-100 font-medium text-sm">vs EasyLeadz</div>
+                                                    <div className="text-xs text-gray-400">Mr. E alternative</div>
+                                                </div>
+                                            </Link>
+                                            <Link href="/thepeakai-alternative" onClick={() => setCompareOpen(false)} className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-accent/10 transition-colors group mb-1">
+                                                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors flex-shrink-0">
+                                                    <Sparkles className="w-4 h-4 text-accent" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="text-gray-100 font-medium text-sm">vs ThePeakAI</div>
+                                                    <div className="text-xs text-gray-400">Indian AI sales tools</div>
+                                                </div>
+                                            </Link>
+
+                                            <h3 className="text-xs font-bold text-gray-500 uppercase mt-4 mb-3 px-2">Featured</h3>
+                                            <Link href="/ai-calling-platform-india" onClick={() => setCompareOpen(false)} className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-accent/10 transition-colors group mb-1">
+                                                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors flex-shrink-0">
+                                                    <PhoneCall className="w-4 h-4 text-accent" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="text-gray-100 font-medium text-sm">AI Calling Platform</div>
+                                                    <div className="text-xs text-gray-400">India&apos;s first AI-native B2B</div>
+                                                </div>
+                                            </Link>
+                                            <Link href="/blog/best-linkedin-contact-finder-india" onClick={() => setCompareOpen(false)} className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-accent/10 transition-colors group">
+                                                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors flex-shrink-0">
+                                                    <BookOpen className="w-4 h-4 text-accent" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="text-gray-100 font-medium text-sm">All Tools Compared</div>
+                                                    <div className="text-xs text-gray-400">2026 ranking</div>
+                                                </div>
+                                            </Link>
+                                        </div>
+
+                                        {/* Column 2: Global Tools */}
+                                        <div>
+                                            <h3 className="text-xs font-bold text-gray-500 uppercase mb-3 px-2">Global Tools (India Alternative)</h3>
+                                            <Link href="/apollo-alternative-india" onClick={() => setCompareOpen(false)} className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-accent/10 transition-colors group mb-1">
+                                                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors flex-shrink-0">
+                                                    <Rocket className="w-4 h-4 text-accent" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="text-gray-100 font-medium text-sm">vs Apollo</div>
+                                                    <div className="text-xs text-gray-400">Cheaper & India-first</div>
+                                                </div>
+                                            </Link>
+                                            <Link href="/lusha-alternative-india" onClick={() => setCompareOpen(false)} className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-accent/10 transition-colors group mb-1">
+                                                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors flex-shrink-0">
+                                                    <UserCheck className="w-4 h-4 text-accent" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="text-gray-100 font-medium text-sm">vs Lusha</div>
+                                                    <div className="text-xs text-gray-400">INR pricing, AI calling</div>
+                                                </div>
+                                            </Link>
+                                            <Link href="/zoominfo-alternative-india" onClick={() => setCompareOpen(false)} className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-accent/10 transition-colors group mb-1">
+                                                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors flex-shrink-0">
+                                                    <Database className="w-4 h-4 text-accent" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="text-gray-100 font-medium text-sm">vs ZoomInfo</div>
+                                                    <div className="text-xs text-gray-400">Affordable enterprise alt</div>
+                                                </div>
+                                            </Link>
+                                            <Link href="/cognism-alternative-india" onClick={() => setCompareOpen(false)} className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-accent/10 transition-colors group mb-1">
+                                                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors flex-shrink-0">
+                                                    <Globe className="w-4 h-4 text-accent" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="text-gray-100 font-medium text-sm">vs Cognism</div>
+                                                    <div className="text-xs text-gray-400">DPDP-compliant for India</div>
+                                                </div>
+                                            </Link>
+                                            <Link href="/clearbit-alternative-india" onClick={() => setCompareOpen(false)} className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-accent/10 transition-colors group mb-1">
+                                                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors flex-shrink-0">
+                                                    <Mail className="w-4 h-4 text-accent" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="text-gray-100 font-medium text-sm">vs Clearbit</div>
+                                                    <div className="text-xs text-gray-400">Sales-first enrichment</div>
+                                                </div>
+                                            </Link>
+                                            <Link href="/rocketreach-alternative-india" onClick={() => setCompareOpen(false)} className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-accent/10 transition-colors group mb-1">
+                                                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors flex-shrink-0">
+                                                    <Phone className="w-4 h-4 text-accent" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="text-gray-100 font-medium text-sm">vs RocketReach</div>
+                                                    <div className="text-xs text-gray-400">India-first depth</div>
+                                                </div>
+                                            </Link>
+                                            <Link href="/signalhire-alternative-india" onClick={() => setCompareOpen(false)} className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-accent/10 transition-colors group">
+                                                <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors flex-shrink-0">
+                                                    <Linkedin className="w-4 h-4 text-accent" />
+                                                </div>
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="text-gray-100 font-medium text-sm">vs Signalhire</div>
+                                                    <div className="text-xs text-gray-400">India-native AI outreach</div>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                         </div>

@@ -43,7 +43,7 @@ const faqSchema = {
             name: 'How does EazyReach pricing compare to Apollo in India?',
             acceptedAnswer: {
                 '@type': 'Answer',
-                text: 'Apollo charges per seat and exports data without an execution layer. EazyReach uses a pay-per-use credit model with a shared pool across your team, making it significantly more cost-effective for Indian startups and SMBs.',
+                text: 'Apollo charges per seat and exports data without an execution layer. EazyReach uses a credit-based model with a shared pool across your team, making it significantly more cost-effective for Indian startups and SMBs.',
             },
         },
         {
@@ -74,7 +74,7 @@ const comparisonData = [
     { feature: 'LinkedIn phone number finder', eazyreach: true, apollo: true },
     { feature: 'Verified email finder', eazyreach: true, apollo: true },
     { feature: 'Chrome extension', eazyreach: true, apollo: true },
-    { feature: 'Pay-per-use model', eazyreach: true, apollo: false },
+    { feature: 'No annual lock-in required', eazyreach: true, apollo: false },
     { feature: 'Enrichment + execution in one workflow', eazyreach: true, apollo: false },
 ];
 
@@ -111,7 +111,7 @@ export default function ApolloAlternativeIndia() {
                             EazyReach vs Apollo pricing in India is no contest. While Apollo charges per seat and locks you into annual contracts, EazyReach gives Indian sales teams a shared credit pool, built-in calling, and DIN-based director intelligence — at a fraction of the cost.
                         </p>
                         <p className="text-gray-400 mb-10 max-w-2xl mx-auto">
-                            Why Indian sales teams switch from Apollo: no seat penalties, pay-per-use credits, and an execution layer that goes beyond data export.
+                            Why Indian sales teams switch from Apollo: no seat penalties, shared team credits, and an execution layer that goes beyond data export.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link

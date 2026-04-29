@@ -74,7 +74,7 @@ const comparisonData = [
     { feature: 'LinkedIn phone number finder', eazyreach: true, lusha: true },
     { feature: 'Verified email finder', eazyreach: true, lusha: true },
     { feature: 'Chrome extension', eazyreach: true, lusha: true },
-    { feature: 'Pay-per-use model', eazyreach: true, lusha: false },
+    { feature: 'No annual lock-in required', eazyreach: true, lusha: false },
     { feature: 'Enrichment + execution in one workflow', eazyreach: true, lusha: false },
 ];
 

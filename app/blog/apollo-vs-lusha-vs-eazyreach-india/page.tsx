@@ -114,7 +114,7 @@ export default function ApolloVsLushaVsEazyreach() {
                             <li><strong className="text-white">DIN director intelligence</strong> — find Indian company director contacts via Director Identification Numbers</li>
                             <li><strong className="text-white">Built-in browser calling</strong> — call directly after enrichment, no separate dialer</li>
                             <li><strong className="text-white">AI voice agents</strong> — scale outbound without scaling headcount</li>
-                            <li><strong className="text-white">INR pricing</strong> — pay in Indian Rupees, pay only for what you use</li>
+                            <li><strong className="text-white">INR pricing</strong> — pay in Indian Rupees, with shared team credits and no per-seat waste</li>
                         </ul>
 
                         <h2 className="text-2xl font-bold text-white mt-10">Quick Comparison Table</h2>

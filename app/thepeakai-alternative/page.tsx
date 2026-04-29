@@ -73,7 +73,7 @@ const comparisonData = [
     { feature: 'Built-in browser calling', eazyreach: true, peakai: true },
     { feature: 'AI voice agents', eazyreach: true, peakai: true },
     { feature: 'Chrome extension', eazyreach: true, peakai: false },
-    { feature: 'Pay-per-use model', eazyreach: true, peakai: false },
+    { feature: 'No annual lock-in required', eazyreach: true, peakai: false },
     { feature: 'Verified email finder', eazyreach: true, peakai: true },
     { feature: 'Enrichment + execution in one workflow', eazyreach: true, peakai: false },
 ];

@@ -1,24 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Check, Zap, ArrowRight, Users, Phone, Mail, PhoneCall, Bot } from 'lucide-react';
 import CircularText from '@/components/CircularText';
 import GlitchText from '@/components/GlitchText';
 import ShinyText from '@/components/ShinyText';
-
-interface ExchangeRate {
-  exchange_rate: number;
-  country_code: string;
-  country_name: string;
-  currency_code: string;
-}
-
-interface CurrencyInfo {
-  code: string;
-  rate: number;
-  countryCode: string;
-}
+import { plans, creditCosts, extraCreditsPack, formatINR, getPaymentLink, type Plan } from '@/lib/pricing';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -43,194 +31,17 @@ const cardVariants: Variants = {
   }
 };
 
+const handleCta = (plan: Plan) => {
+  if (plan.name === 'Enterprise') {
+    window.location.href = '/contact';
+  } else if (plan.isFreeTrial) {
+    window.location.href = '/get-started';
+  } else {
+    window.open(getPaymentLink(plan.priceINR), '_blank');
+  }
+};
+
 export const PricingSection: React.FC = () => {
-  const [detectedCurrency, setDetectedCurrency] = useState<CurrencyInfo>({ code: 'USD', rate: 0.012, countryCode: 'US' });
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const detectCurrencyAndFetchRates = async () => {
-      try {
-        const countryResponse = await fetch('https://ipinfo.io/country');
-        const countryCode = (await countryResponse.text()).trim();
-
-        const ratesResponse = await fetch('https://arc.vocallabs.ai/v1/graphql', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            query: `
-              query GetExchangeRate {
-                vocallabs_exchange_rate {
-                  exchange_rate
-                  country_code
-                  country_name
-                  currency_code
-                }
-              }
-            `
-          })
-        });
-
-        const ratesData = await ratesResponse.json();
-        const exchangeRates: ExchangeRate[] = ratesData.data.vocallabs_exchange_rate;
-
-        const matchedRate = exchangeRates.find(
-          (rate) => rate.country_code === countryCode
-        );
-
-        if (matchedRate) {
-          setDetectedCurrency({
-            code: matchedRate.currency_code,
-            rate: matchedRate.exchange_rate,
-            countryCode: matchedRate.country_code
-          });
-        } else {
-          const usdRate = exchangeRates.find((rate) => rate.currency_code === 'USD');
-          setDetectedCurrency({
-            code: 'USD',
-            rate: usdRate?.exchange_rate || 0.012,
-            countryCode: 'US'
-          });
-        }
-      } catch (error) {
-        console.error('Error detecting currency:', error);
-        setDetectedCurrency({ code: 'USD', rate: 0.012, countryCode: 'US' });
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    detectCurrencyAndFetchRates();
-  }, []);
-
-  // Get price for display based on currency
-  const getPrice = (plan: { monthlyINR: number; monthlyUSD: number; name: string }): number => {
-    // For India, use hardcoded INR prices
-    if (detectedCurrency.code === 'INR') {
-      return plan.monthlyINR;
-    }
-
-    // For other currencies, convert from base USD price
-    const baseUSD = plan.monthlyUSD;
-    return Math.round(baseUSD / 0.012); // Convert USD to currency using exchange rate
-  };
-
-  const formatPrice = (plan: { monthlyINR: number; monthlyUSD: number; name: string }): string => {
-    const price = getPrice(plan);
-
-    // For India, return INR directly
-    if (detectedCurrency.code === 'INR') {
-      return `${price.toLocaleString()} INR`;
-    }
-
-    // For other currencies, convert from USD
-    const usdPrice = plan.monthlyUSD;
-    const converted = Math.round(usdPrice * (1 / 0.012) * detectedCurrency.rate);
-    return `${converted} ${detectedCurrency.code}`;
-  };
-
-  const getPaymentLink = (plan: typeof plans[0]): string => {
-    const price = getPrice(plan);
-    const amountInSmallestUnit = price * 100; // Convert to smallest unit (paise, cents, etc.)
-    const currency = detectedCurrency.code.toLowerCase();
-
-    return `https://studio.eazyreach.app/auth/payment?amount=${amountInSmallestUnit}&currency=${currency}`;
-  };
-
-  const plans = [
-    {
-      name: "Free Trial",
-      monthlyINR: 0,
-      monthlyUSD: 0,
-      description: "Earn free credits to try real contact data",
-      credits: 150,
-      isFreeTrial: true,
-      features: [
-        "Up to 150 free credits total",
-        "Sign up with work email",
-        "Invite 2 professionals",
-        "Reveal verified emails & numbers",
-        "LinkedIn extension"
-      ],
-      limitations: [
-        "No calling features",
-        "No AI capabilities",
-        "No CSV exports"
-      ],
-      cta: "Get Started",
-      popular: false
-    },
-    {
-      name: "Starter",
-      monthlyINR: 4099, // Hardcoded for India
-      monthlyUSD: 49,   // Base USD price for other countries
-      description: "Contact discovery made simple",
-      credits: 2000,
-      features: [
-        "2,000 credits / month",
-        "Reveal verified emails & phones",
-        "LinkedIn extension",
-        "Unlimited segments & groups",
-        "Unlimited CSV exports"
-      ],
-      cta: "Get Starter",
-      popular: false
-    },
-    {
-      name: "Growth",
-      monthlyINR: 8249, // Hardcoded for India
-      monthlyUSD: 99,   // Base USD price for other countries
-      description: "Contact data + human calling",
-      credits: 4000,
-      features: [
-        "4,000 credits / month",
-        "Everything in Starter",
-        "Built-in browser calling",
-        "1 shared phone number",
-        "Live AI transcription",
-        "Call recordings & analytics"
-      ],
-      cta: "Get Growth",
-      popular: true
-    },
-    {
-      name: "Pro",
-      monthlyINR: 16599, // Hardcoded for India
-      monthlyUSD: 199,   // Base USD price for other countries
-      description: "Full AI-powered outreach",
-      credits: 7500,
-      features: [
-        "7,500 credits / month",
-        "Everything in Growth",
-        "AI voice outreach",
-        "AI calling campaigns",
-        "Conversation intelligence",
-        "Objection & intent detection"
-      ],
-      cta: "Get Pro",
-      popular: false
-    },
-    {
-      name: "Enterprise",
-      monthlyINR: 0,
-      monthlyUSD: 0,
-      description: "Advanced teams & custom workflows",
-      credits: 0,
-      isCustomPricing: true,
-      features: [
-        "Everything in Pro",
-        "Custom credit volumes",
-        "Multiple phone numbers",
-        "CRM sync & integrations",
-        "SLA & priority support",
-        "Team management"
-      ],
-      cta: "Contact Sales",
-      popular: false
-    }
-  ];
-
   return (
     <div id="pricing" className="py-24 bg-black relative overflow-hidden">
       {/* Background */}
@@ -259,32 +70,32 @@ export const PricingSection: React.FC = () => {
             One simple credit system. No seat penalties. No screen switching.
           </p>
 
-          {/* Simplified Credit Costs - Inline */}
+          {/* Credit Costs - Inline */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-accent" />
               <span className="text-gray-400">Email:</span>
-              <span className="text-white font-semibold">3 credits</span>
+              <span className="text-white font-semibold">{creditCosts.email} credits</span>
             </div>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-accent" />
               <span className="text-gray-400">Phone:</span>
-              <span className="text-white font-semibold">8 credits</span>
+              <span className="text-white font-semibold">{creditCosts.phone} credits</span>
             </div>
             <div className="flex items-center gap-2">
               <PhoneCall className="w-4 h-4 text-accent" />
               <span className="text-gray-400">Human Call:</span>
-              <span className="text-white font-semibold">2 credits</span>
+              <span className="text-white font-semibold">{creditCosts.humanCall} credits</span>
             </div>
             <div className="flex items-center gap-2">
               <Bot className="w-4 h-4 text-accent" />
               <span className="text-gray-400">AI Call:</span>
-              <span className="text-white font-semibold">5 credits</span>
+              <span className="text-white font-semibold">{creditCosts.aiCall} credits</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Pricing Grid - Free Trial Separate */}
+        {/* Pricing Grid */}
         <motion.div
           className="mb-12"
           variants={containerVariants}
@@ -292,9 +103,7 @@ export const PricingSection: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-
-
-          {/* Paid Plans - 2x2 Grid */}
+          {/* Paid Plans - 4 column grid (skip Free Trial which is plans[0]) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {plans.slice(1).map((plan, index) => {
               const isPopular = plan.popular;
@@ -337,7 +146,7 @@ export const PricingSection: React.FC = () => {
                         <div className="mb-4">
                           <div className="flex items-baseline gap-1 mb-1">
                             <ShinyText
-                              text={loading ? '...' : formatPrice(plan)}
+                              text={formatINR(plan.priceINR)}
                               speed={3}
                               className="!text-3xl !font-bold !text-white"
                             />
@@ -360,13 +169,7 @@ export const PricingSection: React.FC = () => {
                         </ul>
 
                         <button
-                          onClick={() => {
-                            if (plan.name === 'Enterprise') {
-                              window.location.href = '/contact';
-                            } else {
-                              window.open(getPaymentLink(plan), '_blank');
-                            }
-                          }}
+                          onClick={() => handleCta(plan)}
                           className="w-full bg-gradient-to-r from-accent via-yellow-400 to-accent text-black hover:shadow-lg hover:shadow-accent/50 py-3 rounded-xl font-semibold text-sm inline-flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 relative overflow-hidden group"
                         >
                           <motion.div
@@ -400,7 +203,7 @@ export const PricingSection: React.FC = () => {
                           <>
                             <div className="flex items-baseline gap-1 mb-1">
                               <span className="text-3xl font-bold text-white">
-                                {loading ? '...' : formatPrice(plan)}
+                                {formatINR(plan.priceINR)}
                               </span>
                               <span className="text-sm text-gray-400">/mo</span>
                             </div>
@@ -423,13 +226,7 @@ export const PricingSection: React.FC = () => {
                       </ul>
 
                       <button
-                        onClick={() => {
-                          if (plan.name === 'Enterprise') {
-                            window.location.href = '/contact';
-                          } else {
-                            window.open(getPaymentLink(plan), '_blank');
-                          }
-                        }}
+                        onClick={() => handleCta(plan)}
                         className="w-full bg-white/5 text-white hover:bg-white/10 border border-white/10 py-3 rounded-xl font-semibold text-sm inline-flex items-center justify-center gap-2 transition-all duration-300"
                       >
                         <span>{plan.cta}</span>
@@ -443,7 +240,7 @@ export const PricingSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Extra Credits - Simplified */}
+        {/* Extra Credits */}
         <motion.div
           className="mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -455,15 +252,17 @@ export const PricingSection: React.FC = () => {
             <span className="text-gray-400">Need more credits?</span>
             <div className="flex items-center gap-2">
               <span className="text-2xl font-bold text-white">
-                {loading ? '...' : (detectedCurrency.code === 'INR' ? '2,099 INR' : `${Math.round(25 * (1 / 0.012) * detectedCurrency.rate)} ${detectedCurrency.code}`)}
+                {formatINR(extraCreditsPack.priceINR)}
               </span>
               <span className="text-gray-400">for</span>
-              <span className="text-2xl font-bold text-accent">1,000 credits</span>
+              <span className="text-2xl font-bold text-accent">
+                {extraCreditsPack.credits.toLocaleString()} credits
+              </span>
             </div>
           </div>
         </motion.div>
 
-        {/* Why Choose Us - More Compact */}
+        {/* Why Choose Us */}
         <motion.div
           className="mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -473,9 +272,9 @@ export const PricingSection: React.FC = () => {
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
             {[
-              { icon: Users, title: "Shared credit pool", description: "No per-rep penalties" },
-              { icon: Phone, title: "Built-in calling", description: "Direct from browser" },
-              { icon: Zap, title: "No screen switching", description: "Everything in one place" }
+              { icon: Users, title: 'Shared credit pool', description: 'No per-rep penalties' },
+              { icon: Phone, title: 'Built-in calling', description: 'Direct from browser' },
+              { icon: Zap, title: 'No screen switching', description: 'Everything in one place' }
             ].map((benefit, idx) => (
               <div
                 key={idx}
@@ -487,17 +286,6 @@ export const PricingSection: React.FC = () => {
               </div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Bottom Note */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-        >
-      
         </motion.div>
       </div>
     </div>
